@@ -1,0 +1,105 @@
+Nano - Editor 
+
+nano version -4.8
+
+1. For display the nano version
+
+nano --version (in cmd)
+
+
+2. For install the nano by cmd
+
+sudo apt install nano (in cmd)
+
+3. For create new file in current directory 
+
+nano <file-name> (in cmd)
+
+commands or Shortcut keys
+
+1. ctrl + s - For save the file .
+
+2. ctrl + o - save as the file .
+
+3. ctrl + r - insert any new file .
+
+4. ctrl + x - exit from nano .
+
+5. ctrl + k - cut the current line into cut buffer .
+
+6. ctrl + u - paste content of cut buffer .
+
+7. alt + 6 - copy current line into cut buffer .
+
+8. alt + t - cut from cursor to until end of buffer .  
+ 
+9. alt + 3 - comment / ucomment line (put # in starting of current line) .
+
+10. alt + u - undo last action .
+
+11. alt + e - redo last undone action .
+
+12. ctrl + q - start backward search .
+
+13. ctrl + w - start forward search .
+
+14. alt + q - Find next occurence backward (It holds the last character which will be type in ctrl + q) .
+
+15. alt + w - Find next occurence forward (It holds the last character which will be type in ctrl + w) .
+
+16. alt + r - it replace charactere (ask at every character) .
+
+17. Del / ctrl + h - Delete character before cursor .
+
+18. ctrl + d - Delete character under cursor .
+
+19. ctrl + Del - Delete word from right .
+
+20. ctrl + c - Its reports the cursor position .
+
+21. ctrl + g - display help text . 
+
+22. alt + d - Report line / word / character count .
+
+23. alt + g - Go to specified line .
+
+24. alt + ] - Go to opposite bracket (cursor should be on bracket) .
+
+25. alt + upward - scroll view port up .
+
+26. alt + downward - scroll view port down .
+
+27. ctrl + b - cursor will move one character backward .
+
+28. ctrl + f - cursor will move one character forward .
+
+29. ctrl + forward - cursor will move one word forward .
+
+30. ctrl + backward - cursor will move one word backward .
+
+31. ctrl + a - It will move cursor start of line .
+
+32. ctrl + e - It will move cursor end of line .
+
+33. ctrl + p - It will move cursor one line up .
+
+34. ctrl + n - It will move cursor one line down .
+
+35. ctrl + upward -  It will move cursor to previous paragraph starting .
+
+36. ctrl + downward -  It will move cursor to next paragraph starting . 
+
+37. ctrl + y - one page up move .
+
+38. ctrl + v - one page down move .
+
+39. alt + \ - move top of buffer (file) .
+
+40. alt + / - move down of buffer (file) .
+
+41. alt + < - switch to preceding buffer .
+
+42. alt + > - switch to succeding buffer .
+
+43. alt + p - It is used for show white spaces (by . in center) .
+
