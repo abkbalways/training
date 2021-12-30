@@ -1,0 +1,1057 @@
+PostgreSQL Document By Ajay Agrawal in Beryl Systems 
+
+Installation :
+
+1. sudo apt install postgresql
+or
+sudo apt install postgresql postgresql-contrib  // It is used for install postgres with some extra functionalities and utilities .
+
+2. sudo -u postgres psql // For come in postgres=#
+
+3. ALTER USER postgres PASSWORD 'abcd';  //For Set user and password
+
+4. psql -U postgres -h localhost
+
+
+
+Postgres Commands :
+
+1. \l - For list the databases.
+
+2. \du - For list the roles.
+
+3. \c database-name - For Switch over the databases .
+
+4. \t or \dt - For list the tables or relations.
+
+5. \d table-name - For describe the table.
+
+6. \t - it is used for on/off the column names .
+
+Connect with pgadmin :
+
+Version - 6.2
+
+Install pgadmin by terminal in buntu 20.04
+
+1. curl https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo apt-key add
+
+2. sudo sh -c 'echo "deb https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$(lsb_release -cs) pgadmin4 main" > /etc/apt/sources.list.d/pgadmin4.list'
+
+3. sudo apt update 
+
+4. sudo apt install pgadmin4
+
+In pgadmin :
+
+1. Go to Dashboard .
+
+2. Add new Server
+
+3. Give name in "General"
+
+4. Give localhost and password in "connection"
+
+5. Save password in connection
+
+6. Save
+
+For stop server :
+
+systemctl stop postgresql
+
+For start server :
+
+systemctl start postgresql
+
+Another Commands :
+
+
+1. Create Database :
+
+CREATE DATABASE ajay;
+
+
+2. Delete Database
+
+DROP DATABASE ajay;
+
+
+3. Create Table :
+
+CREATE TABLE table-name
+(column-name1 datatype,
+ column-name2 datatype,
+ .
+ .
+ column-namen datatype);
+
+
+4. Delete Table :
+
+DROP TABLE table-name;
+
+
+5. Display Table :
+
+SELECT * FROM table-name;
+
+
+6. Insert in Table :
+
+INSERT INTO table-name(col1,col2,...,coln)VALUES(val1a,val2a,val3a,...,valna),(val1b,val2b,val3b,...,valnb),...,(val1n,val2n,valna,...,valmn);
+
+
+7. For delete the column from table
+
+ALTER TABLE table-name DROP COLUMN column-name;
+
+
+8. For Add the column in table
+
+ALTER TABLE table-name ADD COLUMN column-name datatype;
+
+
+9. Update the table
+
+UPDATE table-name SET col-name=value
+WHERE condition;
+
+
+10. For change the type of column 
+
+ALTER TABLE table-name ALTER COLUMN column-name TYPE datatype;
+
+
+11. Delete From Table
+
+It is used for delete row from table .
+
+Ex- DELETE FROM table-name WHERE condition;
+
+
+12. ORDER BY CLAUSE 
+
+It is used for sort table by mention column .
+
+Ex- SELECT * FROM table-name ORDER BY col-name ASC | DESC;
+
+
+13. GROUP BY CLAUSE
+
+It is used for group distinct rows of an column .
+
+Ex- SELECT col-name FROM table-name GROUP BY col-name;
+
+*Both col-name should be same
+
+
+14. SUM() 
+
+It is used for give sum query.
+
+Ex- SELECT SUM(Salary) FROM table-name;
+
+SELECT SUM(Salary) FROM Employee GROUP BY Name;
+
+It will show the table in which the salary of the same name will be added.
+
+
+15. HAVING CLAUSE
+
+It is used to specify a search condition for a group or an aggregate . And it is regularly used with the GROUP BY clause to filter groups or aggregates based on a detailed condition.
+
+Ex-
+
+SELECT Name,SUM(Salary) FROM Employee GROUP BY Name HAVING SUM(Salary>1500);
+
+It will give the distinct names and sum of salary of same names which sum is greater than 15000 .
+
+
+16. LIMIT CLAUSE
+
+It is used for print the limited rows .
+
+Ex - 
+
+SELECT Sno,Name FROM Employee
+ORDER BY Sno
+LIMIT 8 OFFSET 3;
+
+It will print rows from 4 to 11 (3 + 8) .
+
+If rows = 0 (print Empty table)
+If rows = more rows than exist (print till last row)
+
+
+17. FETCH CLAUSE
+
+It is used like a LIMIT CLAUSE.
+
+Ex - 
+
+SELECT Sno,Name 
+FROM Employee 
+ORDER BY Sno 
+OFFSET 3 ROWS 
+FETCH first 6 ONLY ;
+
+
+
+TABLE IN USED :- 
+
+sno |   name   |  address  | salary |    doj     
+-----+----------+-----------+--------+------------
+   1 | AJAY     | MATHURA   |   7500 | 2021-12-20
+   2 | MOHIT    | PALWAL    |   7500 | 2021-12-20
+   3 | KRISHAN  | HODAL     |   7500 | 2021-12-20
+   4 | DEEPAK   | FARIDABAD |  15000 | 2021-12-20
+   5 | JATIN    | MATHURA   |  15000 | 2022-01-10
+   6 | AMRITESH | PATNA     |  15000 | 2022-01-13
+   7 | SUNNY    | PALWAL    |   8000 | 2022-02-20
+   8 | RAHUL    | JAIPUR    |  20000 | 2021-06-17
+   9 | GANESH   | DELHI     |  18000 | 2021-08-23
+  10 | VAIBHAV  | BHARATPUR |  25000 | 2021-07-21
+(10 rows)
+
+
+
+18. AND OPERATOR 
+
+It is use dwith WHERE clause . By use of AND operator , we can show the relations in which both conditions must be true . If any conditons is false , that relation will not be printed .
+
+EX :-
+
+SELECT Name FROM Employee WHERE Salary<=15000 and DOJ>'20211210';
+
+OUTPUT :-
+
+   name   
+----------
+ AJAY
+ MOHIT
+ KRISHAN
+ DEEPAK
+ JATIN
+ AMRITESH
+ SUNNY
+(7 rows)
+
+
+
+19. OR OPERATOR 
+
+It is also used with WHERE clause . By the use of that operator , if any condition is true then the relation will be printed .
+
+EX :-
+
+SELECT Sno, Name FROM Employee WHERE Salary>=15000 OR DOJ<'20211130';
+
+OUTPUT :
+
+ sno |   name   
+-----+----------
+   4 | DEEPAK
+   5 | JATIN
+   6 | AMRITESH
+   8 | RAHUL
+   9 | GANESH
+  10 | VAIBHAV
+(6 rows)
+
+
+
+20. AND & OR OPERATOR
+
+It is also used with WHERE clause . It is used for apply AND & OR operator together in condition .
+
+EX :-
+
+UPDATE Employee SET  Salary=12000  WHERE Name='MOHIT';
+SELECT * FROM Employee WHERE (Salary>12000 AND DOJ>'2021-12-19') OR Name  LIKE 'A%' ORDER BY Name; 
+
+OUTPUT : 
+
+ sno |   name   |  address  | salary |    doj     
+-----+----------+-----------+--------+------------
+   1 | AJAY     | MATHURA   |   7500 | 2021-12-20
+   6 | AMRITESH | PATNA     |  15000 | 2022-01-13
+   4 | DEEPAK   | FARIDABAD |  15000 | 2021-12-20
+   5 | JATIN    | MATHURA   |  15000 | 2022-01-10
+(4 rows)
+
+
+
+
+21. NOT OPERATOR 
+
+It is also used with WHERE caluse . If any relation matches mentioned condition , that will not be printed .
+
+EX :-
+
+SELECT * FROM Employee WHERE salary NOT BETWEEN 10000 AND 15000;
+
+OUTPUT :
+
+sno |  name   |  address  | salary |    doj     
+-----+---------+-----------+--------+------------
+   1 | AJAY    | MATHURA   |   7500 | 2021-12-20
+   3 | KRISHAN | HODAL     |   7500 | 2021-12-20
+   7 | SUNNY   | PALWAL    |   8000 | 2022-02-20
+   8 | RAHUL   | JAIPUR    |  20000 | 2021-06-17
+   9 | GANESH  | DELHI     |  18000 | 2021-08-23
+  10 | VAIBHAV | BHARATPUR |  25000 | 2021-07-21
+(6 rows)
+
+EX :-
+
+SELECT * FROM Employee WHERE NOT Salary>15000;
+
+OUTPUT :
+
+sno |   name   |  address  | salary |    doj     
+-----+----------+-----------+--------+------------
+   1 | AJAY     | MATHURA   |   7500 | 2021-12-20
+   3 | KRISHAN  | HODAL     |   7500 | 2021-12-20
+   4 | DEEPAK   | FARIDABAD |  15000 | 2021-12-20
+   5 | JATIN    | MATHURA   |  15000 | 2022-01-10
+   6 | AMRITESH | PATNA     |  15000 | 2022-01-13
+   7 | SUNNY    | PALWAL    |   8000 | 2022-02-20
+   2 | MOHIT    | PALWAL    |  12000 | 2021-12-20
+(7 rows)
+
+
+
+
+22. LIKE OPERATOR
+
+It is also used with WHERE clause . It is used for take strings as like mention words . It is case Sensitive . For ignore cases , we uses ILIKE in place of LIKE .
+
+(a) 'A%'
+
+It is used for print relations in which the mentioned row started with 'A' .
+
+EX :-
+
+SELECT * FROM EMPLOYEE WHERE NAME LIKE 'A%';
+
+OUTPUT :
+
+sno |   name   | address | salary |    doj     
+-----+----------+---------+--------+------------
+   1 | AJAY     | MATHURA |   7500 | 2021-12-20
+   6 | AMRITESH | PATNA   |  15000 | 2022-01-13
+(2 rows)
+
+(b) '%A%'
+
+It is used for print relations in which the mentioned column values has character 'A' .
+
+EX :-
+
+SELECT * FROM EMPLOYEE WHERE NAME LIKE '%A%';
+
+OUTPUT :
+
+ sno |   name   |  address  | salary |    doj     
+-----+----------+-----------+--------+------------
+   1 | AJAY     | MATHURA   |   7500 | 2021-12-20
+   3 | KRISHAN  | HODAL     |   7500 | 2021-12-20
+   4 | DEEPAK   | FARIDABAD |  15000 | 2021-12-20
+   5 | JATIN    | MATHURA   |  15000 | 2022-01-10
+   6 | AMRITESH | PATNA     |  15000 | 2022-01-13
+   8 | RAHUL    | JAIPUR    |  20000 | 2021-06-17
+   9 | GANESH   | DELHI     |  18000 | 2021-08-23
+  10 | VAIBHAV  | BHARATPUR |  25000 | 2021-07-21
+(8 rows)
+
+(c) '_ATIN'
+
+It will print relations in which the mentioned column value has 'ATIN' after first character .
+
+EX :-
+
+SELECT * FROM EMPLOYEE WHERE NAME ILIKE '_ATIN';
+
+OUTPUT :
+
+ sno | name  | address | salary |    doj     
+-----+-------+---------+--------+------------
+   5 | JATIN | MATHURA |  15000 | 2022-01-10
+(1 row)
+
+(d) '_A%'
+
+It will print relations in which the mentioned column value has 'A' as second character .
+
+EX :-
+
+SELECT * FROM EMPLOYEE WHERE NAME LIKE '_A%';
+
+OUTPUT :
+
+sno |  name   |  address  | salary |    doj     
+-----+---------+-----------+--------+------------
+   5 | JATIN   | MATHURA   |  15000 | 2022-01-10
+   8 | RAHUL   | JAIPUR    |  20000 | 2021-06-17
+   9 | GANESH  | DELHI     |  18000 | 2021-08-23
+  10 | VAIBHAV | BHARATPUR |  25000 | 2021-07-21
+(4 rows)
+
+
+
+23. IN OPERATOR
+
+It is used with WHERE clause . It is used for get those data that matches any data in a list.
+
+EX :-
+
+SELECT * FROM EMPLOYEE WHERE NAME IN ('MOHIT','AJAY','RAHUL');
+
+OUTPUT :
+
+sno | name  | address | salary |    doj     
+-----+-------+---------+--------+------------
+   1 | AJAY  | MATHURA |   7500 | 2021-12-20
+   8 | RAHUL | JAIPUR  |  20000 | 2021-06-17
+   2 | MOHIT | PALWAL  |  12000 | 2021-12-20
+(3 rows)
+
+
+
+24. NOT IN OPERATOR
+
+It is reverse of IN operator. It  is also used with WHERE caluse. It will not print data that matches any data in a list .
+
+EX :-
+
+SELECT * FROM EMPLOYEE WHERE NAME NOT IN ('MOHIT','AJAY','RAHUL');
+
+OUTPUT :
+
+sno |   name   |  address  | salary |    doj     
+-----+----------+-----------+--------+------------
+   3 | KRISHAN  | HODAL     |   7500 | 2021-12-20
+   4 | DEEPAK   | FARIDABAD |  15000 | 2021-12-20
+   5 | JATIN    | MATHURA   |  15000 | 2022-01-10
+   6 | AMRITESH | PATNA     |  15000 | 2022-01-13
+   7 | SUNNY    | PALWAL    |   8000 | 2022-02-20
+   9 | GANESH   | DELHI     |  18000 | 2021-08-23
+  10 | VAIBHAV  | BHARATPUR |  25000 | 2021-07-21
+(7 rows)
+
+
+
+25. BETWEEN OPERATOR
+
+It will print data between specified range .
+
+EX :-
+
+SELECT * FROM EMPLOYEE WHERE SALARY BETWEEN 15000 AND 20000;
+
+OUTPUT :
+
+sno |   name   |  address  | salary |    doj     
+-----+----------+-----------+--------+------------
+   4 | DEEPAK   | FARIDABAD |  15000 | 2021-12-20
+   5 | JATIN    | MATHURA   |  15000 | 2022-01-10
+   6 | AMRITESH | PATNA     |  15000 | 2022-01-13
+   8 | RAHUL    | JAIPUR    |  20000 | 2021-06-17
+   9 | GANESH   | DELHI     |  18000 | 2021-08-23
+(5 rows)
+
+
+
+26. RENAME COLUMN 
+
+It is used for rename the column.
+
+EX :-
+
+ALTER TABLE Employee RENAME salary TO your_salary;
+select * from employee;
+
+OUTPUT :
+
+ sno |   name   |  address  | your_salary |    doj     
+-----+----------+-----------+-------------+------------
+   1 | AJAY     | MATHURA   |        7500 | 2021-12-20
+   3 | KRISHAN  | HODAL     |        7500 | 2021-12-20
+   4 | DEEPAK   | FARIDABAD |       15000 | 2021-12-20
+   5 | JATIN    | MATHURA   |       15000 | 2022-01-10
+   6 | AMRITESH | PATNA     |       15000 | 2022-01-13
+   7 | SUNNY    | PALWAL    |        8000 | 2022-02-20
+   8 | RAHUL    | JAIPUR    |       20000 | 2021-06-17
+   9 | GANESH   | DELHI     |       18000 | 2021-08-23
+  10 | VAIBHAV  | BHARATPUR |       25000 | 2021-07-21
+   2 | MOHIT    | PALWAL    |       12000 | 2021-12-20
+(10 rows)
+
+
+27. TRUNCATE TABLE 
+
+It is used for delete all the records of table , not a table.
+
+28. Temporary Table :
+
+It is used for make temporary table (name will be same or d/f as exist(permanent) table. It will be automatically delete after switch to another database or close the terminal.
+
+Syntax :
+
+CREATE TEMP TABLE table-name(rows...);
+
+or
+
+CREATE TEMPORARY TABLE table-name(rows...);
+
+29. COLUMN ALIAS
+
+It is used for give alias(nick name) to column at time of printing.
+
+EX :-
+
+select sno,name,salary as my_salary from employee;
+
+OUTPUT :
+
+sno |   name   | my_salary 
+-----+----------+-----------
+   1 | AJAY     |      7500
+   3 | KRISHAN  |      7500
+   4 | DEEPAK   |     15000
+   5 | JATIN    |     15000
+   6 | AMRITESH |     15000
+   7 | SUNNY    |      8000
+   8 | RAHUL    |     20000
+   9 | GANESH   |     18000
+  10 | VAIBHAV  |     25000
+   2 | MOHIT    |     12000
+(10 rows)
+
+
+FOR CONCATENATE COLUMNS :
+
+EX :-
+
+select name ||' '|| salary from employee;
+
+OUTPUT : 
+
+    ?column?    
+----------------
+ AJAY 7500
+ KRISHAN 7500
+ DEEPAK 15000
+ JATIN 15000
+ AMRITESH 15000
+ SUNNY 8000
+ RAHUL 20000
+ GANESH 18000
+ VAIBHAV 25000
+ MOHIT 12000
+(10 rows)
+
+
+EX :-
+
+select name ||' '|| salary AS new from employee;
+
+
+OUTPUT :
+
+    new       
+----------------
+ AJAY 7500
+ KRISHAN 7500
+ DEEPAK 15000
+ JATIN 15000
+ AMRITESH 15000
+ SUNNY 8000
+ RAHUL 20000
+ GANESH 18000
+ VAIBHAV 25000
+ MOHIT 12000
+(10 rows)
+
+
+
+  
+30. IDENTITY COLUMN 
+
+It is used for make identity column .
+
+1. Generated Always As Identity
+
+2. Generated By Default As Identity
+
+3. Generated By Default As Identity (Start With 5 Increment By 5)
+
+4. DROP IDENTITY
+
+ALTER TABLE tale-name ALTER COLUMN col-name DROP IDENTITY IF EXISTS;
+
+
+
+31. UPSERT 
+
+It is used to insert or modify the data if the row that is being inserted already and be present in the table with the help of insert on conflict commands.
+
+1. Do nothing on conflict
+
+INSERT INTO Employee VALUES('RAM','DELHI',20000) ON CONFLICT(name) DO NOTHING;
+
+// NOTHING WILL BE CHANGED
+
+// NAME SHOULD BE UNIQUE COLUMN
+
+2. DO change on conflict
+
+INSERT INTO Employee VALUES ('RAM','DELHI',20000) ON CONFLICT(name) DO UPDATE SET address=EXCLUDED.address ||','|| Employee.address ;
+
+// IT WILL ADD DELHI AFTER PREVIOUS CITY BY ','
+
+// NAME SHOULD BE UNIQUE COLUMN 
+
+// ADDRESS AND NAME SHOULD HAVE SAME DATATYPE
+
+
+
+32. CREATE TABLE BY  ANOTHER TABLE
+
+create table table3(sno serial,salary int, name varchar(20));
+insert into table3(salary,name)values(12000,'rahul'),(18000,'ramesh'),(45000,'amit');
+select * from table3;
+
+ sno | salary |  name  
+-----+--------+--------
+   1 |  12000 | rahul
+   2 |  18000 | ramesh
+   3 |  45000 | amit
+
+create table table4(sno serial,salary int,name varchar(20));
+insert into table4 select * from table3 where salary>12000;
+select * from table4;
+
+sno | salary |  name  
+-----+--------+--------
+   2 |  18000 | ramesh
+   3 |  45000 | amit
+
+
+
+33. CONSTRAINTS
+
+(A) PRIMARY KEY - It is to specify each row or record in a database table uniqely and make sure that there is no record duplicity in a particular table.
+
+(B) NOT NULL - It is used to make sure column can't have a null value .
+
+(C) CHECK - It is used to make all values in a column satisfies the mentioned situations .
+
+create table new(sno int primary key,name varchar,salary int check(salary>10000));
+
+(D) UNIQUE - It is used to make sure that all values in a column are exclusive .
+
+
+34. JOINS 
+
+It is used with select command, which helps us to retrieve data from various tables. And we can merge the select & joins statement together into a single command. 
+Whenever we want to get records from two or more tables, we will execute the joins commands.
+
+(a) INNER JOIN
+(b) LEFT JOIN  
+(c) RIGHT JOIN
+(d) CROSS JOIN
+(e) FULL OUTER JOIN
+(f) NATURAL JOIN
+(g) SELF JOIN
+
+TABLES:
+
+dat1=# select * from table1;
+ sno |  name   
+-----+---------
+   1 | mohit
+   2 | rahul
+   3 | ganesh
+   4 | jatin
+   5 | krishan
+(5 rows)
+
+dat1=# select * from table2;
+ sno |  name  
+-----+--------
+   1 | ramesh
+   2 | suresh
+   3 | mohit
+   4 | ishant
+   5 | jatin
+(5 rows)
+
+(a) INNER JOIN 
+
+It is used to return all rows from various tables where the join condition is fulfilled.
+
+EX -
+
+select sno,name,sno_2,name_2 from table1 inner join table2 on name=name_2;
+
+OUTPUT -
+
+sno | name  | sno_2 | name_2 
+-----+-------+-------+--------
+   1 | mohit |     3 | mohit
+   4 | jatin |     5 | jatin
+(2 rows)
+
+
+(b) LEFT JOIN
+
+It is used to return all rows from the left table, which can define in the ON condition and only those rows from the other table where the JOIN condition is satisfied .
+
+EX -
+
+select sno,name,sno_2,name_2 from table1 left join table2 on name=name_2;
+
+OUTPUT :
+
+sno |  name   | sno_2 | name_2 
+-----+---------+-------+--------
+   1 | mohit   |     3 | mohit
+   2 | rahul   |       | 
+   3 | ganesh  |       | 
+   4 | jatin   |     5 | jatin
+   5 | krishan |       | 
+(5 rows)
+
+
+(c) RIGHT JOIN 
+
+It is used to return all rows from the left table, which can define in the ON condition and only those rows from the other table where the JOIN condition is satisfied .
+
+EX - 
+
+select sno,name,sno_2,name_2 from table1 right join table2 on name=name_2;
+
+OUTPUT :
+
+sno | name  | sno_2 | name_2 
+-----+-------+-------+--------
+     |       |     1 | ramesh
+     |       |     2 | suresh
+   1 | mohit |     3 | mohit
+     |       |     4 | ishant
+   4 | jatin |     5 | jatin
+(5 rows)
+
+
+(d) FULL OUTER JOIN 
+
+The Full outer join is used to return all records when there is a match in the left table or right table records.
+
+EX -
+
+select sno,name,sno_2,name_2 from table1 full join table2 on name=name_2;
+
+OUTPUT :
+
+sno |  name   | sno_2 | name_2 
+-----+---------+-------+--------
+   1 | mohit   |     3 | mohit
+   2 | rahul   |       | 
+   3 | ganesh  |       | 
+   4 | jatin   |     5 | jatin
+   5 | krishan |       | 
+     |         |     4 | ishant
+     |         |     1 | ramesh
+     |         |     2 | suresh
+(8 rows)
+
+(e) CROSS JOIN
+
+It gives the cartesian product of mentioned tables.
+
+EX :
+
+select * from table1 cross join table2;
+
+OUTPUT :
+
+sno |  name   | sno_2 | name_2 
+-----+---------+-------+--------
+   1 | mohit   |     1 | ramesh
+   1 | mohit   |     2 | suresh
+   1 | mohit   |     3 | mohit
+   1 | mohit   |     4 | ishant
+   1 | mohit   |     5 | jatin
+   2 | rahul   |     1 | ramesh
+   2 | rahul   |     2 | suresh
+   2 | rahul   |     3 | mohit
+   2 | rahul   |     4 | ishant
+   2 | rahul   |     5 | jatin
+   3 | ganesh  |     1 | ramesh
+   3 | ganesh  |     2 | suresh
+   3 | ganesh  |     3 | mohit
+   3 | ganesh  |     4 | ishant
+   3 | ganesh  |     5 | jatin
+   4 | jatin   |     1 | ramesh
+   4 | jatin   |     2 | suresh
+   4 | jatin   |     3 | mohit
+   4 | jatin   |     4 | ishant
+   4 | jatin   |     5 | jatin
+   5 | krishan |     1 | ramesh
+   5 | krishan |     2 | suresh
+   5 | krishan |     3 | mohit
+   5 | krishan |     4 | ishant
+   5 | krishan |     5 | jatin
+(25 rows)
+
+
+ 
+(E) SELF JOIN :
+
+It is the type of join which is used for make a heirerical table. Let we have a table in which everyone has a empid and manager id. so we can make heiraricy of the table.
+
+TABLE :
+
+empid |  name   | manid 
+-------+---------+-------
+     1 | rahul   |     3
+     2 | jay     |     3
+     3 | krishan |     4
+     4 | mohit   |     5
+     5 | deepak  |     6
+     6 | ramesh  |      
+     7 | jatin   |     6
+(7 rows)
+
+
+EX - 
+
+select e.Name as Name,m.name as Manager from managee as e inner join managee as m on e.empid=m.manid;
+
+OUTPUT :
+
+ name   | manager 
+---------+---------
+ krishan | rahul
+ krishan | jay
+ mohit   | krishan
+ deepak  | mohit
+ ramesh  | deepak
+ ramesh  | jatin
+(6 rows)
+
+// False  Combination
+
+EX -
+
+select e.Name empname,m.name Manager from managee m inner join managee e on m.empid=e.manid;
+
+OUTPUT :
+
+empname | manager 
+---------+---------
+ rahul   | krishan
+ jay     | krishan
+ krishan | mohit
+ mohit   | deepak
+ deepak  | ramesh
+ jatin   | ramesh
+(6 rows)
+
+
+(F)  
+
+ 
+
+ 
+35. SUBQUERIES
+
+TABLES :
+
+                                               BOOK
+
+ isbn |          book           |       author       |         publisher         | price 
+------+-------------------------+--------------------+---------------------------+-------
+ 1201 | OOPS IN JAVA            | DR. DANIEL RICHARD | NICE PUBLICATIONS         |   250
+ 1205 | PYTHON LANGUAGE         | DR. GARRY SMITH    | NICE PUBLICATIONS         |   450
+ 1208 | BUSINESS ANALYTICS      | DR. HARRY JOHNSON  | NICE PUBLICATIONS         |   880
+ 1202 | TARKASH                 | JAVED AKHTAR       | REKHTA PUBLICATIONS       |   180
+ 1204 | SHIKWE                  | MANOJ MUNTASHIR    | REKHTA PUBLICATIONS       |   260
+ 1203 | ONE STEP TOWARD SUCCESS | YOGENDRA YADAV     | JUNOON PUBLICATIONS       |   380
+ 1206 | PANCHTANTRA             | VISHNU SHARMA      | STORY TELLER PUBLICATIONS |   580
+ 1210 | MERI KAHANI             | DR. SAHIL RASTOGI  | STORY TELLER PUBLICATIONS |   520
+ 1209 | HOW TO GROW PLANTS ?    | REEMA DESHMUKH     | TIRUPATI PUBLICATIONS     |   650
+ 1207 | BAKE YOUR FOOD          | NEETI GUPTA        | TIRUPATI PUBLICATIONS     |   546
+(10 rows)
+
+
+                                             READERS
+ member_id | member_name |   city   | mobile_no  | profession |    dob     
+-----------+-------------+----------+------------+------------+------------
+      1001 | LAKSHIT     | DELHI    | 9865365896 | STUDENT    | 2000-02-12
+      1002 | RADHEY      | DELHI    | 9425365896 | STUDENT    | 2000-12-05
+      1003 | HANUMANTA   | BANGLORE | 9425364596 | ENGINEER   | 2001-05-08
+      1004 | GANESH      | MATHURA  | 9456364596 | DOCTOR     | 1995-04-12
+      1005 | GIRISH      | MUMBAI   | 6989895689 | ACTOR      | 1999-02-25
+      1006 | DEEPAK      | LUCKNOW  | 7859698936 | STUDENT    | 2004-04-15
+      1007 | ISHITA      | RAIPUR   | 6895632598 | STUDENT    | 2002-08-30
+      1008 | UMESH       | DELHI    | 7896365896 | STUDENT    | 2002-03-26
+      1009 | GARIMA      | DELHI    | 9689636852 | STUDENT    | 2001-11-19
+      1010 | DANISH      | ALIGARH  | 9789859636 | BUSINESS   | 1994-11-25
+(10 rows)
+
+(A) HOW TO PRINT PUBLISHERS WITH PUBLISHED BOOKS (COUNT BOOKS PUBLISHED BY PUBLISHER)
+
+EX -
+
+     SELECT CITY,COUNT(CITY) FROM READERS GROUP BY CITY ORDER BY CITY;
+    
+     SELECT CITY,COUNT(*) FROM READERS GROUP BY CITY ORDER BY CITY;
+  
+OUTPUT : 
+
+  city   | count 
+----------+-------
+ ALIGARH  |     1
+ BANGLORE |     1
+ DELHI    |     4
+ LUCKNOW  |     1
+ MATHURA  |     1
+ MUMBAI   |     1
+ RAIPUR   |     1
+(7 rows)
+
+
+
+(B) SELECT PUBLISHERS WITH LESS THAN 3 PUBLISHED BOOKS .
+
+EX -
+
+SELECT PUBLISHER FROM BOOK GROUP BY PUBLISHER HAVING COUNT(PUBLISHER)<3;
+
+OUTPUT :
+
+publisher         
+---------------------------
+ REKHTA PUBLICATIONS
+ TIRUPATI PUBLICATIONS
+ JUNOON PUBLICATIONS
+ STORY TELLER PUBLICATIONS
+(4 rows)
+
+
+EX -
+
+SELECT PUBLISHER,COUNT(*) FROM BOOK GROUP BY PUBLISHER HAVING COUNT(PUBLISHER)<3;
+
+OUTPUT :
+
+ publisher         | count 
+---------------------------+-------
+ REKHTA PUBLICATIONS       |     2
+ TIRUPATI PUBLICATIONS     |     2
+ JUNOON PUBLICATIONS       |     1
+ STORY TELLER PUBLICATIONS |     2
+(4 rows)
+
+
+EX - 
+
+SELECT BOOK FROM BOOK WHERE PUBLISHER IN (SELECT PUBLISHER  FROM BOOK GROUP BY PUBLISHER HAVING COUNT(PUBLISHER)<3);
+
+
+OUTPUT :
+
+book           
+-------------------------
+ TARKASH
+ SHIKWE
+ ONE STEP TOWARD SUCCESS
+ PANCHTANTRA
+ MERI KAHANI
+ HOW TO GROW PLANTS ?
+ BAKE YOUR FOOD
+(7 rows)
+
+
+(C) PRINT SECOND HIGHEST PRICE OF BOOK .
+
+EX -
+
+SELECT MAX(PRICE) FROM BOOK WHERE PRICE <>(SELECT MAX(PRICE) FROM BOOK);
+
+OUTPUT :
+
+max 
+-----
+ 650
+(1 row)
+
+
+EX- 
+
+SELECT BOOK FROM BOOK WHERE PRICE IN (SELECT MAX(PRICE) FROM BOOK WHERE PRICE <>(SELECT MAX(PRICE) FROM BOOK));
+
+OUTPUT :
+
+book         
+----------------------
+ HOW TO GROW PLANTS ?
+
+
+36. EXISTS OPERATOR
+
+It is used like IN operator. it will return true/false internally .
+
+TABLES :
+
+emp;
+ eid | ename  |  address   
+-----+--------+------------
+   1 | ravi   | chandigarh
+   2 | rahul  | delhi
+   3 | rashid | mathura
+   4 | deepak | faridabad
+   5 | nitin  | pune
+(5 rows)
+
+
+project;
+ eid | pid |  pname   | location 
+-----+-----+----------+----------
+   1 | 101 | iot      | banglore
+   5 | 102 | java     | delhi
+   4 | 103 | big data | mumbai
+(3 rows)
+
+
+EX - select * from emp where exists (select eid from project where emp.eid=project.eid);  // BY EXISTS
+     select * from emp where eid in (select eid from project where emp.eid=project.eid);  // BY IN 
+
+OUTPUT :
+
+eid | ename  |  address   
+-----+--------+------------
+   1 | ravi   | chandigarh
+   4 | deepak | faridabad
+   5 | nitin  | pune
+(3 rows)
+
+
+37. INDEXES
+
+It is used for make a index of data in a column . it is used for save the cost time . 
+
+Syntax : CREATE INDEX index-name ON table-name(col-name);
+
+we can fine time by put EXPLAIN keyword before query . it will be changed before creating of index and after the creating of indexes. 
+
+(a) DROP INDEX
+
+DROP INDEX index-name;
+
+(b) INDEX IN QUERY
+
+create index name_index2 on employee(lower(name));
