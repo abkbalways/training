@@ -1,0 +1,139 @@
+Document for Git in Beryl Systems
+
+Git Version - 2.25.1
+Github username - abkbalways
+
+Steps For Setup Git in a System :
+
+1. check git by just type git in terminal .
+
+2. If not , Then install by
+
+sudo apt install git
+
+3. connect by ssh
+
+~/.ssh
+
+ls
+
+// If ls doesn't has any file
+
+ssh-keygen
+
+
+4. git init command
+
+It is used for create and initialized the git directory (Repository) in our system.
+
+git init // For initiazlize
+git init new // For create "new" repository and initialize it
+
+5. git add command
+
+It is used for add files in git current repository locally .
+
+git add file-name.txt
+git add * or git add . // For add all files from current directory to git repository
+
+6. git commit command
+
+It is used for commit the all changes in current repository .
+
+git commit -m ""commit message""
+
+7. Add ssh url to our machine
+
+git remote add origin "git-ssh-url"
+
+origin - It is the remote name for make a remote of github in out system , other name can be taken .
+
+8. Generate ssh key
+
+ssh-keygen -t -rsa -b 4096 -C "email-id"
+ssh-keygen -t ed25519 -C "email-id"
+
+cd "file in key saved"
+
+copy the key from file and generate a key in github . 
+
+9.  git remote
+
+It is used for display remotes available in our system .
+
+10. git remote -v
+
+It is used for show remote works
+and connect remote to online server .
+
+11. git push -u <remote-name> <branch-name>
+
+It is used to push all commits from local repository to online repository .
+
+12. git status
+
+It is used for show status of commit files .
+
+13. git rm command
+
+git rm "file-name"
+git rm -r "file name" // For repository with sub-repository
+
+steps for rm "file-name"
+
+(a) git rm "file-name"
+(b) git commit -m "commit-text"
+(c) git push <remote-name> <branch-name>
+
+rm --cached (For delete from only online , not on system)
+rm --dry-run (Remove not actually , we can see an output of the file)
+
+14. git pull
+
+It is used for pull new changes from online .
+
+-> Create any folder //mkdir training
+-> cd training
+-> git init
+-> git remote add <remotre-name> <ssh-link>
+-> git pull <remote-name><branch-name>
+
+15. git checkout
+
+It is used for switch the branch or make the branch.
+
+git checkout -b new //create new branch
+git checkout new //switch on new branch
+git checkout -b new main //print all data of main to new branch (cut the branch)
+
+16. git branch
+
+It is used for show the branches .
+
+17. git log 
+
+It is used for show the commit status
+
+18. git merge (In upper mergable branch)
+
+git merge new
+
+19. git clone
+
+It is used for take cloneof repository or project .
+
+-> git init new
+-> cd new
+-> git remote add origin <ssh-url>
+-> git remote -v
+-> git clone <https-url>
+
+
+20. Delete git branch
+
+git branch -d <branch-name> // locally
+git push <remote-name> --delete <branch-name>  // globally
+
+21. Rename file locally
+
+git git branch -m <old-name> <new-name>
