@@ -112,3 +112,25 @@ reader_name | isbn |        book_name
              |      | HOW TO COOK ?
 (10 rows)
 
+2. FIND AGE OF READERS WITH NAME
+
+QUERY :
+
+select name,extract(year from age(dob)) as age from readers;
+
+OUTPUT :
+
+name   | age 
+---------+-----
+ RITIK   |  21
+ RAHUL   |  20
+ DANYA   |  21
+ GARGI   |  20
+ RAMESH  |  24
+ LAKSHYA |  22
+ JATIN   |  21
+ DANYA   |  20
+ DEEPAK  |  26
+ GARIMA  |  23
+(10 rows)
+
