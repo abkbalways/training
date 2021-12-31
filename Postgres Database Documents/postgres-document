@@ -1055,3 +1055,8 @@ DROP INDEX index-name;
 (b) INDEX IN QUERY
 
 create index name_index2 on employee(lower(name));
+
+38.RENAME TABLE
+
+ALTER TABLE table_name
+RENAME TO new_table_name;
