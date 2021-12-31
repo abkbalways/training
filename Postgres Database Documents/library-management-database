@@ -134,3 +134,16 @@ name   | age
  GARIMA  |  23
 (10 rows)
 
+3. FIND AVAILABLE BOOKS
+
+QUERY :
+
+Select (select count(b_id) from books)-(select count(isbn) from borrow) as available_books;
+
+OUTPUT :
+
+available_books 
+-----------------
+               7
+(1 row)
+
