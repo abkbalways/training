@@ -87,6 +87,15 @@ update books set b_id=01  where isbn=1001; // insert values in b_id of books
 
 alter table books add primary key(b_id); // set b_id as primary key in books
 
+ALTER TABLE BORROW DROP CONSTRAINT BORROW_PKEY; // delete isbn as primary key from borrow
+
+alter table borrow add column b_id int; // Add Column b_id to table borrow
+
+update borrow set b_id=10  where isbn=1010; // insert values in b_id of books
+
+alter table borrow add primary key(b_id); // set b_id as primary key in borrow
+
+
 QUERIES : 
 
 
