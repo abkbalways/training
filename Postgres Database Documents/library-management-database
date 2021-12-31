@@ -79,7 +79,13 @@ TABLES -
 
 Some operations : 
 
-ALTER TABLE BOOKS DROP CONSTRAINT BOOKS_PKEY;
+ALTER TABLE BOOKS DROP CONSTRAINT BOOKS_PKEY; // delete isbn as primary key from books
+
+alter table books add column b_id int; // Add Column b_id to table books
+
+update books set b_id=01  where isbn=1001; // insert values in b_id of books
+
+alter table books add primary key(b_id); // set b_id as primary key in books
 
 QUERIES : 
 
