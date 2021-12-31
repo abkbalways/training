@@ -1,0 +1,106 @@
+LIBRARY MANAGEMENT DATABASE IN POSTGRES BY AJAY AGRAWAL
+
+DATABASE NAME - LIBRARY
+
+TABLES - 
+
+FEES // IT HAS  ALL FEES DETAILS OF READERS .
+
+READERS //IT HAS ALL INFORMATION ABOUT THE READERS
+
+BOOKS // IT HAS ALL INFORMATION ABOUT THE BOOKS
+
+BORROW // IT HAS ISBN NO. OF BOOK AND ID OF READER
+
+
+
+
+TABLES -
+
+               FEES
+ 
+ id  | fees_slot | fees |   status   
+-----+-----------+------+------------
+ 101 | M         |  250 | SUBMIT
+ 102 | Y         | 2000 | NOT SUBMIT
+ 103 | M         |  250 | NOT SUBMIT
+ 104 | Q         |  550 | SUBMIT
+ 105 | M         |  250 | SUBMIT
+ 106 | H         | 1100 | NOT SUBMIT
+ 107 | Y         | 2000 | SUBMIT
+ 108 | M         |  250 | SUBMIT
+ 109 | H         | 1100 | NOT SUBMIT
+ 110 | Y         | 2000 | SUBMIT
+(10 rows)
+
+
+                        READERS
+ 
+ id  |  name   |  city   |   mobile   | profession |    dob     
+-----+---------+---------+------------+------------+------------
+ 101 | RITIK   | DELHI   | 9998798589 | STUDENT    | 2000-09-18
+ 102 | RAHUL   | MUMBAI  | 6958798589 | STUDENT    | 2001-01-13
+ 103 | DANYA   | AGRA    | 8545488589 | BUSINESS   | 2000-04-15
+ 104 | GARGI   | DELHI   | 8752359858 | DOCTOR     | 2001-12-17
+ 105 | RAMESH  | DELHI   | 8956987895 | ENGINEER   | 1997-12-05
+ 106 | LAKSHYA | LUCKNOW | 6989785825 | MARKETING  | 1999-05-14
+ 107 | JATIN   | LUCKNOW | 9895989869 | ENGINEER   | 2000-08-19
+ 108 | DANYA   | DELHI   | 9895989869 | STUDENT    | 2001-05-18
+ 109 | DEEPAK  | RAIPUR  | 6989782565 | DOCTOR     | 1995-07-16
+ 110 | GARIMA  | JAIPUR  | 5898529836 | ACTOR      | 1998-11-09
+(10 rows)
+
+
+                                          BOOKS
+ 
+ isbn |          name           |       author        |      publication      | price 
+------+-------------------------+---------------------+-----------------------+-------
+ 1001 | ONE STEP TOWARD SUCCESS | DR. RAMANUJAN       | JUNOON PUBLICATIONS   |   258
+ 1002 | TARKASH                 | JAVED AKHTAR        | PEACE PUBLICAIONS     |   193
+ 1003 | MY STORY                | DARSHAD SHARMA      | NISHANT PUBLICATIONS  |   780
+ 1004 | HOW TO COOK ?           | REEMA CHATURVEDI    | NISHANT PUBLICATIONS  |   870
+ 1005 | HORROR IS MY PASSION    | NAGRAJ DESHMUKH     | DRISHYAM PUBLICAITONS |   360
+ 1006 | GOONJ                   | SHAKEEL AZMI        | PEACE PUBLICAIONS     |   450
+ 1007 | OOPS IN JAVA            | DR. HARRY SMITH     | GRACY PUBLICATIONS    |   850
+ 1008 | DIGITAL MARKETING       | DR. TIM STARC       | GRACY PUBLICATIONS    |   640
+ 1009 | HOW TO MARKET ?         | DR. GLARRY PETERSON | GRACY PUBLICATIONS    |   280
+ 1010 | PANCHTANTRA             | VISHNU SHARMA       | BHAGWAD PUBLICATIONS  |   900
+(10 rows)
+
+
+  BORROW
+ 
+ isbn | id  
+------+-----
+ 1010 | 104
+ 1008 | 105
+ 1007 | 105
+(3 rows)
+
+
+
+QUERIES : 
+
+
+1. TAKE NAME OF BOOKS WITH BORROWER NAME 
+
+QUERY : 
+
+SELECT R.NAME READER_NAME,BR.ISBN,B.NAME BOOK_NAME FROM BORROW BR RIGHT JOIN READERS R ON R.ID=BR.ID RIGHT JOIN BOOKS B ON B.ISBN=BR.ISBN;
+ 
+OUTPUT :
+
+reader_name | isbn |        book_name        
+-------------+------+-------------------------
+ GARGI       | 1010 | PANCHTANTRA
+ RAMESH      | 1008 | DIGITAL MARKETING
+ RAMESH      | 1007 | OOPS IN JAVA
+             |      | HOW TO MARKET ?
+             |      | MY STORY
+             |      | ONE STEP TOWARD SUCCESS
+             |      | GOONJ
+             |      | HORROR IS MY PASSION
+             |      | TARKASH
+             |      | HOW TO COOK ?
+(10 rows)
+
