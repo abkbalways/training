@@ -274,5 +274,19 @@ id  | fees_slot | fees |   status
  110 | Y         | 2000 | SUBMIT
 (10 rows)
 
+6. DISPLAY THE NAME OF BOOK WITH AVAILABLE COPIES
+
+QUERY :
+
+select b.name,count(b_id) from books b right join books_status br on b.isbn=br.isbn where b.isbn=1001 and status=1 group by b.isbn;
+
+OUTPUT :
+
+  name           | count 
+-------------------------+-------
+ ONE STEP TOWARD SUCCESS |     5
+
+(1 row)
+
 
 
