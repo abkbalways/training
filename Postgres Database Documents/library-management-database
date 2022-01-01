@@ -250,4 +250,29 @@ name  |   status
  RAMESH | SUBMIT
  DANYA  | SUBMIT
 (4 rows)
- 
+
+
+5. UPDATE FEES OF READERS WHICH SLOT IS MONTHLY
+
+QUERY :
+
+UPDATE FEES SET FEES=300 WHERE FEES_SLOT='M';
+
+OUTPUT :
+
+id  | fees_slot | fees |   status   
+-----+-----------+------+------------
+ 101 | M         |  300 | SUBMIT
+ 102 | Y         | 2000 | NOT SUBMIT
+ 103 | M         |  300 | NOT SUBMIT
+ 104 | Q         |  550 | SUBMIT
+ 105 | M         |  300 | SUBMIT
+ 106 | H         | 1100 | NOT SUBMIT
+ 107 | Y         | 2000 | SUBMIT
+ 108 | M         |  300 | SUBMIT
+ 109 | H         | 1100 | NOT SUBMIT
+ 110 | Y         | 2000 | SUBMIT
+(10 rows)
+
+
+
