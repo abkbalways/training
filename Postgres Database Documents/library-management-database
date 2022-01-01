@@ -234,3 +234,20 @@ available_books
                7
 (1 row)
 
+4. DISPLAY NAME AND FEES STATUS OF READERS WHICH SLOT IS MONTHLY 
+
+QUERY :
+
+select name,status from readers r right join fees f on r.id=f.id where f.fees_slot='M';
+
+
+OUTPUT :
+
+name  |   status   
+--------+------------
+ RITIK  | SUBMIT
+ DANYA  | NOT SUBMIT
+ RAMESH | SUBMIT
+ DANYA  | SUBMIT
+(4 rows)
+ 
