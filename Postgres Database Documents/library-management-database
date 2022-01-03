@@ -325,3 +325,18 @@ b_id | isbn | status
    57 | 1010 |      0
 (3 rows)
 
+9. SELECT THE NAME AND ID OF BORROWED BOOKS BY JOINS WITH SUBQUERY 
+
+QUERY :
+
+select b.name,bs.b_id from books b inner join books_status bs on b.isbn=bs.isbn where status in (select status from books_status where status=0);
+
+OUTPUT :
+
+name     | b_id 
+-------------+------
+ MY STORY    |   20
+ PANCHTANTRA |   57
+ PANCHTANTRA |   58
+(3 rows)
+
