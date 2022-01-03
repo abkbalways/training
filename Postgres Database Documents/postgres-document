@@ -193,8 +193,8 @@ Ex -
 SELECT Sno,Name 
 FROM Employee 
 ORDER BY Sno 
-OFFSET 3 ROWS 
-FETCH first 6 ONLY ;
+OFFSET 3  
+FETCH first 6 ROWS ONLY ;
 
 
 
