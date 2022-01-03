@@ -1,0 +1,68 @@
+LIBRARY MANAGEMENT DATABASE IN POSTGRES BY AJAY AGRAWAL
+
+DATABASE NAME - LIBRARY
+
+CREATE DATABASE LIBRARY;
+
+TABLES -
+
+BOOKS // IT HAS ALL INFORMATION ABOUT THE BOOKS
+
+BORROW // IT HAS THE ISBN OF BOOK , ID OF STUDENT AND ISSUE DATE
+
+STUDENTS // IT HAS ALL INFORMATION ABOUT THE STUDENTS
+
+CLASS // IT HAS THE CLASS ID AND NAME OF CLASS
+
+
+
+TABLES :
+
+BOOKS :
+
+create table books(isbn int primary key,name varchar,author varchar,price int,book_range int,fine_per_day int,copies int );
+
+isbn | name | author | price | book_range | fine_per_day | copies 
+------+------+--------+-------+------------+--------------+--------
+(0 rows)
+
+
+
+STUDENTS :
+
+
+create table students(id int primary key,name varchar,city varchar,mobile varchar(50),class_id char(5),dob date);
+
+id | name | city | mobile | class_id | dob 
+----+------+------+--------+----------+-----
+(0 rows)
+
+alter table students add constraint fk_students_class foreign key(class_id) references class(class_id);
+
+
+CLASS :
+
+
+create table class(class_id char(5), name varchar(20));
+
+class_id | name 
+----------+------
+(0 rows)
+
+alter table class add primary key(class_id);
+
+
+BORROW :
+
+
+create table borrow(isbn int,id int,date_of_submission date not null default current_date,constraint fk_id foreign key(id) references students(id));
+
+alter table borrow add constraint fk_isbn foreign key(isbn) references books(isbn);
+
+
+isbn | id | date_of_submission 
+------+----+--------------------
+(0 rows)
+
+
+AFTER INSERTION :
