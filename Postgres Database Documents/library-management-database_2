@@ -147,3 +147,50 @@ isbn | id  | date_of_submission
 
 
 QUERIES :
+
+1. FOR FIND FINE ON STUDENTS
+
+QUERY :
+
+select r.name,(extract(days from age(br.issue_date))-b.book_range)*fine_per_day as fine from borrow br inner join books b on b.isbn=br.isbn inner join students r on r.id=br.id WHERE (extract(days from age(br.issue_date)) > b.book_range)  ;
+
+OUTPUT :
+
+name   | fine 
+---------+------
+ ANMOL   |   60
+ LAKSHYA |   90
+ TANISHA |  165
+(3 rows)
+
+QUERY :
+
+select r.name,(extract(days from age(br.issue_date))-b.book_range)*fine_per_day as fine from borrow br inner join books b on b.isbn=br.isbn inner join students r on r.id=br.id WHERE (extract(days from age(br.issue_date)) > b.book_range)  ;
+
+OUTPUT :
+
+name   | fine 
+---------+------
+ ANMOL   |   60
+ LAKSHYA |   90
+ TANISHA |  165
+ TANISHA |  165
+(4 rows)
+
+
+QUERY :
+
+select r.name,sum((extract(days from age(br.issue_date))-b.book_range)*fine_per_day) as fine from borrow br inner join books b on b.isbn=br.isbn inner join students r on r.id=br.id WHERE (extract(days from age(br.issue_date)) > b.book_range) group by r.name;
+
+OUTPUT :
+
+name   | fine 
+---------+------
+ ANMOL   |   60
+ TANISHA |  330
+ LAKSHYA |   90
+(3 rows)
+
+2. FIND AVAILABLE COPIES OF GIVEN BOOK
+
+
