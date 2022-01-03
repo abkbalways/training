@@ -293,5 +293,19 @@ OUTPUT :
 
 (1 row)
 
+7. DISPLAY THE NAME OF READERS AND NAME BOOKS BORROWED BY THAT READER
+
+QUERY :
+
+select r.name reader_name ,b.name borrowed_book from readers r inner join borrow br on r.id=br.id inner join books_status bs on br.b_id=bs.b_id inner join books b on b.isbn=bs.isbn ;
+
+OUTPUT :
+
+reader_name | borrowed_book 
+-------------+---------------
+ RITIK       | MY STORY
+ RAHUL       | PANCHTANTRA
+ RAHUL       | PANCHTANTRA
+(3 rows)
 
 
