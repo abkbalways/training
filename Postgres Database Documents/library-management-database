@@ -309,3 +309,19 @@ reader_name | borrowed_book
 (3 rows)
 
 
+8. UPDATE THE STATUS OF BOOKS BY THE BORROW BOOKS
+
+QUERY :
+
+update books_status set status=0 where b_id in (select b_id from borrow);
+select * from books_status where status=0;
+
+OUTPUT :
+
+b_id | isbn | status 
+------+------+--------
+   20 | 1003 |      0
+   58 | 1010 |      0
+   57 | 1010 |      0
+(3 rows)
+
