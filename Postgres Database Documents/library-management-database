@@ -173,6 +173,11 @@ update borrow set b_id=10  where isbn=1010; // insert values in b_id of books
 
 alter table borrow add primary key(b_id); // set b_id as primary key in borrow
 
+ALTER TABLE BORROW ADD CONSTRAINT fk_borrow_id FOREIGN KEY (id) REFERENCES readers(id); // set id of readers as foreign key for id of borrow 
+
+ALTER TABLE borrow ADD CONSTRAINT fk_borrow_bid FOREIGN KEY(b_id) REFERENCES books_status(b_id); // set b_id of books_status as foreign key
+for b_id of borrow 
+
 
 QUERIES : 
 
