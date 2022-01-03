@@ -340,3 +340,29 @@ name     | b_id
  PANCHTANTRA |   58
 (3 rows)
 
+10. FIND THE MAXIMUM AGE READER FROM READERS
+
+QUERY :
+
+select name,extract (years from age(dob)) age from readers where extract(years from age(dob))=(select max(extract(years from age(dob))) from readers);
+
+OUTPUT :
+
+name  | age 
+--------+-----
+ DEEPAK |  26
+(1 row)
+
+OR
+
+QUERY :
+
+select name,extract(years from age(dob)) age from readers where dob=(select min(dob) from readers);
+
+OUTPUT :
+
+ name  | age 
+--------+-----
+ DEEPAK |  26
+(1 row)
+
