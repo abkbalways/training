@@ -58,28 +58,28 @@ aid | aname | cruisingrange
 
 TABLE AFTER INSERTION :
 
-aid |      aname      | cruisingrange 
+ aid |      aname      | cruisingrange 
 -----+-----------------+---------------
  101 | BOEING 787      |          4000
  102 | BOEING 777      |          3500
  103 | AIRBUS A320     |          4500
- 104 | AIRBUS A320     |          4500
+ 104 | AIRBUS A322     |          4500
  105 | BOMBARDIER CRJ  |          3000
- 107 | BOMBARDIER CRJ  |          3500
- 110 | Embraer         |          3000
- 111 | Embraer         |          3200
- 113 | TECNAM P2006T   |          3600
- 114 | TECNAM P2006T   |          4000
- 115 | BOMBARDIER CRJ  |          4000
- 117 | AIRBUS A320     |          4000
- 118 | BOEING 777      |          3000
- 120 | BOEING 787      |          4000
- 112 | AIRBUS A320     |          1200
- 116 | AIRBUS A320     |          1500
+ 106 | BOMBARDIER A380 |          1850
+ 107 | BOMBARDIER ARC  |          3500
  108 | BOMBARDIER Q400 |          2500
- 119 | BOEING 787      |           700
- 109 | TECNAM P2006T   |           850
- 106 | BOMBARDIER CRJ  |          1850
+ 109 | TECNAM BTR25I   |           850
+ 110 | EMBRAER         |          3000
+ 111 | EMBRAER 2.0     |          3200
+ 112 | AIRBUS 720      |          1200
+ 113 | TECNAM P2006T   |          3600
+ 114 | TECNAM A250CA   |          4000
+ 115 | TECNAM BC45TA   |          4000
+ 116 | AIRBUS 420      |          1500
+ 117 | AIRBUS A460     |          4000
+ 118 | BOEING 890      |          3000
+ 119 | BOEING 121      |           700
+ 120 | BOEING 787      |          4000
 (20 rows)
 
 
