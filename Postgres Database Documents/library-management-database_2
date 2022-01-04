@@ -291,6 +291,26 @@ OUTPUT :
  ANMOL   | PHYSICS CLASS 12   |         32
 (6 rows)
 
+5. DISPLAY THE CLASS WISE NO. OF STUDENTS 
+
+QUERY :
+
+select c.name "class",count(s.name) no_of_students from class c inner join students s on c.class_id=s.class_id group by c.class_id;
+
+OUTPUT :
+
+ class   | no_of_students 
+----------+----------------
+ TENTH    |              3
+ ELEVENTH |              2
+ TWELFTH  |              4
+ EIGHTH   |              6
+ NINTH    |              5
+(5 rows)
+
+
+
+
 
 
 
