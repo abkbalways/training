@@ -166,4 +166,22 @@ eid |       ename       | salary
   17 | AMAN RAJPUT       | 160000
 (20 rows)
 
+QUERIES :
+
+
+
+2. For each pilot who is certified for more than three aircraft, find the eid and the 
+maximum cruisingrange of the aircraft for which she or he is certified. 
+ 
+QUERY : select e.eid,max(a.cruisingrange) from employees e inner join certified c on e.eid=c.eid inner join aircraft a on a.aid=c.aid group by e.eid having count(e.eid)>3;
+
+OUTPUT :
+
+eid | max  
+-----+------
+   4 | 4500
+   5 | 4000
+   7 | 4500
+(3 rows)
+
 
