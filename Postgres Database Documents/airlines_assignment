@@ -332,4 +332,25 @@ OUTPUT :
 11. Print the name and salary of every nonpilot whose salary is more than the 
 average salary for pilots.
 
+QUERY :
+
+select ename nonpilot,salary from employees where salary > (select avg(salary) from employees where eid in(select eid from certified)) and eid not in (select eid from certified);
+
+OUTPUT :
+
+nonpilot     | salary 
+-----------------+--------
+ KANHA RAJPUT    |  85000
+ DAVID PETERSON  |  90000
+ GARVIT SWAMY    | 120000
+ GARIMA AGRAWAL  |  78000
+ GARVIT MODI     |  85000
+ MUKESH GANDHI   |  90000
+ MADDY GASCOIGNE | 150000
+(7 rows)
+
+
+12. Print the names of employees who are certified only on aircrafts with cruising 
+range longer than 1000 miles.
+
 
