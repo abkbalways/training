@@ -374,4 +374,44 @@ range longer than 1000 miles, but on at least two such aircrafts.
 
 QUERY :
 
+select e.ename,count(a.cruisingrange) from employees e inner join certified c on e.eid=c.eid inner join aircraft a on a.aid=c.aid where(cruisingrange>1000) group by e.ename having count(a.cruisingrange)>1;
+
+OUTPUT :
+
+ ename       | count 
+-------------------+-------
+ NIKITA PRAJAPATI  |     5
+ KUSHANK CHAUDHARY |     2
+ PRAKASH TANEJA    |     3
+ SONIYA KAUSHIK    |     2
+ DEEPAK GARG       |     5
+ KANIKA MAHESWARI  |     4
+ GARRY SMITH       |     2
+ RAMAN GUPTA       |     2
+ AMAN RAJPUT       |     2
+ JAITN SHARMA      |     2
+(10 rows)
+
+
+-> FOR ATLEAST THREE SUCH AIRCRAFTS
+
+QUERY :
+
+select e.ename,count(a.cruisingrange) from employees e inner join certified c on e.eid=c.eid inner join aircraft a on a.aid=c.aid where(cruisingrange>1000) group by e.ename having count(a.cruisingrange)>2;
+
+OUTPUT :
+
+ ename       | count 
+------------------+-------
+ NIKITA PRAJAPATI |     5
+ PRAKASH TANEJA   |     3
+ DEEPAK GARG      |     5
+ KANIKA MAHESWARI |     4
+(4 rows)
+
+
+14. Print the names of employees who are certified only on aircrafts with cruising 
+range longer than 1000 miles and who are certified on some Boeing aircraft. 
+
+QUERY : 
 
