@@ -216,3 +216,59 @@ OUTPUT :
  AMAN RAJPUT
 (6 rows)
  
+4. For all aircraft with cruisingrange over 1000 miles, find the name of the 
+aircraft and the average salary of all pilots certified for this aircraft.
+
+QUERY :
+
+select aname aircraft_name,avg(e.salary) average_salary from employees e inner join certified c on e.eid=c.eid inner join aircraft a on a.aid=c.aid where a.cruisingrange>1000 group by a.aname;
+
+OUTPUT :
+
+aircraft_name  |   average_salary    
+-----------------+---------------------
+ BOMBARDIER Q400 |  67500.000000000000
+ AIRBUS A460     |  37500.000000000000
+ AIRBUS 720      | 100000.000000000000
+ EMBRAER 2.0     |  72500.000000000000
+ AIRBUS 420      | 120000.000000000000
+ BOMBARDIER A380 |  40000.000000000000
+ BOEING 890      |  82500.000000000000
+ TECNAM A250CA   | 160000.000000000000
+ BOMBARDIER ARC  |  62500.000000000000
+ AIRBUS A320     | 100000.000000000000
+ TECNAM BC45TA   |  70000.000000000000
+ BOMBARDIER CRJ  |  90000.000000000000
+ TECNAM P2006T   | 160000.000000000000
+ EMBRAER         |  62500.000000000000
+ BOEING 777      | 100000.000000000000
+ AIRBUS A322     |  80000.000000000000
+ BOEING 787      |  65000.000000000000
+(17 rows)
+
+
+
+5.  Find the names of pilots certified for some Boeing aircraft.
+
+QUERY :
+
+select ename pilots from employees where eid in (select eid from certified where aid in (select aid from aircraft where aname ilike 'boeing%')); 
+
+
+OUTPUT : 
+
+ pilots       
+-------------------
+ KANIKA MAHESWARI
+ JAITN SHARMA
+ NIKITA PRAJAPATI
+ PRAKASH TANEJA
+ SONIYA KAUSHIK
+ KUSHANK CHAUDHARY
+(6 rows)
+
+
+
+6. Find the aids of all aircraft that can be used on routes from Los Angeles to 
+Chicago.
+
