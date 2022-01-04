@@ -308,6 +308,23 @@ OUTPUT :
  NINTH    |              5
 (5 rows)
 
+6. DISPLAY THE CITY WISE NO. OF STUDENTS
+
+QUERY :
+
+select city,count(*) students from students group by city;
+
+OUTPUT :
+
+ city    | students 
+------------+----------
+ MUMBAI     |        4
+ DELHI      |        9
+ FARIDABAD  |        3
+ CHANDIGARH |        2
+ GURUGRAM   |        2
+(5 rows)
+
 
 
 
