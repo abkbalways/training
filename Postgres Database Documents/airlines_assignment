@@ -291,3 +291,45 @@ OUTPUT :
  AMAN RAJPUT
 (3 rows)
 
+9. A customer wants to travel from Madison to New York with no more than two 
+changes of flight. List the choice of departure times from Madison if the 
+customer wants to arrive in New York by 6 p.m.
+
+10. Compute the difference between the average salary of a pilot and the average 
+salary of all employees (including pilots).
+
+
+-> AVEREAGE SALARY OF PILOTS -
+
+select avg(salary) from employees where eid in(select eid from certified);
+
+      avg         
+--------------------
+ 77000.000000000000
+(1 row)
+
+-> AVERAGE SALARY OF EMPLOYEES INCLUDING PILOTS -
+
+select avg(salary) from employees;
+
+     avg         
+--------------------
+ 82900.000000000000
+(1 row)
+
+QUERY : 
+
+select avg(salary) - ( select avg(salary) from employees where eid in(select eid from certified)) DIFFERENCE from employees;
+
+OUTPUT :
+
+    difference     
+-------------------
+ 5900.000000000000
+(1 row)
+
+
+11. Print the name and salary of every nonpilot whose salary is more than the 
+average salary for pilots.
+
+
