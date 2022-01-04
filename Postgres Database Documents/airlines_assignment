@@ -353,4 +353,25 @@ nonpilot     | salary
 12. Print the names of employees who are certified only on aircrafts with cruising 
 range longer than 1000 miles.
 
+QUERY :
+
+select ename from employees where eid not in(select eid from certified where aid in(select aid from aircraft where cruisingrange<1000)) and eid in(select eid from certified);
+
+OUTPUT :
+
+   ename       
+-------------------
+ NIKITA PRAJAPATI
+ KANIKA MAHESWARI
+ DEEPAK GARG
+ PRAKASH TANEJA
+ KUSHANK CHAUDHARY
+(5 rows)
+
+
+13. Print the names of employees who are certified only on aircrafts with cruising 
+range longer than 1000 miles, but on at least two such aircrafts.
+
+QUERY :
+
 
