@@ -272,3 +272,22 @@ OUTPUT :
 6. Find the aids of all aircraft that can be used on routes from Los Angeles to 
 Chicago.
 
+7. Identify the routes that can be piloted by every pilot who makes more than 
+$100,000. 
+
+8. Print the enames of pilots who can operate planes with cruisingrange greater 
+than 3000 miles but are not certified on any Boeing aircraft.
+
+QUERY :
+
+select ename pilots from employees where eid in (select eid from certified where aid in (select aid from aircraft where cruisingrange>3000)) and eid not in (select eid from certified where aid in (select aid from aircraft where aname ilike 'boeing%'));  
+
+OUTPUT :
+
+ pilots    
+-------------
+ GARRY SMITH
+ DEEPAK GARG
+ AMAN RAJPUT
+(3 rows)
+
