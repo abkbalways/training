@@ -143,6 +143,36 @@ isbn | id  | date_of_submission
  1015 | 119 | 2021-12-27
 (10 rows)
 
+RENAME COLUMN date_of_submission TO issue_date
+
+and 
+
+ADD COLUMN  date_of_submission 
+
+alter table borrow add column date_of_submission date;
+
+
+AFTER CHANGING :
+
+isbn | id  | issue_date | date_of_submission 
+------+-----+------------+--------------------
+ 1003 | 108 | 2022-01-01 | 
+ 1008 | 112 | 2021-12-20 | 
+ 1007 | 106 | 2021-12-10 | 
+ 1009 | 112 | 2021-12-28 | 
+ 1010 | 113 | 2022-01-03 | 
+ 1009 | 114 | 2022-01-03 | 
+ 1003 | 116 | 2021-11-29 | 
+ 1007 | 109 | 2021-12-21 | 
+ 1008 | 107 | 2022-01-02 | 
+ 1015 | 119 | 2021-12-27 | 
+ 1008 | 116 | 2021-11-12 | 
+ 1008 | 116 | 2021-11-12 | 
+ 1007 | 112 | 2021-11-18 | 
+(13 rows)
+
+
+
 
 
 
