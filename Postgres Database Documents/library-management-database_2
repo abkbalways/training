@@ -223,6 +223,38 @@ name   | fine
 
 2. FIND AVAILABLE COPIES OF GIVEN BOOK
 
+QUERY :
+
+select b.isbn,b.copies - count(br.isbn) available_copies from borrow br inner join books b on br.isbn=b.isbn group by b.isbn;
+
+OUTPUT :
+
+isbn | available_copies 
+------+------------------
+ 1003 |                3
+ 1007 |               17
+ 1008 |               56
+ 1009 |               38
+ 1015 |               29
+ 1010 |               14
+(6 rows)
+
+QUERY :
+
+select br.isbn,(select copies from books where(isbn=br.isbn))-count(br.isbn) available_copies from borrow br group by isbn;
+
+OUTPUT :
+
+isbn | available_copies 
+------+------------------
+ 1009 |               38
+ 1003 |                3
+ 1015 |               29
+ 1007 |               17
+ 1008 |               56
+ 1010 |               14
+(6 rows)
+
 3. PRINT THE NAME OF STUDENTS WITH BOOKS NAME ISSUED IN NOVEMBER
 
 QUERY :
