@@ -183,7 +183,9 @@ QUERIES :
 2. For each pilot who is certified for more than three aircraft, find the eid and the 
 maximum cruisingrange of the aircraft for which she or he is certified. 
  
-QUERY : select e.eid,max(a.cruisingrange) from employees e inner join certified c on e.eid=c.eid inner join aircraft a on a.aid=c.aid group by e.eid having count(e.eid)>3;
+QUERY : 
+
+select e.eid,max(a.cruisingrange) from employees e inner join certified c on e.eid=c.eid inner join aircraft a on a.aid=c.aid group by e.eid having count(e.eid)>3;
 
 OUTPUT :
 
@@ -195,3 +197,22 @@ eid | max
 (3 rows)
 
 
+3. Find the names of pilots whose salary is less than the price of the cheapest 
+route from Los Angeles to Honolulu.
+
+QUERY : 
+
+select ename pilots  from employees where salary>(select min(price) from flights where "from"='Los Angeles' and "to"='Honolulu') and eid in (select eid from certified);
+
+OUTPUT : 
+
+ pilots      
+------------------
+ SONIYA KAUSHIK
+ GARRY SMITH
+ NIKITA PRAJAPATI
+ DEEPAK GARG
+ PRAKASH TANEJA
+ AMAN RAJPUT
+(6 rows)
+ 
