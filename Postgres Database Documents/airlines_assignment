@@ -1,0 +1,169 @@
+DATABASE AIRLINES ASSIGNMENT BY AJAY AGRAWAL
+
+DATABASE : AIRLINES
+
+CREATE DATABASE AIRLINES
+
+TABLES :
+
+FLIGHTS // IT HAS ALL DETAILS ABOUT THE FLIGHTS
+
+AIRCRAFT // IT HAS ALL DETAILS ABOUT THE AIRCRAFTS
+
+CERTIFIED // IT GIVES THE RELATIONS OF PILOT TO AIRCRAFT
+
+EMPLOYEES // IT HAS ALL INFORMATION ABOUT EMPLOYEES
+
+TABLES :
+
+
+
+1. FLIGHTS
+
+create table flights(flno int primary key,"from" varchar(50),"to" varchar(50),distance int,departs time,arrives time,price int);
+
+flno | from | to | distance | departs | arrives | price 
+------+------+----+----------+---------+---------+-------
+(0 rows)
+
+AFTER INSERTION :
+
+ flno |    from    |      to       | distance | departs  | arrives  | price 
+------+------------+---------------+----------+----------+----------+-------
+ 1001 | DELHI      | PUNE          |     1000 | 12:10:12 | 16:12:19 |  2500
+ 1002 | DELHI      | MUMBAI        |     1300 | 14:10:12 | 19:02:19 |  2800
+ 1003 | HEYDERABAD | MUMBAI        |     1100 | 08:10:12 | 10:02:19 |  2200
+ 1004 | HEYDERABAD | BANGLORE      |      700 | 19:10:12 | 20:32:19 |  2400
+ 1005 | GUWAHATI   | DELHI         |     1900 | 18:40:19 | 22:02:16 |  2800
+ 1006 | DELHI      | PUNE          |     1000 | 16:19:18 | 19:19:09 |  2900
+ 1007 | PUNE       | DELHI         |     1000 | 18:15:19 | 22:18:39 |  2700
+ 1008 | GUWAHATI   | PUNE          |     1700 | 16:15:49 | 20:15:45 |  2900
+ 1009 | LUCKNOW    | DELHI         |     1300 | 17:19:49 | 20:15:00 |  2100
+ 1010 | MUMBAI     | DELHI         |     1300 | 18:16:10 | 21:15:00 |  2600
+ 1011 | MUMBAI     | TRIVANTHPURAM |     1800 | 05:12:00 | 09:10:00 |  3100
+ 1012 | MUMBAI     | TRIVANTHPURAM |     1800 | 17:12:00 | 21:10:00 |  3400
+ 1013 | CHENNAI    | KOLAKATA      |     2900 | 16:10:00 | 21:20:00 |  3900
+ 1014 | CHENNAI    | MUMBAI        |     2100 | 14:25:00 | 18:20:00 |  3000
+ 1015 | RAIPUR     | DELHI         |     2800 | 17:20:00 | 22:10:00 |  2700
+(15 rows)
+
+
+2. AIRCRAFT 
+
+create table aircraft(aid int primary key,aname varchar(50),cruisingrange int);
+
+aid | aname | cruisingrange 
+-----+-------+---------------
+(0 rows)
+
+TABLE AFTER INSERTION :
+
+aid |      aname      | cruisingrange 
+-----+-----------------+---------------
+ 101 | BOEING 787      |          4000
+ 102 | BOEING 777      |          3500
+ 103 | AIRBUS A320     |          4500
+ 104 | AIRBUS A320     |          4500
+ 105 | BOMBARDIER CRJ  |          3000
+ 107 | BOMBARDIER CRJ  |          3500
+ 110 | Embraer         |          3000
+ 111 | Embraer         |          3200
+ 113 | TECNAM P2006T   |          3600
+ 114 | TECNAM P2006T   |          4000
+ 115 | BOMBARDIER CRJ  |          4000
+ 117 | AIRBUS A320     |          4000
+ 118 | BOEING 777      |          3000
+ 120 | BOEING 787      |          4000
+ 112 | AIRBUS A320     |          1200
+ 116 | AIRBUS A320     |          1500
+ 108 | BOMBARDIER Q400 |          2500
+ 119 | BOEING 787      |           700
+ 109 | TECNAM P2006T   |           850
+ 106 | BOMBARDIER CRJ  |          1850
+(20 rows)
+
+
+3. CERTIFIED
+
+eid | aid 
+-----+-----
+(0 rows)
+
+
+TABLE AFTER INSERTION :
+
+eid | aid 
+-----+-----
+   1 | 106
+   1 | 108
+   1 | 109
+   8 | 101
+   8 | 116
+   8 | 118
+   9 | 117
+   9 | 120
+   7 | 105
+   7 | 104
+   3 | 109
+   3 | 108
+   3 | 104
+   4 | 105
+   4 | 111
+   4 | 112
+   4 | 102
+   4 | 103
+   7 | 107
+   7 | 108
+   7 | 110
+  17 | 113
+  17 | 114
+  17 | 109
+  19 | 115
+  19 | 119
+  19 | 108
+   5 | 117
+   5 | 118
+   5 | 111
+   5 | 101
+  18 | 119
+  18 | 110
+  18 | 107
+(34 rows)
+
+
+
+4. EMPLOYEES
+
+create table employees(eid int primary key,ename varchar(50),salary int);
+
+eid | ename | salary 
+-----+-------+--------
+(0 rows)
+
+TABLE AFTER INSERTION :
+
+eid |       ename       | salary 
+-----+-------------------+--------
+  18 | JAITN SHARMA      |  45000
+  19 | SONIYA KAUSHIK    |  70000
+  20 | KANHA RAJPUT      |  85000
+   1 | RAMAN GUPTA       |  40000
+   2 | LALIT MISHRA      |  60000
+   3 | GARRY SMITH       |  80000
+   4 | NIKITA PRAJAPATI  | 100000
+   5 | KANIKA MAHESWARI  |  45000
+   6 | GAURAV MEHTA      |  60000
+   7 | DEEPAK GARG       |  80000
+   8 | PRAKASH TANEJA    | 120000
+   9 | KUSHANK CHAUDHARY |  30000
+  10 | LAKSHITA ARORA    |  70000
+  11 | DAVID PETERSON    |  90000
+  12 | GARVIT SWAMY      | 120000
+  13 | GARIMA AGRAWAL    |  78000
+  14 | GARVIT MODI       |  85000
+  15 | MUKESH GANDHI     |  90000
+  16 | MADDY GASCOIGNE   | 150000
+  17 | AMAN RAJPUT       | 160000
+(20 rows)
+
+
