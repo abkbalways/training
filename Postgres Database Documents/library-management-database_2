@@ -241,4 +241,24 @@ name   |        name        | issue_date
 (4 rows)
 
 
-4. 
+4. PRINT THE NAME , NAME OF BOOK AND DAYS CROSS BOOK LIMIT WHICH CROSS BOOK_RANGE
+
+QUERY :
+
+select s.name,b.name,(current_date-br.issue_date)-b.book_range cross_days from students s inner join borrow br on s.id=br.id inner join books b on br.isbn=b.isbn where ((current_date-br.issue_date)>b.book_range); 
+
+OUTPUT :
+
+ name   |        name        | cross_days 
+---------+--------------------+------------
+ ANMOL   | CHEMISTRY CLASS 11 |          5
+ LAKSHYA | PHYSICS CLASS 12   |         10
+ TANISHA | MY STORY           |         26
+ TANISHA | CHEMISTRY CLASS 11 |         43
+ TANISHA | CHEMISTRY CLASS 11 |         43
+ ANMOL   | PHYSICS CLASS 12   |         32
+(6 rows)
+
+
+
+
