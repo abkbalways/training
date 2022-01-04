@@ -223,4 +223,22 @@ name   | fine
 
 2. FIND AVAILABLE COPIES OF GIVEN BOOK
 
+3. PRINT THE NAME OF STUDENTS WITH BOOKS NAME ISSUED IN NOVEMBER
 
+QUERY :
+
+select s.name,b.name,br.issue_date from books b inner join borrow br on b.isbn=br.isbn inner join students s on s.id=br.id where(extract(month from date(issue_date)) = 11);
+
+
+OUTPUT :
+
+name   |        name        | issue_date 
+---------+--------------------+------------
+ TANISHA | MY STORY           | 2021-11-29
+ ANMOL   | PHYSICS CLASS 12   | 2021-11-18
+ TANISHA | CHEMISTRY CLASS 11 | 2021-11-12
+ TANISHA | CHEMISTRY CLASS 11 | 2021-11-12
+(4 rows)
+
+
+4. 
