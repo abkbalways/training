@@ -437,10 +437,21 @@ range longer than 1000 miles and who are certified on some Boeing aircraft.
 
 QUERY : 
 
+select distinct e.ename from employees e inner join certified c on e.eid=c.eid inner join aircraft a on a.aid=c.aid group by e.ename,a.aname having every(a.cruisingrange>1000) and a.aname ilike 'boeing%';
+
+OUTPUT :
+
+ ename       
+-------------------
+ KANIKA MAHESWARI
+ KUSHANK CHAUDHARY
+ NIKITA PRAJAPATI
+ PRAKASH TANEJA
+(4 rows)
 
 
 
-Some Changes in Table Aircraft for check query (f or 6) :
+------------- Some Changes in Table Aircraft for check query (f or 6)  -------------
 
 update aircraft set cruisingrange = 12000 where aname='BOEING 777';
 
