@@ -292,6 +292,13 @@ OUTPUT :
 6. Find the aids of all aircraft that can be used on routes from Los Angeles to 
 Chicago.
 
+QUERY : 
+
+select aid from aircraft where cruisingrange>=(select distance from flights where "from"='Los Angeles' and "to"='Chicago');
+
+OUTPUT :
+
+
 7. Identify the routes that can be piloted by every pilot who makes more than 
 $100,000. 
 
@@ -434,4 +441,8 @@ OUTPUT :
 range longer than 1000 miles and who are certified on some Boeing aircraft. 
 
 QUERY : 
+
+
+
+
 
