@@ -346,7 +346,7 @@ customer wants to arrive in DELHI by 11 p.m.
 
 QUERY :
 
-select f1.departs from flights f1 left join flights f2 on f1."to" = f2."from" left join flights f3 on f2."to" = f3."from" where (f1."from" ='Madison' and f2."to"= 'Newyork' and f2.arrives<'18:00:00') or (f1."from"='Madison' and f1."to"='Newyork' and f1.arrives<'18:00:00') or (f1."from"='Madison' and f3."to"='Newyork' and f3.arrives<'18:00:00');
+select f1.departs from flights f1 left join flights f2 on f1."to" = f2."from" left join flights f3 on f2."to" = f3."from" where (f1."from" ='Madison' and f2."to"= 'Newyork' and f2.arrives<'18:00:00' and f2.departs>f1.arrives) or (f1."from"='Madison' and f1."to"='Newyork' and f1.arrives<'18:00:00') or (f1."from"='Madison' and f3."to"='Newyork' and f3.arrives<'18:00:00' and f2.departs>f1.arrives and f3.departs>f2.arrives);
 
 OUTPUT :
 
