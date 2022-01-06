@@ -179,6 +179,26 @@ eid |       ename       | salary
 QUERIES :
 
 
+1.  Find the names of aircraft such that all pilots certified to operate them earn 
+more than $80,000.
+
+QUERY :
+
+ select a.aid,a.aname from aircraft a inner join certified c on a.aid=c.aid inner join employees e on e.eid=c.eid group by a.aid having every(e.salary>80000);
+
+
+OUTPUT :
+
+aid |     aname     
+-----+---------------
+ 113 | TECNAM P2006T
+ 116 | AIRBUS 420
+ 103 | AIRBUS A320
+ 114 | TECNAM A250CA
+ 112 | AIRBUS 720
+ 102 | BOEING 777
+(6 rows)
+
 
 2. For each pilot who is certified for more than three aircraft, find the eid and the 
 maximum cruisingrange of the aircraft for which she or he is certified. 
