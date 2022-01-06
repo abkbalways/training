@@ -346,12 +346,64 @@ select f1.departs from flights f1 left join flights f2 on f1."to" = f2."from" le
 
 OUTPUT :
 
+departs  
+----------
+ 08:10:00
+(1 row)
+
 
 TEMPORARY UPDATATION IN TABLE FOR CHECK ->
 
+insert into flights values(1021,'Madison','Honolulu',12000,'06:00:00','10:30:00',25000);
 
+insert into flights values(1022,'Honolulu','Chicago',12000,'11:00:00','14:30:00',15000);
 
+insert into flights values(1023,'Chicago','Newyork',2000,'16:00:00','17:30:00',5000);
 
+insert into flights values(1024,'Honolulu','Newyork',10000,'15:00:00','17:00:00',15000);
+
+TABLE AFTER TEMPORARY UPDATATION :
+
+flno |    from     |      to       | distance | departs  | arrives  | price 
+------+-------------+---------------+----------+----------+----------+-------
+ 1001 | DELHI       | PUNE          |     1000 | 12:10:12 | 16:12:19 |  2500
+ 1002 | DELHI       | MUMBAI        |     1300 | 14:10:12 | 19:02:19 |  2800
+ 1003 | HEYDERABAD  | MUMBAI        |     1100 | 08:10:12 | 10:02:19 |  2200
+ 1004 | HEYDERABAD  | BANGLORE      |      700 | 19:10:12 | 20:32:19 |  2400
+ 1005 | GUWAHATI    | DELHI         |     1900 | 18:40:19 | 22:02:16 |  2800
+ 1006 | DELHI       | PUNE          |     1000 | 16:19:18 | 19:19:09 |  2900
+ 1007 | PUNE        | DELHI         |     1000 | 18:15:19 | 22:18:39 |  2700
+ 1008 | GUWAHATI    | PUNE          |     1700 | 16:15:49 | 20:15:45 |  2900
+ 1009 | LUCKNOW     | DELHI         |     1300 | 17:19:49 | 20:15:00 |  2100
+ 1010 | MUMBAI      | DELHI         |     1300 | 18:16:10 | 21:15:00 |  2600
+ 1011 | MUMBAI      | TRIVANTHPURAM |     1800 | 05:12:00 | 09:10:00 |  3100
+ 1012 | MUMBAI      | TRIVANTHPURAM |     1800 | 17:12:00 | 21:10:00 |  3400
+ 1013 | CHENNAI     | KOLAKATA      |     2900 | 16:10:00 | 21:20:00 |  3900
+ 1014 | CHENNAI     | MUMBAI        |     2100 | 14:25:00 | 18:20:00 |  3000
+ 1015 | RAIPUR      | DELHI         |     2800 | 17:20:00 | 22:10:00 |  2700
+ 1016 | Los Angeles | Honolulu      |    15000 | 07:12:00 | 22:18:00 | 45000
+ 1017 | Los Angeles | Chicago       |    10000 | 08:20:00 | 15:07:00 | 35000
+ 1018 | Los Angeles | Honolulu      |    15000 | 11:12:00 | 23:18:00 | 60000
+ 1019 | Madison     | Newyork       |    12000 | 08:10:00 | 16:10:00 | 40000
+ 1020 | Madison     | Newyork       |    12000 | 11:10:00 | 18:40:00 | 45000
+ 1021 | Madison     | Honolulu      |    12000 | 06:00:00 | 10:30:00 | 25000
+ 1022 | Honolulu    | Chicago       |    12000 | 11:00:00 | 14:30:00 | 15000
+ 1023 | Chicago     | Newyork       |     2000 | 16:00:00 | 17:30:00 |  5000
+ 1024 | Honolulu    | Newyork       |    10000 | 15:00:00 | 17:00:00 | 15000
+(24 rows)
+
+QUERY :
+
+select f1.departs from flights f1 left join flights f2 on f1."to" = f2."from" left join flights f3 on f2."to" = f3."from" where (f1."from" ='Madison' and f2."to"= 'Newyork' and f2.arrives<'18:00:00') or (f1."from"='Madison' and f1."to"='Newyork' and f1.arrives<'18:00:00') or (f1."from"='Madison' and f3."to"='Newyork' and f3.arrives<'18:00:00');
+
+OUTPUT :
+
+departs  
+----------
+ 06:00:00
+ 08:10:00
+ 06:00:00
+(3 rows)
 
 
 
