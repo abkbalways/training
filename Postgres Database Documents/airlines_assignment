@@ -597,3 +597,7 @@ update aircraft set cruisingrange = 3500  where aname='BOEING 777';
 
 update aircraft set cruisingrange = 3500  where aname='BOEING 777';
 
+
+
+
+---------------------------------------------- Assignment Completed --------------------------------------------------------------------
