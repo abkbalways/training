@@ -445,4 +445,55 @@ QUERY :
 
 
 
+Some Changes in Table Aircraft for check query (f or 6) :
+
+update aircraft set cruisingrange = 12000 where aname='BOEING 777';
+
+insert into aircraft values(121,'AIRBUS B980',14800);
+
+AIRCRAFT AFTER UPDATION :
+
+aid |      aname      | cruisingrange
+-----+-----------------+---------------
+ 101 | BOEING 787      |          4000
+ 103 | AIRBUS A320     |          4500
+ 105 | BOMBARDIER CRJ  |          3000
+ 113 | TECNAM P2006T   |          3600
+ 120 | BOEING 787      |          4000
+ 108 | BOMBARDIER Q400 |          2500
+ 104 | AIRBUS A322     |          4500
+ 107 | BOMBARDIER ARC  |          3500
+ 110 | EMBRAER         |          3000
+ 111 | EMBRAER 2.0     |          3200
+ 114 | TECNAM A250CA   |          4000
+ 115 | TECNAM BC45TA   |          4000
+ 109 | TECNAM BTR25I   |           850
+ 106 | BOMBARDIER A380 |          1850
+ 117 | AIRBUS A460     |          4000
+ 118 | BOEING 890      |          3000
+ 119 | BOEING 121      |           700
+ 112 | AIRBUS 720      |          1200
+ 116 | AIRBUS 420      |          1500
+ 102 | BOEING 777      |         12000
+ 121 | AIRBUS B980     |         14800
+(21 rows)
+
+QUERY :
+
+select aid from aircraft where cruisingrange>=(select distance from flights where "from"='Los Angeles' and "to"='Chicago');
+
+OUTPUT :
+
+aid
+-----
+ 102
+ 121
+(2 rows)
+
+
+Delete that updatation after checking :
+
+update aircraft set cruisingrange = 3500  where aname='BOEING 777';
+
+update aircraft set cruisingrange = 3500  where aname='BOEING 777';
 
