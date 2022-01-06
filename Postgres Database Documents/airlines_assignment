@@ -336,9 +336,29 @@ OUTPUT :
  AMAN RAJPUT
 (3 rows)
 
-9. A customer wants to travel from Madison to New York with no more than two 
-changes of flight. List the choice of departure times from Madison if the 
-customer wants to arrive in New York by 6 p.m.
+9. A customer wants to travel from HEYDERABAD to DELHI with no more than two 
+changes of flight. List the choice of departure times from HYDERABAD if the 
+customer wants to arrive in DELHI by 11 p.m.
+
+QUERY :
+
+select f1.departs from flights f1 left join flights f2 on f1."to" = f2."from" left join flights f3 on f2."to" = f3."from" where (f1."from" ='Madison' and f2."to"= 'Newyork' and f2.arrives<'18:00:00') or (f1."from"='Madison' and f1."to"='Newyork' and f1.arrives<'18:00:00') or (f1."from"='Madison' and f3."to"='Newyork' and f3.arrives<'18:00:00');
+
+OUTPUT :
+
+
+TEMPORARY UPDATATION IN TABLE FOR CHECK ->
+
+
+
+
+
+
+
+
+
+
+
 
 10. Compute the difference between the average salary of a pilot and the average 
 salary of all employees (including pilots).
