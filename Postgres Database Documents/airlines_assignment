@@ -298,6 +298,10 @@ select aid from aircraft where cruisingrange>=(select distance from flights wher
 
 OUTPUT :
 
+aid 
+-----
+(0 rows)
+
 
 7. Identify the routes that can be piloted by every pilot who makes more than 
 $100,000. 
