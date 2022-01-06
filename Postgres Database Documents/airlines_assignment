@@ -302,6 +302,24 @@ OUTPUT :
 7. Identify the routes that can be piloted by every pilot who makes more than 
 $100,000. 
 
+QUERY :
+
+select distinct "from" || ' to ' || "to" as routes from flights where distance<(select min(cruisingrange) from aircraft where aid in(select aid from certified group by certified.aid having every(eid in(select eid from employees where salary>100000))));
+
+OUTPUT :
+
+routes         
+------------------------
+ DELHI to PUNE
+ LUCKNOW to DELHI
+ MUMBAI to DELHI
+ HEYDERABAD to BANGLORE
+ PUNE to DELHI
+ HEYDERABAD to MUMBAI
+ DELHI to MUMBAI
+(7 rows)
+
+
 8. Print the enames of pilots who can operate planes with cruisingrange greater 
 than 3000 miles but are not certified on any Boeing aircraft.
 
