@@ -245,5 +245,104 @@ LAKHAN
 80
 
 
+Constants :- 
+
+These are begin with uppercase letter. These can be define in or outside the class . but cannot not be defined in the method or function.
+
+Example :
+
+class Add
+
+ A=5;
+ B=6;
+ C=A+B;
+ def add
+    puts("The result of #{A} + #{B} is #{C}");
+ end
+end
+
+obj=Add.new();
+obj.add;
+
+OUTPUT :
+
+The result of 5 + 6 is 11
+
 -----------------------------------------------------------------------------------------------------------------------------------------
 
+---- Case Study of Class and Objects ----
+
+
+BEGIN{
+puts "Start My Program" , "\n"
+}
+
+END{
+puts "End My Program" , "\n"
+}
+
+
+
+class Students
+    @@no_of_students=0
+
+  def initialize(rollno,name,marks)
+    @@no_of_students +=1
+    @rollno=rollno
+    @name=name
+    @marks=marks
+  end
+  def display()
+    puts "Roll No. : #@rollno "
+    puts "Name : #@name "
+    puts "Marks : #@marks","\n"
+  end
+  def total_students()
+    puts "Total No. of Students : #@@no_of_students","\n"
+  end
+end
+
+s1=Students.new(101,'Rahul',85)
+s1.display
+s1.total_students
+s2=Students.new(102,'Gagan',87)
+s2.display
+s2.total_students
+s3=Students.new(103,'Lakhsn',98)
+s3.display
+s3.total_students
+
+s4=Students.new(104,'Jatin',75)
+s5=Students.new(105,'Kavita',86)
+
+s5.total_students;
+
+
+OUTPUT :
+
+Start My Program
+
+Roll No. : 101 
+Name : Rahul 
+Marks : 85
+
+Total No. of Students : 1
+
+Roll No. : 102 
+Name : Gagan 
+Marks : 87
+
+Total No. of Students : 2
+
+Roll No. : 103 
+Name : Lakhsn 
+Marks : 98
+
+Total No. of Students : 3
+
+Total No. of Students : 5
+
+End My Program
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------
