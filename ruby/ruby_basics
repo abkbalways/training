@@ -42,4 +42,44 @@ For setting default one:
 
 rvm use 3.0.0 --default
 
+------------------------------------------------------------------------------------------------------------------------------------------
+
+- Interactive Ruby (Irb) :-
+
+Its provide a shell for experimentation . Within this we can run ruby expression result , line by line .
+
+For out from irb :
+
+ctrl + d
+
+- White Spaces in ruby :-
+
+These are generally ignored by ruby except whenthey appear in strings. Sometimes, However they are used to interpret ambiguous statements .
+
+Ex -
+
+a + b is interpreted as a+b (Here a is a local variable)
+
+a  +b is interpreted as a(+b) (Here a is a method call)
+
+- Line Endings in ruby programs :-
+
+Ruby interprets semicolons and new line characters as the ending of the statement. However if ruby encounters operators, such as +,-, pr backshlash at the end of the line , they indicate the contiunation of statement. 
+
+Hello Ruby Program :-
+
+# My First Ruby Program
+
+puts "Hello World in Ruby !!";
+
+
+-> Save this by any name like test.rb
+-> run "ruby test.rb" in terminal
+
+OUTPUT :-
+
+Hello World in Ruby !!
+
+
+
 
