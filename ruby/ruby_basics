@@ -497,3 +497,146 @@ yes
 
 
 ------------------------------------------------------------------------------------------------------------------------------------
+
+Conditions :
+
+(a) Ruby if else
+
+Syntax -
+
+if condition
+code
+elsif condition
+code
+elsif condition
+code
+else
+code
+
+
+Example :
+
+
+a=6
+b=7
+c=8
+if(a>b && a>c)
+    puts("#$a is greater than b and c")
+elsif(b>a && b>c)
+    puts("b is greater than a and c")
+else
+    puts("c is greater than b and c")
+
+end
+
+
+OUTPUT :
+
+c is greater than b and c
+
+
+(b) Ruby if modifier
+
+Executes the code if condition is true .
+
+syntax :
+
+code if condition
+
+Example :
+
+age =19
+
+puts("You are eligible for vote") if(age>=18)
+
+
+Output :
+
+You are eligible for vote
+
+(c) Ruby Unless statement
+
+Execute code if condition is false , if condition is true then , code specified in else will be executed.
+
+Syntax :
+
+unless condition
+code
+else
+code
+end
+
+Example :
+
+age =19
+
+unless(age>18)
+    puts("You are not eligible for vote")
+else
+    puts("You are eligible for vote")
+end
+
+
+OUTPUT :
+
+You are eligible for vote
+
+
+(d) Ruby Unless Modifier
+
+Syntax :
+
+code unless codition
+
+Example :
+
+$var=1
+
+puts "1 -- value is set" if($var)
+puts "2 -- value is set" unless($var)
+
+$var=false
+
+puts "3 - -value is set" unless($var)
+
+OUTPUT :
+
+1 -- value is set
+3 - -value is set
+
+
+(e) Ruby case Statement
+
+Syntax :
+
+case expr0
+when expr1, expr2
+stmt1
+when expr3, expr4
+stmt2
+else
+stmt3
+end
+
+Example :
+
+$marks = 72
+case $marks
+when 50..60
+    puts "Grade E"
+when 60..70
+    puts "Grade D"
+when 70..80
+    puts "Grade C"
+when 80..90
+    puts "Grade B"
+when 90..100
+    puts "Grade A"
+else
+    puts "FAIL"
+end
+
+OUTPUT :
+
+Grade C
+
