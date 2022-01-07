@@ -1,1 +1,45 @@
-s
+Ruby Basics by Ajay Agrawal in Beryl Systems
+
+Installation of rvm and ruby :-
+
+1. sudo apt update
+sudo apt install curl
+
+2. Add RVM GPG key on Ubuntu 20.04 Linux
+
+curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+curl -sSL https://rvm.io/pkuczynski.asc | gpg --import -
+
+3.  Command to Install RVM on Ubuntu 20.04 LTS
+
+curl -sSL https://get.rvm.io | bash -s stable
+
+4. Check the RVM version
+
+Once the installation is completed reload the shell to start using the RVM command-line tool:
+
+source ~/.bashrc
+
+rvm --version
+
+5.  List Ruby version available to install
+
+rvm list known
+
+6. Install the latest ruby
+
+rvm install ruby
+
+To get some particular old version, declare the version number:
+
+rvm install 2.7.2
+
+7. Set default or Switch to the Ruby version you want to use
+
+rvm use 3.0.0
+
+For setting default one:
+
+rvm use 3.0.0 --default
+
+
