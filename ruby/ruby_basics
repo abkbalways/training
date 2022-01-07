@@ -346,3 +346,39 @@ End My Program
 
 
 -------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Comments :-
+
+(a) Single Line Comment :
+
+We can give comment precided by #.
+
+Ex:
+
+puts "Delhi is the capital of India"   #I am Comment
+
+OUTPUT :
+
+Delhi is the capital of India
+
+(b) Multi Line Comment :
+
+We can comment multiple line . But it can be in starting of program or first line of program by syntax =begin and =end as follows
+
+EX : 
+
+begin 
+I am the multiple lines comment . we can break line in that type of comment 
+=end
+
+puts "Delhi is the capital of India" 
+
+
+OUTPUT :
+
+Delhi is the capital of India
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
