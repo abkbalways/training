@@ -382,3 +382,118 @@ Delhi is the capital of India
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
+Operators :
+
+
+(a) Ruby Arithmetic operators :
+
+Assume variable a=5 and b=10 , 
+
++   - 15 ((a+b)It add both values)
+
+-   - -5 ((a-b), it subtract second value from first value)
+
+*   - 50 ((a*b), it multiply both values)
+
+/   - 2 ((b/a), it divides b by a)
+
+%   - 0 ((b%a), it gives the remainder of b/a)
+
+**  - (a**b), it will give the 5 to the power 10.
+
+(b) Ruby Comparision Operators :
+
+These are used for compare values or conditions,
+
+Assume a=5 and b=10 ,
+
+==     - FALSE (it gives true if a is equals to b otherwise false).
+
+!=     - TRUE (it gives true when a is not equals to b otherwise false)
+
+<      - TRUE (it gives true if a is less than b otherwise false)
+
+>      - FALSE (it gives true if a is greater than b otherwise false)
+
+<=     - TRUE (it gives true if a is less than or equals to b otherwise false)
+
+>=     - FALSE (it gives true if a is greater than or equals to b otherwise false)
+
+<=>    - -1 (0 if a equals to b,1 if a is greater than b and -1 if a is less than b)
+
+===    - (1...10)===5 returns TRUE (1...10 means 1,2,3,4,5,6,7,8,9)
+
+.eql?  - it will check type and value also .
+
+
+
+(c) Ruby Assignment Operators
+
+These operators are used for assigning values to variables.
+
+=       - it is used for assign values. (a=5 or c=a+b)
+
++=      - c += a , c=c+a
+
+-=      - c -= a , c=c-a
+
+*=      - c *= a , c=c*a
+
+/=      - c /= a , c=c/a
+
+%=      - c %= a , c=c%a
+
+(d) Ruby Parallel operators
+
+it is used for multiple variables initialization in single line.
+
+Ex - 
+
+a,b,c = 12,52,98
+
+it is also used for swapping values
+
+Ex - 
+
+a=2
+b=3
+
+a,b=b,a
+
+puts(a,b)
+
+OUTPUT :
+
+3
+2
+
+(e) Ruby Logical Operators
+
+AND or &&    - if both the conditions are true then return true otherwise false. 
+
+OR  or ||    - if both the conditions are false then return false otherwise true.
+
+NOT or !     - it is used for reverse the logical operator. it gives !(true) = false and vice-versa.
+
+(f) Ruby Range Operators
+
+..           - (1..10) gives range from 1 to 10.
+
+...          - (1...10) gives range from 1 to 9.
+
+(g) Ruby ternary Operators
+
+Firstly it evaluates the condition , if condition is true it returns first value otherwise second.
+
+For Example : 
+
+a=5
+if(a>3)?puts("yes"):puts("no")
+end
+
+OUTPUT :
+
+yes
+
+
+------------------------------------------------------------------------------------------------------------------------------------
