@@ -81,5 +81,169 @@ OUTPUT :-
 Hello World in Ruby !!
 
 
+Ruby Class and Objects :-
 
+A class is a blueprint from which individual objects are created.
+
+For Example :- 
+
+Bicycle is the object of class Vehicles . and speetding , breaking , etc. are their functions.
+
+Syntax :
+
+class Classname
+
+#content
+
+end
+
+Variables in a ruby :-
+
+We have four types of variables in ruby .
+
+1. Local Variables - These are the methods which is defined inside the methods. and we can't use that outside the method. Local variables started with lowercase letter or _.
+
+Example :-
+
+class Abc
+def hello
+    a = "hello world"; # local variable and this scope is only in this method .
+    puts a;
+end
+end
+my = Abc.new;
+my.hello;
+
+
+OUTPUT : 
+
+hello world
+
+2. Instance Variable 
+
+These area available across methods for any particular instance or object . It means it will be change for object to object. These are preceded by the sign (@) followed by the variable name . 
+
+Example :-
+
+class Student
+def initialize(id,name,marks)
+        @id = id        # instance variable
+        @name = name    # instance variable
+        @marks =marks   # instance variable
+        puts(@id,@name,@marks);
+    
+end
+
+s1 = Student.new(101,'RAM',80);
+s2 = Student.new(102,'SHYAM',70);
+end
+
+OUTPUT :-
+
+101
+RAM
+80
+102
+SHYAM
+70
+
+
+3. Class Variable
+
+These are available across different objects. It is belong with a class and is a characterstic of class . These are preceded by (@@) and are the followed by the variable name.
+
+Example :-
+
+class Student
+@@cid = 121;    # class variable
+def initialize(id,name,marks)
+        @id = id        # instance variable
+        @name = name    # instance variable
+        @marks =marks   # instance variable
+        puts(@@cid,@id,@name,@marks);  
+    
+end
+
+
+s1 = Student.new(101,'RAM',80);
+s2 = Student.new(102,'SHYAM',70);
+end
+
+OUTPUT :-
+
+121
+101
+RAM
+80
+121
+102
+SHYAM
+70
+
+4. Global Variable
+
+Class variable is not available across classes. If we want to make a variable which is available in all classes , we want to make a Global Variable . The global variables are preceded by the dollar($) sign.
+
+Example :
+
+$sid = 's101'   # global variable
+class Student
+@@cid = 121;    # class variable
+def initialize(id,name,marks)
+        @id = id        # instance variable
+        @name = name    # instance variable
+        @marks =marks   # instance variable
+        puts($sid,@@cid,@id,@name,@marks,"\n");  
+    
+end
+
+
+s1 = Student.new(101,'RAM',80);
+s2 = Student.new(102,'SHYAM',70);
+end
+
+class Student2
+    @@cid = 131;    # class variable
+    def initialize(id,name,marks)
+            @id = id        # instance variable
+            @name = name    # instance variable
+            @marks =marks   # instance variable
+            puts($sid,@@cid,@id,@name,@marks,"\n");  
+        
+    end
+    
+    
+    s1 = Student.new(201,'JATIN',90);
+    s2 = Student.new(202,'LAKHAN',80);
+end
+
+
+OUTPUT :
+
+s101
+121
+101
+RAM
+80
+
+s101
+121
+102
+SHYAM
+70
+
+s101
+121
+201
+JATIN
+90
+
+s101
+121
+202
+LAKHAN
+80
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
 
