@@ -1239,3 +1239,37 @@ Inside block P2
 
 
 -----------------------------------------------------------------------------------------------------------------------------------------
+
+Ruby Iterators :
+
+Iterators are nothing but methods supported by collections. Collections is the object that stores group of data members. In Ruby Arrays and Hashes can be termed collections.
+
+Iterators returns each elements of collection. one after other.
+
+(a) Ruby each iterator 
+
+The each iterator return all elements of Array or a Hash. 
+
+Syntax :
+
+collection.each do |variable|
+code
+end
+
+Example : 
+
+ary=[1,2,3,4,5]
+
+ary.each do |num|                           #each is the iterator which return all elements one by one
+    puts "Element of Collection : #{num}"
+end
+
+OUTPUT :
+
+Element of Collection : 1
+Element of Collection : 2
+Element of Collection : 3
+Element of Collection : 4
+Element of Collection : 5
+
+(b)
