@@ -1272,4 +1272,45 @@ Element of Collection : 3
 Element of Collection : 4
 Element of Collection : 5
 
-(b)
+(b) Ruby collect iterator
+
+The collect iterator also return all elements of Array or a Hash.
+
+Syntax :
+
+collection = collection.collect
+
+Important Point : The collect method need not always associated with a block. The collect method returns the entire collection, regardless of whether it is an Array or Hash.
+
+Example 1: 
+
+d=[1,2,3,4,5]
+e=d.collect
+puts d
+
+OUTPUT :
+
+1
+2
+3
+4
+5
+
+Example 2:
+
+a=[1,2,3,4,5]
+b=a.collect {|num| num+10}
+puts b
+
+OUTPUT :
+
+11
+12
+13
+14
+15
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+
