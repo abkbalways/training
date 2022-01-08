@@ -97,7 +97,8 @@ class Classname
 
 end
 
-Variables in a ruby :-
+
+1. Local Variables - These are the methods which is defined inside the methods. and we can't useVariables in a ruby :-
 
 We have four types of variables in ruby .
 
@@ -1093,3 +1094,148 @@ test.rb:11:in `<main>': undefined local variable or method `num' for main:Object
 
 -------------------------------------------------------------------------------------------------------------------------------------- 
   
+
+BLOCKS IN RUBY 
+
+It is like the methods but it does not belong to an object . Blocks are called objects in other programming languages. Some important points about blocks are
+
+-> Blocks can accept arguments and return the value
+
+-> Block does not have their own name 
+
+-> Blocks consist of chunks of code
+
+-> It is always invoked with a function or can say passed to a method call
+
+-> To call a block with in a method with value, yield statement is used.
+
+-> Block can be called just like methods from inside the method that it is passed to 
+
+A block code can be used in two ways as follows
+
+1. inside the do..end statement 
+
+Syntax :
+
+block_name do 
+
+statement
+statement
+
+end
+
+
+
+Example :
+
+["Ajay","Agrawal",21].each do |n|  # each is method name or block name and n is variable
+
+    puts(n);
+end
+
+OUTPUT :
+
+Ajay
+Agrawal
+21
+
+
+2. Inline between the curly braces
+
+Syntax :
+
+block_name {statement}
+
+Example :
+
+["Ajay","Agrawal",21].each {|n| puts n}
+
+OUTPUT :
+
+Ajay
+Agrawal
+21
+
+Block Arguments :
+
+Block Arguments can be passed between the enclosing pipes || .
+
+Example : 
+
+student_names = ["utkarsh","ram","hritik","jatin","garima","lalita"]
+
+student_names.each do |student_names| # students_names are arguments inside the pipes ||
+    puts(student_names)
+end
+
+
+OUTPUT :
+
+utkarsh
+ram
+hritik
+jatin
+garima
+lalita
+
+
+-> How Block returns values
+
+Actually block return the values which is returned by the method in which it is called.
+
+Example :
+
+puts [1,2,3,4,5].select {|num| num.odd?}  #their are two methods select and odd
+
+OUTPUT :
+
+1
+3
+5
+
+
+-> The yield statement
+
+It is used to call a block inside the method using yield keyword with values.
+
+Example :
+
+def anything
+    puts "Inside the method"
+    yield                     #CALL BLOCK INSIDE THE METHOD
+    puts "Again Inside the method"
+    yield                     #AGAIN CALL METHOD
+end
+
+anything{puts "Inside block"}   #BLOCK
+
+
+OUTPUT :
+
+nside the method
+Inside block
+Again Inside the method
+Inside block
+
+-->WITH PARAMETERS
+
+Example :
+
+def anything
+    puts "Inside the method"
+    yield "P1"                    #CALL BLOCK INSIDE THE METHOD
+    puts "Again Inside the method"
+    yield "P2"                   #AGAIN CALL METHOD
+end
+
+anything{|para| puts "Inside block #{para}"}   #BLOCK
+
+OUTPUT :
+
+Inside the method
+Inside block P1
+Again Inside the method
+Inside block P2
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
