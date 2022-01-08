@@ -829,4 +829,82 @@ OUTPUT :
 3
 4
 
+(f) Ruby break statement
+
+It terminates the most internal loop . and after achieve break statement that loop will be terminated and code is not executed for any other values.
+
+Syntax :
+
+break
+
+Example :
+
+$i=0
+for i in 1...5
+    if i>2
+        break
+    end
+  puts("The value of i is #{i}")
+end
+
+OUTPUT :
+
+The value of i is 1
+The value of i is 2
+
+(g) Ruby next statement
+
+It terminates the most internal loop for that condition for which next statement is defined . it jumps to next iteration and skip the iteration in which next defined.
+
+Syntax : 
+
+next
+
+Example :
+
+$i=0
+for i in 1...5
+    if i==3
+        next   # it will skip 3
+    end
+  puts("The value of i is #{i}")
+end
+
+OUTPUT :
+
+The value of i is 1
+The value of i is 2
+The value of i is 4 
+
+
+(h) Ruby redo statement 
+
+It restart the iteration of most internal loop, without checking loop condition .
+
+Syntax :
+
+redo
+
+Example : 
+
+$i=0
+for i in 1...5
+    if i==3
+        puts("The value of i is #{i}")
+        redo  
+    end
+  
+end
+
+OUTPUT :
+
+The value of i is 3
+The value of i is 3
+The value of i is 3
+The value of i is 3
+The value of i is 3
+The value of i is 3
+...................
+
+it will print till infinite
 
