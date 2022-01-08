@@ -1314,3 +1314,37 @@ OUTPUT :
 -------------------------------------------------------------------------------------------------------------------------------------------
 
 
+RUBY RANGES :
+
+Ruby supports ranges and allows us to use ranges in a different ways,
+
+1. Ranges as Sequences
+
+2. Ranges as Conditions
+
+3. Ranges as Intervals
+
+
+1. Ranges as Sequences
+
+(1..5) = 1,2,3,4,5
+
+(1...5) = 1,2,3,4
+
+('a'..'d') = 'a' , 'b' , 'c' , 'd'
+
+we can convert range into list using to_a method.
+
+Example :
+
+range1=(1..10).to_a
+range2=('aa'...'ad').to_a
+
+puts "#{range1}"
+puts "#{range2}"
+
+OUTPUT :
+
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+["aa", "ab", "ac"]
+
