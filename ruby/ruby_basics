@@ -908,3 +908,188 @@ The value of i is 3
 
 it will print till infinite
 
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+Ruby methods :
+
+It is the set of statements which perform some specific task and returns the result. it allow to user reusing the code without retypin the code. 
+
+Defining and calling methods in ruby :
+
+method can be defined by keyword def followed by method_name (should be in lower case). we can call method by just type the name of method. method must be defined before calling.
+
+Syntax :
+
+def method_name
+statement 1 
+statement 2
+end
+
+Example :
+
+def method_1
+    puts "method 1 is calling"
+end
+def method_2
+    puts "method 2 is calling"
+end
+method_1
+method_2
+
+OUTPUT :
+
+method 1 is calling
+method 2 is calling
+
+-- > Passing parameters to the method
+
+it is like the passing parameters to method in other languages. we want to just write parameter in braces.
+
+Syntax :
+
+def method_name(var1,var2,var3)
+statement 1
+statement 2
+.
+.
+end
+
+Example :
+
+def city(var1="name",var2="city")
+    puts "name is #{var1}"
+    puts "city is #{var2}"
+end
+
+puts "With Parameters"
+city "jatin","mathura"
+puts ""
+puts"Without Parameters"
+city
+
+
+OUTPUT :
+
+With Parameters
+name is jatin
+city is mathura
+
+Without Parameters
+name is name
+city is city
+
+--> Ruby Methods with no. of parameters.
+
+Ruby allows to define a method that can take variable no. of arguments. It is useful when the user doesn't know the no. of parameters to be passed when method is defining.
+
+Syntax :
+
+def method_name(*var_name)
+statement 1
+statement 2
+end
+
+
+Example :
+
+def city(*var1)
+    puts "\nNumber of cities are #{var1.length}"
+
+    for i in 0...var1.length
+        puts "Cities are #{var1[i]}"
+    end
+end
+city "mathura","delhi"
+city "faridabad","palwal","ballabgarh"
+city "lucknow"
+
+OUTPUT :
+
+Number of cities are 2
+Cities are mathura
+Cities are delhi
+
+Number of cities are 3
+Cities are faridabad
+Cities are palwal
+Cities are ballabgarh
+
+Number of cities are 1
+Cities are lucknow
+
+
+--> return statement in methods
+
+It is used for return one or more values from methods .By default, method return last statement that was evaluated from body of the method.
+
+Syntax :
+
+return
+
+Example 1 :
+
+def num
+a = 7
+b = 9
+
+sum=a+b
+diff = b-a
+
+return sum
+end
+
+puts "The result is #{num}"
+
+OUTPUT :
+
+The result is 16
+
+Example 2 :
+
+def num
+a = 7
+b = 9
+
+sum=a+b
+diff = b-a
+
+return sum,diff
+end
+
+puts "The result is #{num}"
+
+OUTPUT :
+
+The result is [16, 2]
+
+
+--> Ruby undef methods
+
+It is used to cancel the definition of method or delete the method.
+
+Syntax :
+
+undef method-name
+
+Example :
+
+def num
+a = 7
+b = 9
+sum=a+b
+diff = b-a
+return sum
+end
+
+undef num
+
+puts "The result is #{num}"
+
+OUTPUT :
+
+test.rb:11:in `<main>': undefined local variable or method `num' for main:Object (NameError)
+
+
+-------------------------------------------------------------------------------------------------------------------------------------- 
+  
