@@ -640,3 +640,193 @@ OUTPUT :
 
 Grade C
 
+------------------------------------------------------------------------------------------------------------------------------------------
+
+Loops :
+
+It is used for execute same block of code many times .
+
+(a) Ruby while loop
+
+Syntax :
+
+while condition
+code 
+end
+
+or 
+
+while condition do
+code
+end
+
+Example :-
+
+$i=0
+$n=5
+
+while($i<$n) 
+    puts ($i)
+    $i +=1
+end
+
+OUTPUT :
+0
+1
+2
+3
+4
+
+
+(b) Ruby While modifier
+
+it will execute code atleast one time before check condition.
+
+Syntax :
+
+code while condition
+
+or 
+
+begin
+code
+end while condition
+
+Example 1 :
+
+$i=0
+$n=5
+
+begin
+    puts ($i)
+    $i +=1
+end while($i<$n) 
+
+OUTPUT :
+
+0
+1
+2
+3
+4
+
+
+Example 2 :
+
+
+$i=0
+$n=5
+
+begin
+    puts ($i)
+    $i +=1
+end while($i>$n) 
+
+
+OUTPUT :
+
+0
+
+
+(c) until while statement
+
+It executes the code when condition is false . an until statement condition is separated from code by reserved word do, a new line or a semicolon.
+
+Syntax :
+
+until condition do
+code
+end
+
+Example :
+
+$i=0
+$n=5
+
+until $i>$n do
+    puts("The values of i is #$i")
+    $i += 1
+end
+
+OUTPUT :
+
+The values of i is 0
+The values of i is 1
+The values of i is 2
+The values of i is 3
+The values of i is 4
+The values of i is 5
+
+
+(d) Ruby until modifier
+
+It executes code while condition is false.
+
+If an until modifier follows a begin statement with no rescue or ensure clauses , code is executed once before conditional is evaluated.
+
+syntax :
+
+begin
+code
+end until condition
+
+Example :
+
+$i=0
+$n=5
+
+begin
+    puts("The values of i is #$i")
+    $i += 1
+end until $i>$n
+
+OUTPUT :
+
+The values of i is 0
+The values of i is 1
+The values of i is 2
+The values of i is 3
+The values of i is 4
+The values of i is 5
+
+(e) Ruby for loop
+
+It executes code once for each element in expression.
+
+Syntax :
+
+for variable in expression 
+code
+end
+
+Example :
+
+$i=0
+for i in 1...5
+    puts(i)
+end
+
+OUTPUT :
+
+1
+2
+3
+4
+
+Other method for achieve this equivalent to for loop :
+
+Example :
+
+$i=0
+(1...5).each do |i|
+    puts(i)
+end
+
+OUTPUT :
+
+1
+2
+3
+4
+
+
