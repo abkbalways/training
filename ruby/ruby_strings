@@ -141,3 +141,43 @@ try_convert :
 Its return a new string , created from  a given object.
 
 .......................................................................................................................................
+
+4. Methods for freeze String
+
+-> string.freeze
+
+It is used for freeze a string , it means we cannot update that.
+
+Ex :
+
+a='ajay'
+a.freeze
+a << ' agrawal'
+puts a
+
+OUTPUT :
+
+Traceback (most recent call last):
+test.rb:3:in `<main>': can't modify frozen String: "ajay" (FrozenError)
+
+
+-> string.frozen?
+
+It is used for check string is freeze or not. it returns true or false.
+
+Example :
+
+a='ajay'
+a.freeze
+puts a
+puts a.frozen?
+
+OUTPUT :
+
+ajay
+true
+
+
+.......................................................................................................................................
+
+
