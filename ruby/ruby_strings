@@ -455,7 +455,7 @@ true
 
 ---------------------------------------------------------------------------------------------------------------------------------------
 
-Others Querying methods in ruby :
+8. Others Querying methods in ruby :
 
 -> sum
 
@@ -485,3 +485,105 @@ OUTPUT :
 235975447823673739
 
 -----------------------------------------------------------------------------------------------------------------------------------------
+
+9. Methods for comparing in strings
+
+-> == & ===
+
+It give true if both strings has same content, otherwise false.
+
+Example :
+
+str1='Rahul'
+str2='rahul'
+str3='Rahul'
+puts(str1===str2)     # use of === , it also check cases
+puts(str1==str2)      # use of == , it also check cases
+puts(str1===str3)     # str1 and str3 is completely equal
+
+OUTPUT :
+
+false
+false
+true
+
+-> eql?
+
+Returns true if content is same of both strings, otherwise false.
+
+Example :
+
+str1='Rahul'
+str2='rahul'
+str3='Rahul'
+puts str1.eql?(str2)    # it also check cases
+puts str1.eql?(str3)     # str1 and str3 is completely equal
+
+OUTPUT :
+
+false
+true
+
+
+-> <=>
+
+It returns -1 if first string is smaller,1 if first string is larger and 0 if both are equal.
+
+Example :
+
+str1='rahul'
+puts str1<=>'rahula'
+puts str1<=>'rahu'
+puts str1<=>'rahul'
+
+OUTPUT :
+
+-1
+1
+0
+
+Important Point : upper case is smaller than lower case.because ASCII values of 'a' is 97 and 'A' is 65.
+
+
+-> casecmp
+
+It is used for compare two strings , ignoring thats cases. return 1  if first is bigger , -1 if first is smaller and 0 if both are equal.
+
+Example :
+
+str1='rahul'
+str2='Rahul'
+str3='Rahu'
+
+puts str1.casecmp(str2) # both are equal because ignore cases
+puts str1.casecmp(str3) # return 1 because str1 is larger than str3
+puts str2.casecmp(str3) # return 1 because str2 is larger than str3
+
+OUTPUT :
+
+0
+1
+1
+
+-> casecmp?
+
+It is used for comparing two strings with ignore cases. it returns true if they are same othewise false.
+
+Example :
+
+str1='rahul'
+str2='Rahul'
+str3='Rahu'
+
+puts str1.casecmp?(str2) # both are equal because ignore cases
+puts str1.casecmp?(str3) # return false because str1 is not equals to str3
+puts str2.casecmp?(str3) # return false because str2 is not equals to str3
+
+OUTPUT :
+
+true
+false
+false
+
+
+------------------------------------------------------------------------------------------------------------------------------------- 
