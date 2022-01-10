@@ -181,3 +181,71 @@ true
 .......................................................................................................................................
 
 
+5. Methods for Querying String
+
+-> length,size
+
+It is used for count the characters in string.
+
+Example :
+
+a='ajay'
+b='rahul'
+puts a.length
+puts b.size
+
+OUTPUT :
+
+4
+5
+
+
+-> empty?
+
+It is used for check string is empty or not . it returns input or output.
+
+Example : 
+
+a=String.new('Ajay')
+b=String.new
+puts a.empty?
+puts b.empty?
+
+OUTPUT :
+
+false
+true
+
+-> bytesize
+
+It is used for print return bytesize of string.\
+
+Example :
+
+a=String.new('Ajay')
+b=String.new
+puts a.bytesize
+puts b.bytesize
+
+OUTPUT :
+
+4
+0
+
+-> count
+
+It is used for count the substring or specific characters.
+
+Example :
+
+a=String.new('My name is Ajay')
+b= a.count "/[Aa]/"  # it counts the both A or a
+puts "The Occurence of A or a is #{b}"
+
+
+OUTPUT :
+
+The Occurence of A or a is 3
+
+
+.........................................................................................................................................
