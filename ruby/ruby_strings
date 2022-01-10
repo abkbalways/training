@@ -1,0 +1,37 @@
+Ruby Strings By Ajay Agrawal at Beryl Systems 
+
+
+Strings : 
+
+A string object in ruby holds and manipulates an arbitrary sequence of one or more bytes, typically representing characters that represent human language.
+
+The Simplest string enclosed in single quotes .
+
+Example :
+
+my_name ='Ajay'    #my_name is the varible which holds 'Ajay' string
+
+puts my_name
+
+
+OUTPUT :
+
+Ajay
+
+
+-> Apostrophe Character
+
+If we need to place apostrophe character in single quote , precided by backslash (\).
+
+Example :
+
+text ='I don\'t have a dog'
+
+puts text
+
+
+OUTPUT :
+
+I don't have a dog
+
+
