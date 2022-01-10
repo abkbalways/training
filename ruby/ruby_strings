@@ -34,4 +34,90 @@ OUTPUT :
 
 I don't have a dog
 
+----------------------------------------------------------------------------------------------------------------------------------------
+
+String Methods :
+
+
+1. sub and sub!
+
+sub - It is used for substitute the given string, but it substitute string temporarily and if we use that string again it respond like previous string.
+
+Ex -
+
+puts "Enter Your Name :"
+text =gets
+puts text.sub(text,'Student') #Substitute input name by Student
+puts text
+
+OUTPUT :
+
+Enter Your Name :
+Ajay
+Student
+Ajay
+
+
+it substitute only first word or character of a string.
+
+Example :
+
+text ="hello"
+puts text.sub('l','*') #Substitute hello
+
+OUTPUT :
+
+he*lo
+
+
+sub! - It is used for substitute the given string, it substitute string permanently. if we use string again it respond like new updated string.
+
+Example :
+
+puts "Enter Your Name :"
+text =gets
+puts text.sub!(text,'Student') #Substitute input name by Student Permanently
+puts text
+
+OUTPUT :
+
+Enter Your Name :
+Ajay
+Student
+Student
+
+.....................................................................................................................................
+
+2. gsub 
+
+It is used for temporarily substitute character or word globally .
+
+Example :
+
+text ="hello"
+puts text.gsub('l','*') #Substitute l globallay
+puts text
+
+OUTPUT :
+
+he**o
+hello
+
+
+gsub! - It is used for permanently substitute character or word globally.
+
+Example :
+
+text ="hello"
+puts text.gsub!('l','*') #Substitute l globallay
+puts text
+
+OUTPUT :
+
+he**o
+he**o
+
+........................................................................................................................................
+
+3. 
 
