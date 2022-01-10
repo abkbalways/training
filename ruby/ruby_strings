@@ -819,5 +819,171 @@ i dONT hAVE dOG
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
+14. Ruby Methods for Deletion
+
+-> clear 
+
+It is used for clear complete string.
+
+Example :
+
+str1= 'I Dont Have Dog'
+str1.clear
+
+puts str1
+
+
+OUTPUT :
+
+
+-> slice! or []=
+
+These are used for removes a substring determined by a given index, start/length, range, regexp, or substring.
+
+Example :
+
+str = 'My Name is ajay agrawal'
+str.slice!(3)
+puts str
+str.slice!(3..5)
+puts str
+str.slice!(/a.*g/)
+puts str
+str.slice!("a")
+puts str
+
+
+OUTPUT :
+
+My ame is ajay agrawal
+My  is ajay agrawal
+My  is rawal
+My  is rwal
+
+-> squeeze
+
+It is used for remove contiguous duplicate substrings except one .
+
+Example :
+
+str = 'we  dont haaave a dooog'
+str.squeeze!
+puts str
+
+OUTPUT :
+
+we dont have a dog
+
+Important : we can also give arguments for remove specific duplicate elements like spaces or any other.
+
+-> delete!
+
+It is used for delete all specified substrings from string.
+
+Example :
+
+str = 'we dont have a dog'
+str.delete! "a"
+puts str
+
+OUTPUT :
+
+we dont hve  dog
+
+-> lstrip 
+
+It is used for remove leading whitespaces , it means white spaces before starting of string.
+
+Example :
+
+str = '   we dont have a dog'
+puts str
+str.lstrip!
+puts str
+
+
+OUTPUT :
+
+   we dont have a dog
+we dont have a dog
+
+-> rstrip
+
+It is used for remove trailing whitespaces , it means white spaces after completion of string.
+
+Example :
+
+str = 'we dont have a dog   '
+puts str.length
+str.rstrip!
+puts str.length
+
+
+OUTPUT :
+
+21
+18
+
+-> strip 
+
+It is used for remove trailing and leading white spaces both at same time.
+
+Example :
+
+str = '    we dont have a dog   '
+puts str
+puts str.length
+str.strip!
+puts str
+puts str.length
+
+
+OUTPUT :
+
+    we dont have a dog   
+25
+we dont have a dog
+18
+
+-> chomp
+
+It will remove trailing record separator, if found.
+
+Example :
+
+str ="Ajay \n\r"
+puts str
+str.chomp!
+puts str
+str.chomp!
+puts str
+
+OUTPUT :
+Ajay 
+
+Ajay 
+Ajay 
+
+-> chop
+
+It is used for remove last character of string.
+
+Example :
+
+str ="Ajay"
+puts str
+str.chop!
+puts str
+
+
+OUTPUT :
+
+Ajay
+Aja
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 
