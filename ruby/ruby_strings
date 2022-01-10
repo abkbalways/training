@@ -249,3 +249,132 @@ The Occurence of A or a is 3
 
 
 .........................................................................................................................................
+
+6. Methods for Querying Substrings
+
+-> =~
+
+It returns the index of first substring that matches the given regex. Indexing is start from 0 and goes on till length-1.
+
+Example :
+
+a="Ajay"
+puts a =~ /a/
+
+
+OUTPUT :
+
+2
+
+
+-> index
+
+It returns the index of first occurence of given substring.
+
+Ex :
+
+a='While writing any topic in an exam or competition needs paras.'
+puts a.index('an')
+
+OUTPUT :
+
+14
+
+-> rindex
+
+It returns the index of last occurence of given substring.\
+
+Example :
+
+a='While writing any topic in an exam or competition needs paras.'
+puts a.rindex('an')
+
+OUTPUT :
+
+27
+
+-> include
+
+It returns true if substring is found in string , other wise false .
+
+Example :
+
+a='While writing any topic in an exam or competition needs paras.'
+puts a.include?('an')
+puts a.include?('ana')
+
+
+OUTPUT :
+
+true
+false
+
+-> match
+
+It returns the matched substring , if it is matched otherwise nil.
+
+Example :
+
+a='While writing any topic in an exam or competition needs or paras.'
+b= a.match(/any/)
+c= a.match('abc')
+puts ("matched substring of any is #{b} .")
+puts ("matched substring of abc is #{c} .")
+
+
+OUTPUT :
+
+matched substring of any is any .
+matched substring of abc is  .
+
+-> match?
+
+It retrns the true if string is matched with a regex , otherwise false.
+
+Example :
+
+a='While writing any topic in an exam or competition needs or paras.'
+puts a.match?(/any/)
+puts a.match?('abc')
+
+OUTPUT :
+
+true
+false
+
+-> start_with?
+
+It gives true if string is start with any of the given substrings.
+
+Example :
+
+a='while writing any topic in an exam or competition needs or paras.'
+puts "string a is starting with vowels ?"
+puts a.start_with?(/[aeiou]/)
+puts "string a is starting with consonants ?"
+puts a.start_with?(/[bcdfghjklmnpqrstvwxyz]/)
+
+OUTPUT :
+
+string a is starting with vowels ?
+false
+string a is starting with consonants ?
+true
+
+
+->end_with
+
+It gives true if string is end with any of the given substrings.
+
+Example :
+
+a='while writing any topic in an exam or competition needs or paras.'
+puts "string a is starting with dot(.) ?"
+puts a.end_with?('.')
+
+OUTPUT :
+
+string a is starting with dot(.) ?
+true
+
+...................................................................................................................................... 
