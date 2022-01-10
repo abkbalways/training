@@ -119,5 +119,25 @@ he**o
 
 ........................................................................................................................................
 
-3. 
+3. Methods for creating a String
 
+new :
+
+It is used for create new string .
+
+Ex :
+
+s = String.new
+
+s1 = String.new("Ajay")
+
+s2 = String.new(capacity: 20)   # it is used for make initial capacity of string buffer
+
+s3 = String.new(encoding: 'UTF-8') # With encoding keyword, returns a copy of string with specified encoding
+
+
+try_convert :
+
+Its return a new string , created from  a given object.
+
+.......................................................................................................................................
