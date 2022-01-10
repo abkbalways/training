@@ -454,3 +454,34 @@ text2 has only ascii characters ?
 true
 
 ---------------------------------------------------------------------------------------------------------------------------------------
+
+Others Querying methods in ruby :
+
+-> sum
+
+it gives the sum of binary values of each byte of string.
+
+Example :
+
+str='AB'
+puts str.sum()
+
+OUTPUT :
+
+131
+
+-> hash
+
+It returns the integer hash code for strings.
+
+Example :
+
+str='AB'
+puts str.hash
+
+
+OUTPUT :
+
+235975447823673739
+
+-----------------------------------------------------------------------------------------------------------------------------------------
