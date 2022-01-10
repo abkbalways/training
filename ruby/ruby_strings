@@ -587,3 +587,170 @@ false
 
 
 ------------------------------------------------------------------------------------------------------------------------------------- 
+
+METHODS FOR MODIFYING A STRING
+
+11. Insert into string
+
+-> insert
+
+It is used for modify string . it takes two arguments , first is position and second is substring which will be added.
+
+Example :
+
+str= 'rahul'
+str2='rahul'
+str.insert(3,'man')     #it insert after 3rd character from starting
+puts str
+str2.insert(-2,'man')    #it insert at 2nd position from end
+puts str2
+
+OUTPUT :
+
+rahmanul
+rahumanl
+
+
+-> <<
+
+It is used for concatenation string with substring.
+
+Example :
+
+str1= 'rahul'
+str2=' agrawal'
+str3= 'jatin'
+puts str1 << str2
+puts str3<<' chaudhary'
+
+OUTPUT :
+
+rahul agrawal
+jatin chaudhary
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+12. Substitution of strings
+
+-> sub - Explained above
+
+-> gsub - Expalined above
+
+-> succ or next 
+
+It is used for print successor of the given string. it means last character of string is increasing by 1.
+
+Example :
+
+str1= 'rahul'
+puts str1.succ
+puts str1
+puts str1.next
+
+OUTPUT :
+
+rahum
+rahul
+rahum
+
+For change permanently use succ! or next!.
+
+-> replace 
+
+It is used for replace current string with another.
+
+Example :
+
+str1= 'rahul'
+puts str1
+puts str1.replace('jatin')    # replace 'rahul' by 'jatin'
+puts str1
+
+OUTPUT :
+
+rahul
+jatin
+jatin
+
+
+-> reverse
+
+It is used for reverse the string.
+
+Example :
+
+str1= 'rahul'
+puts str1
+puts str1.reverse    # reverse 'rahul' 
+puts str1
+
+OUTPUT :
+
+rahul
+luhar
+rahul
+
+For reverse permanently string use reverse! .
+
+-> setbyte
+
+It is used for change given index substring by substring of given byte.
+
+It takes two parameters , index of changable substring and byte of substring which will replace that.
+
+Example :
+
+str1= 'rahul'
+str1.setbyte(2,97)   # change index 2(h) by byte 97(a)
+puts str1
+
+OUTPUT :
+
+raaul
+
+
+-> tr!
+
+It replaces specified characters with specified replacement characters.
+
+Example :
+
+str1= 'i dont have doog'
+str2='i have a car'
+str3='my name is ajay'
+str1.tr!('og','ag')
+puts str1
+str2.tr!('aeiou','*')
+puts str2
+str3.tr!('j','All')
+puts str3
+
+OUTPUT :
+
+i dant have daag
+* h*v* * c*r
+my name is aAay
+
+
+-> tr_s!
+
+It is like tr!, but it removes duplicate characters also.
+
+Example which differenciate between tr and tr_s :
+
+str1= 'i dont have doog'
+str2= 'i dont have doog'
+str1.tr_s!('og','ag')
+str2.tr!('og','ag')
+puts str1
+puts str2
+
+
+OUTPUT :
+
+i dant have dag
+i dant have daag
+
+
+----------------------------------------------------------------------------------------------------------------------------------------
