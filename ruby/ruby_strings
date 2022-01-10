@@ -984,6 +984,123 @@ Aja
 
 ---------------------------------------------------------------------------------------------------------------------------------------
 
+METHODS FOR CONVERTING TO NEW STRING
+
+15. Ruby methods for extensions
+
+-> *
+
+It is used for return concatenation of  many copies of given string.
+
+Example :
+
+str ="Ajay "
+puts str*3
+puts str
+
+OUTPUT :
+
+Ajay Ajay Ajay 
+Ajay 
+
+-> +
+
+It is used for concatenation of many strings.
+
+Example :
+
+str1 ="Ajay "
+str2 ="Rahul "
+str3 ="Jatin"
+puts str1+str2+str3
+
+OUTPUT :
+
+Ajay Rahul Jatin
+
+-> center
+
+It is used for increase the width of string and put string in center.
+
+Example :
+
+str1 ="Ajay"
+puts str1.center(5) #str1 takes 5 spaces
+puts str1.center(20) #str1 takes 20 spaces 8 before Ajay and 8 after
+puts str1.center(20,'a') #str1 takes 20 spaces 8 before Ajay and 8 after , these filled by a
 
 
+OUTPUT :
 
+Ajay 
+        Ajay        
+aaaaaaaaAjayaaaaaaaa
+
+-> concat
+
+It is used for concatenate first given string with another given string .
+
+Example :
+
+str1 ="Ajay "
+str2 ="Agrawal "
+str1.concat(str2)
+puts str1
+
+OUTPUT :
+
+Ajay Agrawal 
+
+-> prepend
+
+It is used for prepend another given string with first given string.
+
+Example :
+
+str1 ="Ajay "
+str2 ="Agrawal "
+str1.prepend(str2)
+puts str1
+
+OUTPUT :
+
+Agrawal Ajay 
+
+
+-> ljust
+
+If integer is greater than the length of given string, returns the new string which has length equals to integer and has white spaces after string.
+
+Example :
+
+str1 ="Ajay"
+puts str1.ljust(5)
+puts str1.ljust(20)
+puts str1.ljust(20,'a')
+
+OUTPUT :
+
+Ajay 
+Ajay                
+Ajayaaaaaaaaaaaaaaaa
+
+
+-> rjust
+
+If integer is greater than the length of given string, returns the new string which has length equals to integer and has white spaces before string content.
+
+Example :
+
+str1 ="Ajay"
+puts str1.rjust(5)
+puts str1.rjust(20)
+puts str1.rjust(20,'a')
+
+OUTPUT :
+
+ Ajay
+                Ajay
+aaaaaaaaaaaaaaaaAjay
+
+
+--------------------------------------------------------------------------------------------------------------------------------------- 
