@@ -1348,3 +1348,56 @@ OUTPUT :
 [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 ["aa", "ab", "ac"]
 
+2. Ranges as conditions
+
+We can also use reanges as conditions . In below example , we can see the distribution of grades by ranges,
+
+
+Example :
+
+marks = 50
+grade = case marks
+when 0..40 then "Grade E"   #ranges as condition
+when 40..50 then "Grade D"
+when 50..60 then "Grade C"
+when 60..70 then "Grade B"
+when 70..80 then "Grade B+"
+when 80..90 then "Grade A"
+when 90..100 then "Grade A+"
+when 0..40 then "Fail"
+else "Invalid Marks"
+end
+
+puts grade
+
+
+OUTPUT :
+
+Grade D
+
+
+3. Ranges as Intervals
+
+We can also use ranges as intervals .
+
+Example :
+
+num =129
+
+if((1..100)===num)
+    puts "#{num} is lies between 1 and 100"
+end
+if((101..200)===num)
+    puts "#{num} is lies between 101 and 200"
+end
+if((201..300)===num)
+    puts "#{num} is lies between 201 and 300"
+end
+
+
+OUTPUT :
+
+129 is lies between 101 and 200
+
+
+----------------------------------------------------------------------------------------------------------------------------------------
