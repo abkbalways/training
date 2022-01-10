@@ -1104,3 +1104,30 @@ aaaaaaaaaaaaaaaaAjay
 
 
 --------------------------------------------------------------------------------------------------------------------------------------- 
+
+16. Ruby methods for conveting new string (Encoding)
+
+-> b
+
+It returns a copy of given string with ASCII-8BIT encoding.
+
+-> scrub
+
+If the string has invalid byte sequence then replace invalid bytes with given replacement character, else returns self.
+
+Example :
+
+"abc\u3042\x81".scrub #=> "abc\u3042\uFFFD"
+"abc\u3042\x81".scrub("*") #=> "abc\u3042*"
+"abc\u3042\xE3\x80".scrub{|bytes| '<'+bytes.unpack('H*')[0]+'>' } #=> "abc\u3042<e380>"
+
+
+-> unicode_normalize
+
+It is used for return a self string with each character unicode-normalized.
+
+-> encode
+
+It returns a copy of self string in which each character transcoded from one given encoding into another.
+
+----------------------------------------------------------------------------------------------------------------------------------------- 
