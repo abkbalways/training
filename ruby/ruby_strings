@@ -754,3 +754,70 @@ i dant have daag
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------
+
+13. Casing methods in Ruby
+
+-> capitalize!
+
+It is used for make first letter of string in upcase and others in downcase.
+
+Example :
+
+str1= 'i dont have doog'
+str1.capitalize!
+puts str1
+
+OUTPUT :
+
+I dont have doog
+
+-> downcase!
+
+It is used for make complete string in downcase.
+
+Example :
+
+str1= 'I Dont Have Doog'
+str1.downcase!
+puts str1
+
+OUTPUT :
+
+i dont have doog
+
+-> upcase!
+
+It is used for make complete string in uppercase.
+
+Example :
+
+str1= 'i dont have doog'
+str1.upcase!
+puts str1
+
+
+OUTPUT :
+
+I DONT HAVE DOOG
+
+-> swapcase
+
+It is used for swap cases of characters in string.
+
+Example :
+
+str1= 'I Dont Have Dog'
+str1.swapcase!
+
+puts str1
+
+
+OUTPUT :
+
+i dONT hAVE dOG
+
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+
+
