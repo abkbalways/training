@@ -377,4 +377,80 @@ OUTPUT :
 string a is starting with dot(.) ?
 true
 
-...................................................................................................................................... 
+......................................................................................................................................
+
+7. Methods for Querying Encodings
+
+-> encoding
+
+It is used for return the encoding type which is used by string.
+
+Example :
+
+a='while writing any topic in 45 an exam or competition needs or paras.'
+puts a.encoding
+
+OUTPUT :
+
+UTF-8
+
+-> unicode_normalized
+
+It is used for check , string is in unicode normalized form or not. It returns the true or false.
+
+Example :
+
+a='while writing any topic in 45 an exam or competition needs or paras.'
+puts "string a is in unicode normalized form ? "
+puts a.unicode_normalized?
+
+
+OUTPUT :
+
+string a is in unicode normalized form ? 
+true
+
+-> valid_encoding 
+
+It returns true if string is encoded correctly otherwise false.
+
+Example :
+
+a= "\xc2\xa1"
+b= "\xC3"
+c=  "\x80"
+
+puts a.force_encoding("utf-8").valid_encoding?
+puts b.force_encoding("utf-8").valid_encoding?
+puts b.force_encoding("iso-8859-1").valid_encoding?
+puts c.force_encoding("utf-8").valid_encoding?
+
+OUTPUT :
+
+true
+false
+true
+false
+
+-> ascii_only
+
+It returns true only if string contains all ascii characters , otherwise false.
+
+Example :
+
+text1="i dont know about ϒ" 
+text2="i dont know about i"
+puts "text1 has only ascii characters ?"
+puts text1.force_encoding("utf-8").ascii_only?
+puts "text2 has only ascii characters ?"
+puts text2.force_encoding("utf-8").ascii_only?
+
+
+OUTPUT :
+
+text1 has only ascii characters ?
+false
+text2 has only ascii characters ?
+true
+
+---------------------------------------------------------------------------------------------------------------------------------------
