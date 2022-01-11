@@ -1536,3 +1536,127 @@ OUTPUT :
 
 
 -----------------------------------------------------------------------------------------------------------------------------------------
+
+23. Methods for Strings and Symbols
+
+-> to_sym
+
+It returns the symbol corresponding to str, creating the symbol if it did not previously exist.
+
+Example :
+
+my_str1 = 'foo'
+my_str2 = 'bar baz'
+puts my_str1==:foo
+my_sym1 = my_str1.to_sym
+my_sym2 = my_str2.to_sym
+puts my_sym1==:foo
+
+OUTPUT :
+
+false
+true
+
+-> inspect 
+
+It returns a printable version of self, enclosed in double-quotes, and with special characters escaped
+
+Example :
+
+my_str1 = 'foo'
+my_str2 = 'bar baz'
+puts my_str1.inspect
+puts my_str2.inspect
+
+OUTPUT :
+
+"foo"
+"bar baz"
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+24. Methods for iteration in strings
+
+-> each_byte
+
+Calls the given block with successive byte in self.
+
+Example :
+
+my_str1 = 'foo'
+my_str1.each_byte{|b| print b ,' '}
+puts
+
+OUTPUT :
+
+102 111 111 
+
+-> each_char
+
+Calls the given block with successive char in self.
+
+Example :
+
+my_str1 = 'foo'
+my_str1.each_char{|b| print b ,' '}
+puts
+
+OUTPUT :
+
+f o o 
+
+-> each_codepoint 
+
+Calls the given block with successive codepoints in self.
+
+Example :
+
+my_str1 = "foo\u0259"
+my_str1.each_codepoint{|b| print b ,' '}
+puts
+
+OUTPUT :
+
+102 111 111 601 
+
+-> each_line
+
+Calls the given block with successive line in self, as determined by a given record separator.
+
+Example :
+
+example="hello world"
+example.each_line('l'){|n| p n}   # p means print
+
+OUTPUT :
+
+"hel"
+"l"
+"o worl"
+"d"
+
+-> upto
+
+
+
+
+Example :
+
+example='a8'
+example.upto('c9'){|n| print n,' '}   #print till c9
+puts
+example.upto('c9',true){|n| print n,' '} #print till c8 , stop when reached c9
+puts 
+
+OUTPUT :
+
+a8 a9 b0 b1 b2 b3 b4 b5 b6 b7 b8 b9 c0 c1 c2 c3 c4 c5 c6 c7 c8 c9 
+a8 a9 b0 b1 b2 b3 b4 b5 b6 b7 b8 b9 c0 c1 c2 c3 c4 c5 c6 c7 c8
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------
