@@ -1302,4 +1302,81 @@ OUTPUT :
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
- 
+20. Methods for Partition
+
+-> lines
+
+It returns the self , which is partition by given character as a line.
+
+For Example :
+
+a='hello world'
+puts a.lines('w')
+
+OUTPUT :
+
+hello w
+orld
+
+-> partition 
+
+It returns 3-element array determined by the first substring that matches a given substring or regexp.
+
+Example :
+
+a='hello world'
+print a.partition('e')
+puts ()
+print a.partition('x')
+puts ()
+print a.partition('l')
+puts()
+
+OUTPUT :
+
+["h", "e", "llo world"]
+["hello world", "", ""]
+["he", "l", "lo world"]
+
+-> rpartition
+
+It returns 3-element array determined by the last substring that matches a given substring or regexp.
+
+Example :
+
+a='hello world'
+print a.rpartition('e')
+puts ()
+print a.rpartition('x')
+puts ()
+print a.rpartition('l')
+puts()
+
+
+OUTPUT :
+
+["h", "e", "llo world"]
+["", "", "hello world"]
+["hello wor", "l", "d"]
+
+-> split 
+
+It returns a array of substrings determined by a deliminator -regexp or string- or, if block given, passes those substrings to the block.
+
+Example :
+
+a='hello world'
+print a.split('e')
+puts
+print a.split(' ')
+puts
+print a.split(//,6)
+puts
+
+OUTPUT :
+
+["h", "llo world"]
+["hello", "world"]
+["h", "e", "l", "l", "o", " world"]
+
+------------------------------------------------------------------------------------------------------------------------------------------- 
