@@ -1379,4 +1379,160 @@ OUTPUT :
 ["hello", "world"]
 ["h", "e", "l", "l", "o", " world"]
 
-------------------------------------------------------------------------------------------------------------------------------------------- 
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+21. Methods for matching
+
+-> scan
+
+It returns an array of substrings matching a given regexp or string, or if a block given,passes each matching substring to the block.
+
+Example :
+
+a='hello world'
+print a.scan(//)
+puts
+print a.scan(/.../)
+puts
+print a.scan(/(...)(...)(...)/)
+puts
+
+OUTPUT :
+
+["", "", "", "", "", "", "", "", "", "", "", ""]
+["hel", "lo ", "wor"]
+[["hel", "lo ", "wor"]]
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+22. Numeric methods for strings
+
+-> hex
+
+It returns the integer value of the leading characters, interpreted as hexadecimals.
+
+Example :
+
+a='hello world'
+puts a.hex
+b='256'
+c='ab256'
+puts b.hex
+puts c.hex
+d='1'
+puts d.hex
+e='ab1'
+puts e.hex
+
+OUTPUT :
+
+0
+598
+701014
+1
+2737
+
+
+-> oct 
+
+It returns integer value of the leading characters, interpreted as octals. 
+
+
+Example :
+
+a='hello world'
+puts a.oct
+b='256'
+c='ab256'
+puts b.oct
+puts c.oct
+d='1'
+puts d.oct
+e='ab1'
+puts e.oct
+
+OUTPUT :
+
+0
+174
+0
+1
+0
+
+-> ord
+
+It returns the integer ordinal of first character in self.
+
+Example :
+
+a='hello world'  
+puts a.ord       #print integer ordinal of h (104)
+b='256'
+c='ab256'
+puts b.ord       #print integer ordinal of 2 (50)
+puts c.ord       #print integer ordinal of a (97)
+d='1'
+puts d.ord       #print integer ordinal of 1 (49)
+e='ab1'
+puts e.ord       #print integer ordinal of a (97)
+
+OUTPUT :
+
+104
+50
+97
+49
+97
+
+-> to_i
+
+It returns the integer value of leading characters , interpreted as an integer.
+
+Example :
+
+a='hello world'  
+puts a.to_i      #print 0 because it has characters
+b='256'
+c='ab256'
+puts b.to_i      #print 256 
+puts c.to_i      #print 0
+d='1'
+puts d.to_i      #print 1
+e='25ab1'
+puts e.to_i      #print 25
+
+OUTPUT :
+0
+256
+0
+1
+25
+
+
+-> to_f
+
+It returns the float value of leading characters, interpreted as a floating number.
+
+Example :
+
+a='2.58'  
+puts a.to_f      #print 2.28
+b='2.45e-2'      
+c='ab256'
+puts b.to_f      #print 0.0245 
+puts c.to_f      #print 0.0
+d='1'
+puts d.to_f      #print 1.0
+e='25.85ab1'
+puts e.to_f      #print 25.85
+
+OUTPUT :
+
+2.58
+0.0245
+0.0
+1.0
+25.85
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
