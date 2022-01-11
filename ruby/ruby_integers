@@ -1,0 +1,459 @@
+INTEGER METHODS IN RUBY BY AJAY AGRAWAL 
+
+1. Numeric Methods of Ruby :
+
+Example :
+
+num1 = 25
+num2 = 15
+
+sum = num1 + num2   #print 40 because 25+15 = 40
+diff = num1 - num2  #print 10 because 25-15 = 10
+mult = num1 * num2  #print 375 because 25 * 15 = 375
+div = num1 / num2   #print 1 because integer of 25/15 is 1
+rem = num1 % num2   #print 10 because reminder of 25/15 is 10
+
+puts sum
+puts diff
+puts mult
+puts div
+puts rem
+
+
+OUTPUT :
+
+40
+10
+375
+1
+10
+
+
+2. int ** numeric
+
+It gives the int to the power of numeric.
+
+Example :
+
+num1 = 25
+
+puts num1**2
+
+OUTPUT :
+
+625
+
+3. sqrt(n)
+
+It gives the square root of n .
+
+Example :
+
+num = 24
+
+puts Integer.sqrt(num)    #it gives the integer square root
+puts Math.sqrt(num)       #it will give the decimal square root
+
+OUTPUT :
+
+4
+4.898979485566356
+
+
+4. negative(-)
+
+It negated the integer.
+
+Example :
+
+num = 24
+num = -num
+puts num
+num = -num
+puts num
+
+OUTPUT :
+
+-24
+24
+
+5. pow(numeric)
+
+It works like a**b. It also gives the power of b to a.
+
+Example :
+
+num = 24
+puts num.pow(2)
+
+OUTPUT :
+
+576
+
+6. odd? and even?
+
+It returns the true or false, depends on the odd? and even?.
+
+Example :
+
+num = 24
+puts "Is #{num} odd ?"
+puts num.odd?
+puts "Is #{num} even ?"
+puts num.even?
+
+OUTPUT :
+
+Is 24 odd ?
+false
+Is 24 even ?
+true
+
+7. pred
+
+It returns the predecessor of interger.
+
+Example :
+
+num1 = 24
+num2 = -8
+puts num1.pred
+puts num2.pred
+
+OUTPUT :
+
+23
+-9
+
+8. remainder(numeric)
+
+It returns the decimal remainder after dividing int by numeric.
+
+Example :
+
+num1 = 24
+num2 = -8
+puts num1.remainder(5)
+puts num2.remainder(3
+
+OUTPUT :
+
+4
+-2
+
+9. size
+
+It returns the no. of byte represented by machine to int.
+
+Example :
+
+num1 = 24
+num2 = -8
+puts num1.size
+puts num2.size
+puts (256**10).size
+
+OUTPUT :
+
+8
+8
+11
+
+10. succ
+
+It returns the succissor of int(next value).
+
+Example :
+
+num1 = 24
+num2 = -8
+puts num1.succ
+puts num2.succ
+
+OUTPUT :
+
+25
+-7
+
+11. modulo(num)
+
+It returns the integer modulo num.
+
+Example :
+
+num1 = 24
+puts num1.modulo(5)
+
+OUTPUT :
+
+4
+
+12. magnitude or abs
+
+These gives the absolute value of int.
+
+Example :
+
+num1 = 123
+num2 = -8596
+num3 = (-8965)
+puts num1.magnitude
+puts num1.abs
+puts num2.magnitude
+puts num2.abs
+puts num3.magnitude
+puts num3.abs
+
+OUTPUT :
+
+123
+123
+8596
+8596
+8965
+8965
+
+13. lcm(num)
+
+It gives the least common multiplier of int and num.
+
+Example :
+
+num1 = 12
+puts num1.lcm(18)
+
+OUTPUT :
+
+36
+
+14. gcd(num)
+
+It gives the gcd or least common divisor  of int and num.
+
+Example :
+
+num1 = 12
+puts num1.gcd(18)
+
+OUTPUT :
+
+6
+ 
+15. gcdlcm
+
+It gives the both gcd and lcm.
+
+Example :
+
+num1 = 12
+puts num1.gcdlcm(18)
+
+OUTPUT :
+
+6
+36
+
+16. round
+
+It returns int rounded to the nearest value with a precision of ndigits decimal digits.
+
+Example :
+
+num1 = 15.25568
+num2 = 36.258
+num3 = -9.99845
+
+puts num1.round(2)
+puts num1.round(3)
+puts num2.round
+puts num3.round(1)
+puts num1.round(-1)
+
+
+OUTPUT :
+
+15.26
+15.256
+36
+-10.0
+20
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+17. & and ||  operator
+
+-> & operator
+
+It gives the bitwise and to the integers.
+
+Example :
+
+puts 7 & 5
+
+OUTPUT :
+
+5
+
+-> || operator
+
+It gives the bitwise or of the integers.
+
+Example :
+
+puts 7 || 5
+
+OUTPUT :
+
+7 
+
+Explanation :
+
+   7 in base 2 : 0000 0111
+   5 in base 2 : 0000 0101
+---------------------------
+& of 7 and 5   : 0000 0101   - 5
+|| of 7 and 5  : 0000 0111   - 7
+
+18. Shift Operaotors (>> and <<)
+
+->  Left Shift Operators(<<)
+
+It shift each bit to the left by given positions.
+
+9 in Base 2 :                0000 1001
+
+left shift by 3 positions  : 0100 1000  - 72
+right shift by 3 positions : 0000 0001  - 1
+
+Example :
+
+puts 9<<3
+
+OUTPUT :
+
+72
+
+-> Right Shift Operator(>>)
+
+It shift each bit to the right by given positions.
+
+Example :
+
+puts 9>>3
+
+OUTPUT :
+
+1
+
+19. chr 
+
+It returns a string containing characters represented by integer according to encoding.
+
+Example :
+
+puts 85.chr
+puts 230.chr(Encoding::UTF_8)
+OUTPUT :
+
+U
+æ
+
+20. numerator and denominator
+
+It gives the numerator and denominator of integer or decimal number.
+
+Example :
+
+puts 12.5.denominator
+puts 12.5.numerator
+
+OUTPUT :
+2
+25
+
+21. fdiv
+
+It returns the floating point result of dividing int by num.
+
+Example :
+
+num= 85
+puts num.fdiv(4)
+
+OUTPUT :
+
+21.25
+
+22. upto(num)
+
+It iterates the given integer till num.
+
+Example :
+
+num= 3
+num.upto(10){|n| print n,' '}
+puts 
+
+OUTPUT :
+
+3 4 5 6 7 8 9 10 
+
+23. to_r
+
+It returns the rational number equivalent to num.
+
+Example :
+
+num1 = 3
+num2 = 65.2
+puts num1.to_r
+puts num2.to_r
+
+OUTPUT :
+
+3/1
+4588042120383693/70368744177664
+
+24. conversion methods
+
+to_s    - Convert integer to string.
+
+to_i    - Convert string or character to integer
+
+to_int  - Convert string or character to integer
+
+to_f    - Convert integer to float
+
+
+25. ceil(ndigits)
+
+It returns the smallest number greater than or equal to int with a precision of ndigits decimal digits.
+
+When the precision is negative, the return value is an integer with atleast ndigits.abs trailing zeros.
+
+Example :
+
+num1 = 15
+num2 = 36
+num3 = -9
+
+puts num1.ceil(-1)    #print 20 because 15 is in between 10 and 20
+puts num2.ceil(-1)    #print 40 because 36 is in between 30 and 40
+puts num3.ceil(-1)    #print 0 because -9 is in between -10 and 0
+puts num1.ceil(1)     #print 15 because parameter of ceil not be positive
+puts num1.ceil(-2)    #print 100 because parameter is 2 means in 100's and 15 is in between 1 and 100  
+
+OUTPUT :
+
+20
+40
+0
+15
+100
+
+
