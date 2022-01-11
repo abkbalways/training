@@ -1223,6 +1223,83 @@ OUTPUT :
 %07d
 0000123
 
+------------------------------------------------------------------------------------------------------------------------------------------
+
+18. Convert other class element to string class
+
+-> to_s
+
+It is used for convert other class oblect(variable) to object of string class.
+
+Example :
+
+a=5
+puts a.class
+a=a.to_s
+puts a.class
+
+
+OUTPUT :
+
+Integer
+String
 
 
 -----------------------------------------------------------------------------------------------------------------------------------------
+
+19. METHODS FOR CONVERTING TO NON-STRING
+
+-> bytes
+
+It is used for return array of bytes in self.
+
+Example :
+
+a='hello'
+puts a.bytes
+
+OUTPUT :
+104
+101
+108
+108
+111
+
+-> chars
+
+It is used for return array of chars in self.
+
+Example :
+
+a='hello'
+puts a.chars
+
+OUTPUT :
+h
+e
+l
+l
+o
+
+-> codepoints 
+
+It is used for return array of integer ordinals of characters.
+
+It is like 'bytes' method.
+
+-> getbyte
+
+It is used for return the byte at zero based index as integer.
+
+Example :
+
+a='hello23'
+puts a.getbyte(5)  # byte of 2 (at index 5) is 50
+
+OUTPUT :
+
+50
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+ 
