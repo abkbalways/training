@@ -1131,3 +1131,98 @@ It is used for return a self string with each character unicode-normalized.
 It returns a copy of self string in which each character transcoded from one given encoding into another.
 
 ----------------------------------------------------------------------------------------------------------------------------------------- 
+
+17. Substitution methods for converting to new string
+
+-> dump
+
+It returns  a printable version  of self, enclosed in double quotes, with special characters escaped, and with non-priting characters replaced by hexadecimal notation.
+
+Example :
+
+str1 ="Ajay \n "
+puts str1
+puts str1.dump
+
+OUTPUT :
+
+Ajay 
+ 
+"Ajay \n "
+
+
+-> undump
+
+It is used for undumped , previously dumped string.
+
+Example :
+
+str1 ="Ajay  "
+puts str1
+str2 = str1.dump
+puts str2
+puts str2.undump
+
+OUTPUT :
+
+Ajay  
+"Ajay  "
+Ajay  
+
+-> tr(from_str,to_str)
+
+It is used for return a copy of self in which characters  in from_str replaced by characters in to_str.
+
+Example :
+
+str1 ="Ajay"
+puts str1
+puts str1.tr('a-z','*')
+puts str1.tr('aeiou','*')
+puts str1.tr('^aeiou','*')
+
+OUTPUT :
+
+Ajay
+A***
+Aj*y
+**a*
+
+
+-> tr_s 
+
+It is used for return a copy of self in which characters in from_str replaced by characters in to_str. But it treats duplicates character (by condition) treats as one.
+
+Example :
+
+str1 ="Ajay"
+puts str1
+puts str1.tr_s('a-z','*') # print A* because all are in form a-z so, duplicates for that
+puts str1.tr_s('aeiou','*') # print Aj*y because not any two characters from aeiou 
+puts str1.tr_s('^aeiou','*') # print *a* because treat Aj as single , they are except from aeiou
+
+
+OUTPUT :
+
+Ajay
+A*
+Aj*y
+*a*
+
+-> %
+
+It is used for return the result of formatting object into the format specification self.
+
+Example :
+
+puts a= "%07d"
+puts a%123   #it gives 0000123 means has length 7, prviously space filled by 0's.
+
+OUTPUT :
+
+%07d
+0000123
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
