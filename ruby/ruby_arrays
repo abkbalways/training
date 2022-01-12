@@ -152,8 +152,146 @@ OUTPUT :
 My Name is Ajay 
 
 
-
+----------------------------------------------------------------------------------------------------------------
 
 3. Methods For querying in array
 
+-> length, count, size
+
+These returns a size of array.
+
+Example :
+
+arr1 = [5, 8, 'rsp' , 5.8]
+puts arr1.length
+puts arr1.size
+puts arr1.count
+
+OUTPUT :
+
+4
+4
+4
+
+
+-> include?
+
+It is used for check the given element is available in array or not.
+
+-> empty?
+
+It is used for check the given array is empty or not.
+
+-> all?
+
+It is used for check the all elements of an given array meets the given condition or not.
+
+
+Example :
+
+arr1 = [5, 8, 7 , 5.8]
+puts arr1.include?(4)                    #it checks the given value is available in array of not
+puts arr1.empty?                         #it checks the given array is empty or not  
+puts arr1.all?{|element| element<20}     #it checks the all elements of an array meet a cretiria or not
+
+
+OUTPUT : 
+
+false
+false
+true
+
+-> none?
+
+It returns true when not of the any element of an array meets the given condition , otherwise false.
+
+-> one?
+
+It returns true when exactly 1 element meets the given condition, otherwise false.
+
+-> count 
+
+It returns the no. of elements which meets the given condition.
+
+-> any?
+
+It returns true if atleast one elemetn of an array meets the condition
+
+
+Example :
+
+arr1 = [5, 8, 7 , 5.8]
+puts arr1.none?(6)                    #it returns true because none of the any element == 6
+puts arr1.one?{|element| element>6}   #it returns false because 2 elements(7, 8) meet the condition
+puts arr1.one?{|element| element>7}   #it returns true because exactly one element(8) meet the condition
+puts arr1.count{|element| element<6}  #it returns 2 because 2 elements(5,5.8) meets the condition 
+puts arr1.any?{|element| element.is_a?Float} #it returns true because atlease one element(5.8) meets condition
+
+
+OUTPUT :
+
+true
+false
+true
+2
+true
+
+
+-> find_index , index
+
+It returns the index of first element which matches the given condition.
+
+-> rindex
+
+It returns the index of last element which matches the given condition.
+
+Example :
+
+arr = [5, 8, 7, 5.8, 6, 8, 7]
+puts arr.index(7)                    #it returns 2 because first index of 7 is 2
+puts arr.index{|element| element==8} #it returns 1 because first index of 8 is 1
+puts arr.find_index(7)               #it returns 2 because first index of 7 is 2
+e = arr.index
+puts e.each{|element| element==8}    #it returns 1 because first index of 8 is 1
+puts arr.rindex(7)                   #it returns 6 because last index of 7 is 6
+
+
+OUTPUT :
+
+2
+1
+2
+1
+6
+
+
+-> hash
+
+It returns the integer hash code for self array.
+
+Two arrays with same content has same hash codes.
+
+Hash value is different at different time for same value.
+
+Example :
+
+arr1 = [1, 2, 5]
+arr2 = [1, 5, 2]
+arr3 = [1, 2, 5]
+puts arr1.hash
+puts arr2.hash
+puts arr3.hash
+puts arr1.hash == arr2.hash
+puts arr1.hash == arr3.hash
+
+
+OUTPUT :
+
+603510430648538357
+3116044225333818997
+603510430648538357
+false
+true
   
+
+------------------------------------------------------------------------------------------------------------------------------
