@@ -633,6 +633,81 @@ irb(main):040:0> b.fill(25,-2)                      #it will fill complete array
 => [52, 25, 25]
 
 
--------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------
+
+11. Mehtods for Deleting in Array Class
 
 
+a=[52,56,89,65,56]
+irb(main):049:0> a.pop                                  #it is used for remove last index element from array
+=> 56
+
+------------------------------------------------------
+
+a=[52,56,89,65,56]
+irb(main):054:0> a.pop(2)                               #it will remove last 2 elements from an array
+=> [65, 56]
+
+------------------------------------------------------
+
+a=[52,56,89,65,56]
+irb(main):056:0> a.shift                                #it is used for remove 0 index element from an array
+=> 52
+
+------------------------------------------------------
+
+a=[52,56,89,65,56] 
+irb(main):058:0> a.shift(2)                             #it will remove first 2 elements from an array
+=> [52, 56]
+
+-------------------------------------------------------
+
+a=[52,89,65,56,nil,nil]                 
+
+irb(main):031:0> a.compact!                             #it will remove nil values from an array
+=> [52, 89, 65, 56]
+
+------------------------------------------------------
+
+ a=[52,56,89,65,56]
+irb(main):033:0> a.delete(56)                           #it remove the all elements which matches to an element given as parameter
+=> 56
+pp a
+[52, 89, 65]
+
+------------------------------------------------------
+
+a=[52,56,89,65,56]
+irb(main):039:0> a.delete_at(3)                         #it will remove element at given index
+=> 65
+
+
+------------------------------------------------------
+
+a=[52,56,89,65,56]
+irb(main):041:0> a.delete_if{|element| element<60}      #it will remove all elements which meet the given condition
+=> [89, 65]
+
+
+------------------------------------------------------
+
+a=[52,56,89,65,56]
+irb(main):043:0> a.keep_if{|element| element<60}         #it will keep all elements which meet the condition , others are removed
+=> [52, 56, 56]
+
+
+------------------------------------------------------
+
+a=[52,56,89,65,56]
+irb(main):045:0> a.reject!{|element| element<60}         #it wil remove all elements which meet the condition
+=> [89, 65]
+
+
+-------------------------------------------------------
+
+a=[52,56,89,65,56]
+irb(main):047:0> a.uniq!                                 #it will remove all duplicate elements from an array
+=> [52, 56, 89, 65]
+
+
+-----------------------------------------------------------------------------------------------------------------------
