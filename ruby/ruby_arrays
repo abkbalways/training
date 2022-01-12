@@ -295,3 +295,41 @@ true
   
 
 ------------------------------------------------------------------------------------------------------------------------------
+
+
+4. Methods For Comparing
+
+-> <=>
+
+It returns -1, 0, 1 as array is less than, equal to or greater than to another array.
+
+-> ==
+
+It returns true if self array is equals to another array, otherwise returns false.
+
+-> eql?
+
+It returns true if each element (with datatype) is equals to another array, otherwise returns false.
+
+
+Example :
+
+arr1 = [1, 2, 5.0]
+arr2 = [1, 5, 2]
+arr3 = [1, 2, 5]
+puts arr1<=>arr2        #It returns -1 because it check contiguously and at index 1, 2 is less than 5
+puts arr1==arr2         #It returns false because arr1 is not equals to arr2 (by indexing)      
+puts arr1==arr3         #It returns true because arr1 is equals to arr3 (ignore datatype)
+puts arr1.eql?(arr2)    #It returns false because arr1 is equals to arr3 (5 and 5.0 is not equals)
+
+
+
+OUTPUT :
+
+-1
+false
+true
+false
+
+
+------------------------------------------------------------------------------------------------------------
