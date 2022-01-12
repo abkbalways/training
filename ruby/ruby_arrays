@@ -1,0 +1,159 @@
+METHODS OF ARRAY CLASS BY AJAY AGRAWAL AT BERYL SYSTEMS 
+
+
+Arrays :
+
+Array is an ordered and integer indexed collections of an objects, called elements.
+
+Ex : a = [12 , 15 , 45 , 78 ,78]
+
+a is an array of integers class.
+
+the indexes are,
+
+a[0] = 12
+a[1] = 15
+a[2] = 45
+a[3] = 78
+a[4] = 78
+
+
+1. Methods for creating array by array literals
+
+-> []
+
+we Can create array by putting objects between [].
+
+[1, 2 , 3 ]
+
+we may place expressions in an array.
+
+[1+2 , 4*5 ,5-3]
+
+[1 , [2, [2 + 3]]]
+
+-> %w and %W (String Array Literals)
+
+We can write an array of strings with %w(non-interpolable) or %W(polable)
+
+Example :
+
+str1 = 'abc def ghi'
+str2 = '1'
+arr1 = %W{#{str1}}
+puts arr1
+arr2 = %w{#{str1}}
+puts arr2
+arr3 = %W{#{str2}+#{1+1}}
+puts arr3
+arr4 = %w{#{str2}+#{1+1}}
+puts arr4
+
+OUTPUT :
+
+abc def ghi
+#{str1}
+1+2
+#{str2}+#{1+1}
+
+
+-> %i and %I (Symbol Array Literals)
+
+We can write an array of symbols with %i(non-interpolable) or %I(polable)
+
+Example :
+
+str1 = 'abc def ghi'
+str2 = '1'
+arr1 = %I{#{str1}}   #make [":abc" , ":def" , ":ghi"]
+puts arr1
+arr2 = %i{#{str1}}   #make [":#{str1}"]
+puts arr2
+arr3 = %I{#{str2}+#{1+1}}  # make [":1+2"]
+puts arr3
+arr4 = %i{#{str2}+#{1+1}}  # make [":#{str2}+#{1+1}"]
+puts arr4
+
+OUTPUT :
+
+abc def ghi
+#{str1}
+1+2
+#{str2}+#{1+1}
+
+
+2. Methods for Creating array by Array class
+
+Array can be contain different types of objects , For Example
+
+ary= [12, 'abc', 2.6, 56]
+
+We can also create array by calling Array.new with 0,1 or 2 arguments.
+
+Example :
+
+ary1 = Array.new         #it is for create array without give size
+ary2 = Array.new(4)      #it is for create array with size
+ary3 = Array.new(3, 5)   #it is for create array with size 3 and put 5 as default on every index
+print ary1, ' '
+puts
+print ary2, ' '
+puts
+print ary3, ' '  
+puts
+
+
+OUTPUT :
+
+[] 
+[nil, nil, nil, nil] 
+[5, 5, 5] 
+
+
+Another Example :
+
+ary = Array.new(4) {|i| i.to_s}
+print ary, ' ' 
+puts
+
+OUTPUT :
+
+["0", "1", "2", "3"]
+
+We can also make multi dimensional array simply
+
+Example :
+
+ary = Array.new(4) {Array.new(3)}
+print ary, ' ' 
+puts
+
+OUTPUT :
+
+[[nil, nil, nil], [nil, nil, nil], [nil, nil, nil], [nil, nil, nil]] 
+
+
+-> Try Convert
+
+It convert an object of any class to an array by using to_ary strictly, result nil if object is not responded. if object is already of array class it returns self.
+
+Example :
+
+ary = Array.new(2,5)
+str = String.new("My Name is Ajay")
+print ary, ' '
+puts 
+print str, ' '   #result nil because str don't responded
+puts
+puts Array.try_convert(str)
+
+OUTPUT :
+[5, 5] 
+My Name is Ajay 
+
+
+
+
+3. Methods For querying in array
+
+  
