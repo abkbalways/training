@@ -762,3 +762,89 @@ c.product(d)                                             #return the all combina
 
 
 ---------------------------------------------------------------------------------------------------------------------
+
+13. Methods for Iterating
+
+a=[3,8,'ajay','rahul',98,5.8]
+irb(main):002:0> a.each{|element| puts "#{element}  #{element.class}"}    #Passes each element to a given block.
+3  Integer
+8  Integer
+ajay  String
+rahul  String
+98  Integer
+5.8  Float
+
+---------------------------------------------------------
+
+a.reverse_each{|element| puts "#{element}  #{element.class}"}            #Passes each element, in reverse order, to a given block.
+5.8  Float
+98  Integer
+rahul  String
+ajay  String
+8  Integer
+3  Integer
+
+----------------------------------------------------------
+
+a.each_index{|element| puts "#{element}  #{a[element]}"}                  #Passes each element index to a given block.
+0  3
+1  8
+2  ajay
+3  rahul
+4  98
+5  5.8
+
+------------------------------------------------------------
+
+[1,2,3].cycle(3){|element| print element,' '}                             #calls the array , with 3 times
+1 2 3 1 2 3 1 2 3
+
+[1,2,3].cycle(3).first(7){|element| print element,' '}
+=> [1, 2, 3, 1, 2, 3, 1]
+
+------------------------------------------------------------
+
+[1,2,3].combination(2){|element| pp element}                              #Calls a given block with combinations of elements of self; a combination does not use the same element more than once.
+[1, 2]
+[1, 3]
+[2, 3]
+
+-------------------------------------------------------------
+
+[1,2,3].permutation(2){|element| pp element}                               #Calls a given block with permutations of elements of self; a permutation does not use the same element more than once.
+[1, 2]
+[1, 3]
+[2, 1]
+[2, 3]
+[3, 1]
+[3, 2]
+
+
+--------------------------------------------------------------
+
+[1,2,3].repeated_combination(2){|element| pp element}                      #Calls a given block with combinations of elements of self; a combination may use the same element more than once.
+[1, 1]
+[1, 2]
+[1, 3]
+[2, 2]
+[2, 3]
+[3, 3]
+
+
+--------------------------------------------------------------
+
+[1,2,3].repeated_permutation(2){|element| pp element}                      #Calls a given block with permutations of elements of self; a permutation may use the same element more than once.
+[1, 1]
+[1, 2]
+[1, 3]
+[2, 1]
+[2, 2]
+[2, 3]
+[3, 1]
+[3, 2]
+[3, 3]
+
+
+------------------------------------------------------------------------------------------------------------------------------
+
+
