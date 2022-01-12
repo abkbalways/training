@@ -570,5 +570,69 @@ OUTPUT :
 
 --------------------------------------------------------------------------------------------------------------------
 
+10. METHODS FOR ASSIGNING IN ARRAY CLASS :
+
+a=[54,58,96]
+
+irb(main):005:0> a[4]=85               #it is used for assigning element to an array
+
+irb(main):006:0> pp a
+[54, 58, 96, nil, 85]
+=> [54, 58, 96, nil, 85]
+
+-----------------------------------------------
+
+pp a
+[54, 58, 96, nil, 85]
+=> [54, 58, 96, nil, 85]
+
+irb(main):008:0> a.push(3,4,5)                      #add elements to self array appends
+=> [54, 58, 96, nil, 85, 3, 4, 5]     
+
+irb(main):009:0> a.append(6,7,8)                    #alias of push
+=> [54, 58, 96, nil, 85, 3, 4, 5, 6, 7, 8]
+
+irb(main):010:0> a1  = a<<9,10                      #add single element 1 time , if we give 2 that make another array inside the array
+
+irb(main):011:0> pp a1
+[[54, 58, 96, nil, 85, 3, 4, 5, 6, 7, 8, 9], 10]
+=> [[54, 58, 96, nil, 85, 3, 4, 5, 6, 7, 8, 9], 10]
+
+
+------------------------------------------------
+
+[2, 5, 9]
+irb(main):027:0> b.prepend(1,2,3)                   #add elements to self array prepends
+=> [1, 2, 3, 2, 5, 9]
+
+irb(main):028:0> b.unshift(0,1,2)                   #alias of prepend
+=> [0, 1, 2, 1, 2, 3, 2, 5, 9]
+
+
+------------------------------------------------
+
+[12, 15, 56, 89]
+irb(main):032:0> c.insert(1,25)                     #insert element at given position and shift the previous element to next 
+=> [12, 25, 15, 56, 89]
+
+irb(main):033:0> c.concat([45],[45,65,89])          #concat different arrays
+=> [12, 25, 15, 56, 89, 45, 45, 65, 89]
+
+------------------------------------------------
+
+b.replace([25,56,89])                               #it will replace the content of self array with given content
+=> [25, 56, 89]
+
+irb(main):038:0> b.fill(52)                         #it will fill complete array with given argument
+=> [52, 52, 52]
+
+irb(main):039:0> b.fill(68,1)                       #it will fill complete array with given argument from given index to end
+=> [52, 68, 68]
+
+irb(main):040:0> b.fill(25,-2)                      #it will fill complete array with given argument from given index to end(-ve means start from end)
+=> [52, 25, 25]
+
+
+-------------------------------------------------------------------------------------------------------------------------------
 
 
