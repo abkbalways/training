@@ -333,3 +333,242 @@ false
 
 
 ------------------------------------------------------------------------------------------------------------
+
+Methods For Fetching
+
+These methods do not modify self array.
+
+5. []
+
+-> array[index]
+
+When a sigle integer argument index is given, returns the element at that index.
+
+If index is negative, counts relative to the end of self array.
+
+if index is out of range , return nil.
+
+
+-> array[start,length]
+
+It returns an array from start to length-1.
+
+-> array[range]
+
+It returns the elements of array which index is in range.
+
+If starting is negative (take starting index from end) 
+
+and if end is negative (take end index from end)
+
+
+Example :
+
+arr = [1, 2, 5, 5, 8, 9]
+puts arr[0]           #It returns 1 (at index 0 )
+puts arr[-1]          #It returns 9 at index 1 (from end)
+puts arr[7]           #It returns nil because out of range
+print arr[0,5],' '    #It returns 0 to 5-1 elements by index
+puts
+print arr[0..2],' '   #It returns 0 to 2 elements by index
+puts
+print arr[-5..3],' '  #It returns 2,5,5 (Start from index 1(5 from end))
+puts
+print arr[2..-2],' '  #It returns 5,5,8 (End at index 4(2 from end))
+puts
+
+OUTPUT :
+
+1
+9
+
+[1, 2, 5, 5, 8] 
+[1, 2, 5] 
+[2, 5, 5] 
+[5, 5, 8] 
+
+-> Array[aseq]
+
+It returns an array on given sequence.
+
+
+Example :
+
+a = ['--', 'data1', '--', 'data2', '--', 'data3']
+a[(1..).step(2)] # => ["data1", "data2", "data3"]
+
+
+6. fetch
+
+It returns the element at offset index.
+
+Example :
+
+arr = [1, 2, 5, 5, 8, 9]
+puts arr.fetch(1)                                 #It will return 1 (at index 1)
+puts arr.fetch(7,'can not find')                  #It will return 'can not find' default value , index is not present
+puts arr.fetch(5,'can not find')                  #It will return 9 (at index 5)
+puts arr.fetch(2){|element| "index is #{element}"} # It will return 5 (at index 2)
+puts arr.fetch(8){|element| "index is #{element}"} # It will return 'index is 5' default value
+
+OUTPUT :
+
+2
+can not find
+9
+5
+index is 8
+
+
+7. first and last
+
+-> first
+
+It will return most leading elements from array.
+
+-> last
+
+It will return most trailing elements from array.
+
+Example :
+
+arr = [1, 2, 5, 5, 8, 9]
+pp arr.first()     #Return 1 (It is first element)
+pp arr.first(10)   #Return complete array because 10 is greater than the length of an array
+pp arr.first(2)    #Return 1,2 (First 2 elements of an array)
+pp arr.first(0)    #Return empty array (first 0 means nothing)
+pp arr.last(5)     #Return 2,5,5,8,9 (Last 5 elements of an array)
+pp arr.last(0)     #Return empty array (last 0 means nothing)
+
+OUTPUT :
+
+1
+[1, 2, 5, 5, 8, 9]
+[1, 2]
+[]
+[2, 5, 5, 8, 9]
+[]
+
+
+8. max , min and minmax
+
+-> max
+
+It will return the one or more maximum valued elements from array.
+
+-> min
+
+it will return the one or more minimum valued elements from array.
+
+-> minmax 
+ 
+it will return the minimum and maximum valued elements from array.
+
+
+Example :
+
+arr = [1, 2, 5, 5, 8, 9]
+pp arr.max
+pp arr.max(2)
+pp arr.min
+pp arr.min(2)
+pp arr.minmax
+
+
+OUTPUT :
+
+9
+[9, 8]
+1
+[1, 2]
+[1, 9]
+
+
+9. Other fetch methods 
+
+[[2,5,7],[7,5,6,5],[2,4,6,8,10]].assoc(7)  #it returns the array in which parameter object is at 0 index.
+=> [7, 5, 6, 5]
+
+[2,5,7,9].at(2)                            #it returns the object at given index.
+=> 7
+
+[2,5,7,9].values_at(2)                     #it returns the values of given index or given index range. 
+=> [7]
+
+[2,5,7,9].values_at(1..5)
+=> [5, 7, 9, nil, nil]
+
+[[2,5,7],[7,5,6,5],[2,4,6,8,10]].dig(2)    #it returns the array or value at given index.
+=> [2, 4, 6, 8, 10]
+
+[[2,5,7],[7,5,6,5],[2,4,6,8,10]].dig(2,2)  #it returns the 2nd element of 2nd array (by index)
+=> 6
+
+[2,5,7,9].drop_while{|elem| elem<6}        #it returns the element from where condition is false till end. 
+=> [7, 9]
+
+[2,5,7,9].drop_while{|elem| elem>6}
+=> [2, 5, 7, 9]
+
+[2,5,7,9,3].drop_while{|elem| elem<6}   
+=> [7, 9, 3]
+
+[2,5,7,9,3].take_while{|elem| elem<6}      #it takes element from condition is true to first element which not meet condition.
+=> [2, 5]
+
+[2,5,7,9,3].sort                           #it return the sort form of array by ascending order.    
+=> [2, 3, 5, 7, 9]
+
+[2,nil,5,9.8,'das',nil].compact            #it returns the given array which not containing nil values.
+=> [2, 5, 9.8, "das"]
+
+[1, 58 ,'ds', 20.8,'cds'].reverse          #it returns the reverse of given array.
+=> ["cds", 20.8, "ds", 58, 1]
+
+[23,25,85,69,45].select{|element| element>30}   #it returns the array of elements which meets the condition
+=> [85, 69, 45]
+
+[23,25,'danya',85,'ganesh',69,'rajeev',45,'ramesh'].select{|element| element.to_s.start_with?'r'}
+=> ["rajeev", "ramesh"]
+
+[23,25,85,69,45].filter{|element| element>30}    #it is the alias of select
+=> [85, 69, 45]
+
+[23,25,'danya',85,'ganesh',69,'rajeev',45,'ramesh'].filter{|element| element.to_s.start_with?'r'}
+=> ["rajeev", "ramesh"]
+
+[23,25,85,69,45,58,85,25].uniq                  #it prints the array of unique elements from an array
+=> [23, 25, 85, 69, 45, 58]
+
+[1,2,3,4,5].rotate                              #it forward rotate the array
+=> [2, 3, 4, 5, 1]
+
+[1,2,3,4,5].rotate(3)                           #it rotate array forward at given times
+=> [4, 5, 1, 2, 3]
+
+[1,2,3,4,5].rotate(-3)                          #it rotates array backward at given times
+=> [3, 4, 5, 1, 2]
+
+[1,2,3,4,5,0].sample                            #it return any random element from array
+=> 0
+
+[1,2,3,4,5,0].sample
+=> 3
+
+[1,2,3,4,5,0].sample(3)                         #it returns the given no. of random elements from an array
+=> [1, 5, 2]
+
+[1,2,3,4,5,0].sample(3)
+=> [2, 5, 1]
+
+[1,2,3,4,5,0].shuffle                           #it returns the random order of array
+=> [4, 0, 1, 3, 2, 5]
+
+[1,2,3,4,5,0].shuffle
+=> [2, 5, 3, 1, 4, 0]
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+
