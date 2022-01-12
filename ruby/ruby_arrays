@@ -847,4 +847,83 @@ a.each_index{|element| puts "#{element}  #{a[element]}"}                  #Passe
 
 ------------------------------------------------------------------------------------------------------------------------------
 
+14. METHODS FOR CONVERTING
 
+a=[1,2,3.5]
+
+a1 = a.map{|element| element.class}                #Returns an array containing the block return-value for each element.
+a1.inspect
+=> "[Integer, Integer, Float]"
+
+---------------------------------------------------------------
+
+
+a.map!{|element| element.class}                    #Replaces each element with a block return-value.
+=> [Integer, Integer, Float]
+
+---------------------------------------------------------------
+
+[2,[2,5],[5,3,9,8]].flatten                        #Returns an array , which is completely flatten.
+=> [2, 2, 5, 5, 3, 9, 8]
+
+[2,[2,5],[5,3,9,8]].flatten(0)                     #if we give level 0, means array not flatten.
+=> [2, [2, 5], [5, 3, 9, 8]]
+
+[2,[2,5],[5,3,9,8,[5,8]]].flatten(1)               #if we give level 1, means array flatten by level 1.
+=> [2, 2, 5, 5, 3, 9, 8, [5, 8]]
+
+[2,[2,5],[5,3,9,8,[5,8]]].flatten(2)               #if we give level 2, means array flatten by level 2.
+=> [2, 2, 5, 5, 3, 9, 8, 5, 8]
+
+----------------------------------------------------------------
+
+b = ['bcd', 8, 'fdc', 9]
+
+irb(main):013:0> b.inspect                         #Returns a new String containing the elements.
+=> "[\"bcd\", 8, \"fdc\", 9]"
+
+b.to_s                                             #alias of inspect
+=> "[\"bcd\", 8, \"fdc\", 9]"     
+
+-----------------------------------------------------------------
+
+irb(main):018:0> b.join                            #join complete array
+=> "bcd8fdc9"
+
+b.join('1')                                        #join complete array separated by '1'
+=> "bcd181fdc19"
+
+----------------------------------------------------------------
+
+a = [[5,8],[6,9],[8,10]]
+
+irb(main):034:0> a.transpose                       #Transposes the rows and columns in an Array of Arrays
+=> [[5, 6, 8], [8, 9, 10]]
+
+
+-----------------------------------------------------------------
+
+a = ['a0','a1','a2']
+irb(main):040:0> b = ['b0','b1','b2']
+irb(main):041:0> c = ['c0','c1','c2']
+irb(main):042:0> a.zip(b,c)                                                      #If all other_arrays and self are the same size.
+=> [["a0", "b0", "c0"], ["a1", "b1", "c1"], ["a2", "b2", "c2"]]
+
+
+a = ['a0','a1','a2','a3']
+irb(main):044:0> b = ['b0','b1','b2']
+irb(main):045:0> c = ['c0','c1']
+irb(main):046:0> a.zip(b,c)                                                      #If any array in other_arrays is smaller than self, fills to self.size with nil.
+=> [["a0", "b0", "c0"], ["a1", "b1", "c1"], ["a2", "b2", nil], ["a3", nil, nil]]
+
+
+a = ['a0','a1']
+irb(main):048:0> b = ['b0','b1','b2']
+irb(main):049:0> c = ['c0','c1','c2','c3']
+irb(main):050:0> a.zip(b,c)                                                       #If any array in other_arrays is larger than self, its trailing elements are ignored.
+=> [["a0", "b0", "c0"], ["a1", "b1", "c1"]]
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+15. 
