@@ -593,3 +593,99 @@ irb(main):365:0> h
 => {:ram=>1, :shyam=>4, :radhey=>4}
 
 ------------------------------------------------------------------------------------------------------------------------------------------
+
+28. size, store, to_h, to_a
+
+-> size
+
+irb(main):366:0> h = {joy: 0, ram: 1, shyam: 4, radhey: 4}
+irb(main):367:0> h.size                                      #It is an alias of length, returns the size of hash
+=> 4
+
+------------------------------------------------------------------------------
+
+-> store
+
+irb(main):366:0> h = {joy: 0, ram: 1, shyam: 4, radhey: 4}
+irb(main):368:0> h.store(:shyam,2)                            #If the given key exists, replaces its value with the given value; the ordering is not affected.
+=> 2
+irb(main):369:0> h
+=> {:joy=>0, :ram=>1, :shyam=>2, :radhey=>4}
+
+
+irb(main):370:0> h.store(:danya,5)                            #If key does not exist, adds the key and value; the new entry is last in the order (see Entry Order).
+=> 5
+irb(main):371:0> h
+=> {:joy=>0, :ram=>1, :shyam=>2, :radhey=>4, :danya=>5}
+
+
+--------------------------------------------------------------------------------
+
+-> to_h
+
+irb(main):371:0> h
+=> {:joy=>0, :ram=>1, :shyam=>2, :radhey=>4, :danya=>5}
+
+irb(main):374:0> h.to_h{|key,value| [value,key]}              #For a subclass of Hash, returns a new Hash containing the content of self.
+=> {0=>:joy, 1=>:ram, 2=>:shyam, 4=>:radhey, 5=>:danya}
+
+--------------------------------------------------------------------------------
+
+-> to_a
+
+irb(main):379:0> h.to_a                                           #Returns a new Array of 2-element Array objects; each nested Array contains a key-value pair from self.
+=> [[:joy, 0], [:ram, 1], [:shyam, 2], [:radhey, 4], [:danya, 5]]
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+29. transform_keys
+
+irb(main):384:0> h
+=> {:joy=>0, :ram=>1, :shyam=>2, :radhey=>4, :danya=>5}
+
+irb(main):386:0> h.transform_keys{|key| key.to_s}                #Transform keys from symbol to string
+=> {"joy"=>0, "ram"=>1, "shyam"=>2, "radhey"=>4, "danya"=>5}
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+30. transform_values
+
+irb(main):391:0> h
+=> {:foo=>0, :bar=>1, :baz=>2}
+
+irb(main):393:0> h.transform_values{|values| values +=1}          #Transform values by increasing 1
+=> {:foo=>1, :bar=>2, :baz=>3}
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+31. value?(value), values, value_at(key)
+
+irb(main):391:0> h
+=> {:foo=>0, :bar=>1, :baz=>2}
+
+-> value?(value)
+
+irb(main):396:0> h.value?5       #return true if self hash contain given value, otherwise false.
+=> false
+irb(main):397:0> h.value?2
+=> true
+
+-----------------------------------------------------------
+
+-> values
+
+irb(main):395:0> h.values         #return all values of self hash
+=> [0, 1, 2]
+
+-----------------------------------------------------------
+
+-> value_at(key)
+
+irb(main):399:0> h.values_at(:foo ,:bar)   #return values of self hash at given keys
+=> [0, 1]
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
