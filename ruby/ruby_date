@@ -1,0 +1,236 @@
+DATE METHODS IN RUBY BY AJAY AGRAWAL AT BERYL SYSTEMS
+
+
+Methods : 
+
+1. For Creating
+
+irb(main):006:0> Date.new(2021,05,06)                       #create a date object by given date
+=> #<Date: 2021-05-06 ((2459341j,0s,0n),+0s,2299161j)>
+
+irb(main):007:0> Date.jd(2045868)                           #create a date object by converting julien date to actual date
+=> #<Date: 0889-04-13 ((2045868j,0s,0n),+0s,2299161j)>
+
+Date.ordinal(2021,68)                                       #returns the date of 68th day of 2021 
+=> #<Date: 2021-03-09 ((2459283j,0s,0n),+0s,2299161j)>
+
+irb(main):010:0> Date.commercial(2021,05,06)                #returns the date of 6th day of 5th week of 2021. 
+=> #<Date: 2021-02-06 ((2459252j,0s,0n),+0s,2299161j)>
+
+irb(main):011:0> Date.parse('5 Jan 2021')                   #parse the date to actual format
+=> #<Date: 2021-01-05 ((2459220j,0s,0n),+0s,2299161j)>
+
+irb(main):012:0> Date.strptime('5 12 2011','%d %m %Y')      #Format date according to the given directives
+=> #<Date: 2011-12-05 ((2455901j,0s,0n),+0s,2299161j)>
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+2. For extract items from date object
+
+irb(main):013:0> d = Date.parse('25 Jan 2021')              #parse the date to actual format
+
+irb(main):014:0> d.day                                      #return the day from date
+=> 25
+
+irb(main):015:0> d.month                                    #return the month from date
+=> 1
+
+irb(main):016:0> d.wday                                     #return the week day from date
+=> 1
+
+irb(main):017:0> d.mday                                     #return the month day from date
+=> 25
+
+irb(main):018:0> d.cweek                                    #return the calender week no. from date
+=> 4
+
+irb(main):019:0> d += 1                                     #increase the date by one day
+
+irb(main):020:0> pp d
+#<Date: 2021-01-26 ((2459241j,0s,0n),+0s,2299161j)>
+=> #<Date: 2021-01-26 ((2459241j,0s,0n),+0s,2299161j)>
+
+irb(main):021:0> d.strftime('%a %m %d %Y')                  #show the date by given format
+=> "Tue 01 26 2021"
+
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+3. leap
+
+-> gregorian_leap?(year) → bool
+
+Returns the true if given year is leap year of gregorian year.
+
+irb(main):023:0> Date.gregorian_leap?(2021)
+=> false
+
+irb(main):024:0> Date.gregorian_leap?(2022)
+=> false
+
+irb(main):025:0> Date.gregorian_leap?(2023)
+=> false
+
+irb(main):026:0> Date.gregorian_leap?(2024)
+=> true
+
+irb(main):027:0> Date.gregorian_leap?(2028)
+=> true
+
+-----------------------------------------------------------------------------
+
+-> leap?(year)
+
+It returns the true if year is leap year.
+
+irb(main):029:0> Date.leap?(2027)
+=> false
+
+irb(main):030:0> Date.leap?(2026)
+=> false
+
+irb(main):031:0> Date.leap?(2025)
+=> false
+
+irb(main):032:0> Date.leap?(2024)
+=> true
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+4. Check Week Days
+
+Examples :
+
+irb(main):036:0> a.sunday?
+=> false
+
+irb(main):037:0> a.monday?
+=> false
+
+irb(main):038:0> a.tuesday?
+=> true
+
+irb(main):039:0> a.wednesday?
+=> false
+
+irb(main):040:0> a.thursday?
+=> false
+
+irb(main):041:0> a.friday?
+=> false
+
+irb(main):042:0> a.saturday?
+=> false
+
+------------------------------------------------------------------------------------------------------------------------------------\
+
+5. Check valid parameters
+
+Date.valid_date?(2021,12,32)                        #False because january has only 31 days
+=> false
+
+irb(main):044:0> Date.valid_date?(2021,12,31)       #True , valid date
+=> true
+
+irb(main):045:0> Date.valid_date?(2021,12,-31)      #True it means 1 january 2021
+=> true
+
+irb(main):046:0> Date.valid_ordinal?(2021,366)      #2021 has only 365 days, so they can't show 366th day
+=> false
+
+irb(main):047:0> Date.valid_ordinal?(2021,365)      #True valid parameter
+=> true
+
+irb(main):048:0> Date.valid_commercial?(2021,1,8)   #False, an week has only 7 days
+=> false
+
+irb(main):049:0> Date.valid_commercial?(2021,1,7)   #True, valid parameter
+=> true
+
+Date.valid_jd?(-202)                                #True valid jd number
+=> true
+
+irb(main):054:0> Date.valid_jd?(-1)                 #True valid jd number
+=> true
+
+irb(main):055:0> Date.valid_civil?(2021,12,-31)     #alias of valid_date
+=> true
+
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+6. Operators
+
+irb(main):003:0> a = Date.parse('5 Jan 2021')
+
+irb(main):004:0> a + 2
+=> #<Date: 2021-01-07 ((2459222j,0s,0n),+0s,2299161j)>
+
+irb(main):005:0> a - 2
+=> #<Date: 2021-01-03 ((2459218j,0s,0n),+0s,2299161j)>
+
+a >> 2
+=> #<Date: 2021-03-05 ((2459279j,0s,0n),+0s,2299161j)>
+
+irb(main):008:0> a << 2
+=> #<Date: 2020-11-05 ((2459159j,0s,0n),+0s,2299161j)>
+
+a + Rational(2)
+=> #<Date: 2021-01-07 ((2459222j,0s,0n),+0s,2299161j)>
+
+irb(main):011:0> a + Rational(2,5)
+=> #<Date: 2021-01-05 ((2459220j,34560s,0n),+0s,2299161j)>
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+7. asctime and ctime
+
+Returns a string in asctime(3) format (but without “n0” at the end). This method is equivalent to strftime('%c').
+
+irb(main):016:0> DateTime.new(2000,12,12,5,6,7,'+9').asctime
+=> "Tue Dec 12 05:06:07 2000"
+
+irb(main):018:0> DateTime.new(2000,12,12,5,6,7,'+9').ctime
+=> "Tue Dec 12 05:06:07 2000"
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+8. 
+
+irb(main):011:0> Date.new(2022,12,01).next_day                    #it prints the next date
+=> #<Date: 2022-12-02 ((2459916j,0s,0n),+0s,2299161j)>
+
+irb(main):012:0> Date.new(2022,12,01).next_month                  #it returns the date with next month
+=> #<Date: 2023-01-01 ((2459946j,0s,0n),+0s,2299161j)>
+
+irb(main):013:0> Date.new(2022,12,01).next_year                   #it returns the date with next year
+=> #<Date: 2023-12-01 ((2460280j,0s,0n),+0s,2299161j)>
+
+irb(main):015:0> Date.new(2022,12,01).prev_day                    #it returns the previous date
+=> #<Date: 2022-11-30 ((2459914j,0s,0n),+0s,2299161j)>
+
+irb(main):016:0> Date.new(2022,12,01).prev_month                  #it returns the date with previous month
+=> #<Date: 2022-11-01 ((2459885j,0s,0n),+0s,2299161j)>
+
+irb(main):017:0> Date.new(2022,12,01).prev_year                   #it returns the date with previous year
+=> #<Date: 2021-12-01 ((2459550j,0s,0n),+0s,2299161j)>
+
+irb(main):018:0> Date.new(2022,12,01).succ                        #it prints the next date
+=> #<Date: 2022-12-02 ((2459916j,0s,0n),+0s,2299161j)>
+
+irb(main):019:0> Date.new(2022,12,01).yday                        #it prints the year day on that day
+=> 335
+
+irb(main):020:0> Date.new(2022,12,01).wday                        #it prints the week day on that day
+=> 4
+
+irb(main):021:0> Date.new(2022,12,01).mday                        #it returns the month day on that day
+=> 1
+
+irb(main):022:0> Date.new(2022,12,01).next                        #it returns the next day
+=> #<Date: 2022-12-02 ((2459916j,0s,0n),+0s,2299161j)>
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
