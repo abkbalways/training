@@ -500,14 +500,96 @@ irb(main):335:0> h.inspect                       #Returns a new String containin
 irb(main):336:0> h.invert                        #Return key as values and values as keys.
 => {0=>:joy, 1=>:ram, 2=>:shyam, 3=>:radhey}
 
-irb(main):338:0> h = {joy: 0, ram: 1, shyam: 0, radhey: 0}   #If more than one values is same, take only last value (which overwrite others).
-
-
-
-
------------------------------------------------------------------------------------------------------------------------------------------
-irb(main):339:0> h.invert
+irb(main):338:0> h = {joy: 0, ram: 1, shyam: 0, radhey: 0}  
+irb(main):339:0> h.invert                                   #If more than one values is same, take only last value (which overwrite others).
 => {0=>:radhey, 1=>:ram}
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------
+
+22. keep_if
+
+irb(main):342:0> h = {joy: 0, ram: 1, shyam: 4, radhey: 3}
+irb(main):343:0> h.keep_if{|key,value| key.start_with?('r')}      #keep only values whose key satisfy the condition
+=> {:ram=>1, :radhey=>3}
+
+irb(main):345:0> h = {joy: 0, ram: 1, shyam: 4, radhey: 3}        #keep only values which satisfy the condition
+irb(main):346:0> h.keep_if{|key,value| value>2}
+=> {:shyam=>4, :radhey=>3}
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+23. key(value), keys, length
+
+irb(main):347:0> h = {joy: 0, ram: 1, shyam: 4, radhey: 3}
+
+-> key(value)
+
+irb(main):349:0> h.key(4)                                     #return the key which has given value
+=> :shyam
+
+irb(main):352:0> h = {joy: 0, ram: 1, shyam: 4, radhey: 4}
+irb(main):353:0> h.key(4)                                     #return first key which has given value
+=> :shyam
+
+
+----------------------------------------------------------
+
+-> keys
+
+irb(main):350:0> h.keys                                       #return all keys of given hash
+=> [:joy, :ram, :shyam, :radhey]
+
+----------------------------------------------------------
+
+-> length
+
+irb(main):351:0> h.length                                      #return length of hash object
+=> 4
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+24. merge
+
+irb(main):354:0> h = {joy: 0, ram: 1, shyam: 4, radhey: 4}
+irb(main):355:0> h1 = {john: 2, gargi:8, ram:7}
+irb(main):356:0> h2 = {john: 6, ganesh: 9, ramesh: 7}
+
+irb(main):357:0> h.merge(h1,h2)                                                             #merge all given hashes, overwrite same keys
+=> {:joy=>0, :ram=>7, :shyam=>4, :radhey=>4, :john=>6, :gargi=>8, :ganesh=>9, :ramesh=>7}
+
+----------------------------------------------------------------------------------------
+
+irb(main):358:0> h.merge(h1,h2){|key,old_value,new_value| old_value + new_value}            #add the values which has same key
+=> {:joy=>0, :ram=>8, :shyam=>4, :radhey=>4, :john=>8, :gargi=>8, :ganesh=>9, :ramesh=>7}
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+25. rassoc
+
+irb(main):360:0> h.rassoc(4)           #Returns a new 2-element Array consisting of the key and value of the first-found entry whose value is == to value (see Entry Order).
+=> [:shyam, 4]
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+26. reject 
+
+irb(main):361:0> h = {joy: 0, ram: 1, shyam: 4, radhey: 4}
+irb(main):362:0> h.reject{|key, value| value==4}             #Returns a new Hash object whose entries are all those from self for which the block returns 
+=> {:joy=>0, :ram=>1}
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+27. shift
+
+irb(main):363:0> h = {joy: 0, ram: 1, shyam: 4, radhey: 4}
+irb(main):364:0> h.shift                                     #Removes the first hash entry (see Entry Order).
+=> [:joy, 0]
+irb(main):365:0> h
+=> {:ram=>1, :shyam=>4, :radhey=>4}
+
+------------------------------------------------------------------------------------------------------------------------------------------
