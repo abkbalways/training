@@ -393,4 +393,121 @@ irb(main):296:0> h.filter{|key,value| value>1}
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 
+18. flatten
 
+It is used for remove the levels of hash.
+
+Example :'
+
+=> {:ram=>0, :shyam=>[:danish, [:supriya, 55]], :rashid=>2}
+
+irb(main):313:0> h.flatten
+=> [:ram, 0, :shyam, [:danish, [:supriya, 55]], :rashid, 2]
+
+irb(main):314:0> h.flatten(1)                                 #Takes the depth of recursive flattening from Integer argument level.
+=> [:ram, 0, :shyam, [:danish, [:supriya, 55]], :rashid, 2] 
+
+irb(main):315:0> h.flatten(2)
+=> [:ram, 0, :shyam, :danish, [:supriya, 55], :rashid, 2]
+
+irb(main):316:0> h.flatten(3)
+=> [:ram, 0, :shyam, :danish, :supriya, 55, :rashid, 2]
+
+irb(main):317:0> h.flatten(4)
+=> [:ram, 0, :shyam, :danish, :supriya, 55, :rashid, 2]
+
+irb(main):318:0> h.flatten(-1)                                #When level is negative, flattens all nested Arrays
+=> [:ram, 0, :shyam, :danish, :supriya, 55, :rashid, 2]
+
+irb(main):319:0> h.flatten(0)                                 #By default, nested Arrays are not flattened
+=> [[:ram, 0], [:shyam, [:danish, [:supriya, 55]]], [:rashid, 2]]
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+19. has_key? and has_value?
+
+h = {joy: 0, ram: 1, shyam: 2, radhey: 3}
+
+-> has_key?
+
+irb(main):322:0> h.has_key?(:joy)
+=> true
+
+irb(main):323:0> h.has_key?(:none)
+=> false
+
+------------------------------------------------------------------
+
+-> has_value?
+
+irb(main):324:0> h.has_value?(5)
+=> false
+
+irb(main):325:0> h.has_value?(2)
+=> true
+
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+20. inclue?(key) , key? and member?
+
+These are alias of has_key?
+
+Examples :
+
+h = {joy: 0, ram: 1, shyam: 2, radhey: 3}
+
+irb(main):326:0> h.key?(:joy)
+=> true
+
+irb(main):327:0> h.include?(:joy)
+=> true
+
+irb(main):328:0> h.member?(:joy)
+=> true
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+21. replace, invert, inspect
+
+-> replace
+
+irb(main):329:0> h
+=> {:joy=>0, :ram=>1, :shyam=>2, :radhey=>3}
+
+irb(main):330:0> h1 = {1=>2,3=>4}
+irb(main):331:0> h1
+=> {1=>2, 3=>4}
+
+irb(main):332:0> h1.replace(h)                   #Replaces the entire contents of self with the contents of other_hash; returns self.
+=> {:joy=>0, :ram=>1, :shyam=>2, :radhey=>3}
+
+irb(main):333:0> h1
+=> {:joy=>0, :ram=>1, :shyam=>2, :radhey=>3}
+
+----------------------------------------------------------------------
+
+-> inspect
+
+irb(main):335:0> h.inspect                       #Returns a new String containing the hash entries.
+=> "{:joy=>0, :ram=>1, :shyam=>2, :radhey=>3}"
+
+----------------------------------------------------------------------
+
+-> invert
+
+irb(main):336:0> h.invert                        #Return key as values and values as keys.
+=> {0=>:joy, 1=>:ram, 2=>:shyam, 3=>:radhey}
+
+irb(main):338:0> h = {joy: 0, ram: 1, shyam: 0, radhey: 0}   #If more than one values is same, take only last value (which overwrite others).
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+irb(main):339:0> h.invert
+=> {0=>:radhey, 1=>:ram}
+
+
+----------------------------------------------------------------------------------------------------------------------------------------
