@@ -206,7 +206,7 @@ irb(main):188:0> h[s2]=2                      #By default, these two object are 
 irb(main):189:0> h
 => {"x"=>2}
 
-irb(main):190:0> h.compare_by_identity?
+irb(main):190:0> h.compare_by_identity?      #Returns true if compare_by_identity has been called, false otherwise.
 => false
 irb(main):191:0> h.compare_by_identity        #After calling compare_by_identity, the keys are considered to be different
 => {"x"=>2}
@@ -224,3 +224,173 @@ irb(main):196:0> h
 
 
 ------------------------------------------------------------------------------------------------------------------------------------
+
+9. default 
+
+irb(main):201:0> h = {}
+
+irb(main):202:0> h.default = false             #set default value for h is false.
+
+irb(main):203:0> h.default
+=> false
+
+irb(main):204:0> h[25]
+=> false
+
+--------------------------------------------------------------------------
+
+irb(main):205:0> h1 = Hash.new{|hash ,key| hash[key] = "No value for #{key}"}  #If key is given, returns the default value for key
+
+irb(main):207:0> h1[:hello]                    
+=> "No value for hello"
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+10. delete & delete_if
+
+irb(main):227:0> h = {joy: nil, ram: 1, shyam: 2, radhey: nil}
+irb(main):228:0> h.delete(:joy)                                  #delete the value on given key
+=> nil
+irb(main):229:0> h
+=> {:ram=>1, :shyam=>2, :radhey=>nil}
+
+------------------------------------------------------------------------
+
+irb(main):230:0> h = {joy: nil, ram: 1, shyam: 2, radhey: nil}
+irb(main):231:0> h.delete_if{|key, value| value==1}              #delete if condition is true for value
+=> {:joy=>nil, :shyam=>2, :radhey=>nil}
+irb(main):232:0> h
+=> {:joy=>nil, :shyam=>2, :radhey=>nil}
+
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+11. dig
+
+irb(main):238:0> h
+=> {1=>{2=>{3=>4}}}
+
+irb(main):240:0> h.dig(1)                            #Finds and returns the object in nested objects that is specified by key and identifiers
+=> {2=>{3=>4}}
+
+irb(main):241:0> h.dig(1,2)
+=> {3=>4}
+
+irb(main):242:0> h.dig(1,2,3)
+=> 4
+
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+12. each , each_pair , each_key , each_value
+
+h => {:joy=>0, :ram=>1, :shyam=>2, :radhey=>3}
+
+
+irb(main):249:0> h.each_pair{|key,value| puts "#{key} : #{value}"}       #each_pair
+joy : 0
+ram : 1
+shyam : 2
+radhey : 3
+
+
+irb(main):251:0> h.each_key{|key| puts key }                              #each_key only returns keys.
+joy
+ram
+shyam
+radhey
+
+
+irb(main):252:0> h.each{|key, value| puts  "#{key} : #{value}" }          #each
+joy : 0
+ram : 1
+shyam : 2
+radhey : 3
+
+
+irb(main):254:0> h.each_value{|value| puts value }                         #each value only returns values.
+0
+1
+2
+3
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+13. empty? 
+
+It will return true , only if hash is empty otherwise false.
+
+Example :
+
+irb(main):257:0> {ram: 2}.empty?        
+=> false
+
+irb(main):258:0> {}.empty?
+=> true
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+14. eql?
+
+irb(main):264:0> h1 = {1=>2,3=>4,5=>6}
+irb(main):265:0> h2 = {1=>2,5=>6,3=>4}
+irb(main):266:0> h3 = {1=>2,3=>4,5=>6}
+
+irb(main):267:0> h1.eql?(h2)       #if sequence is different , it also return true. because thats not have indexes.
+=> true
+
+irb(main):268:0> h1.eql?(h3)
+=> true
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+15. except
+
+h = { a: 100, b: 200, c: 300 }
+h.except(:a)          #=> {:b=>200, :c=>300}
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+16. fetch
+
+irb(main):284:0> h = {joy: 0, ram: 1, shyam: 2, radhey: 3}
+
+irb(main):285:0> h.fetch(:joy)                                  #fetch value by key
+=> 0
+
+irb(main):286:0> h.fetch(:ram)
+=> 1
+
+irb(main):288:0> h.fetch(:none){|key| "No key Found #{key}"}    #if key is not found, return the given message 
+=> "No key Found none"
+
+irb(main):289:0> h.fetch(:ram,:joy)                                 
+=> 1
+
+irb(main):290:0> h.fetch_values(:ram,:joy)                      #fetch more than 1 value by keys
+=> [1, 0]
+
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+17. select or filter
+
+filter is an alias of select.
+
+irb(main):293:0> h = {joy: 0, ram: 1, shyam: 2, radhey: 3}
+
+irb(main):294:0> h.select{|key,value| value>2}
+=> {:radhey=>3}
+
+irb(main):295:0> h.select{|key,value| value>1}
+=> {:shyam=>2, :radhey=>3}
+
+irb(main):296:0> h.filter{|key,value| value>1}
+=> {:shyam=>2, :radhey=>3}
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+
