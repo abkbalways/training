@@ -1,0 +1,110 @@
+METHODS OF HASH CLASS BY AJAY AGRAWAL AT BERYL SYSTEMS
+
+Hashes :
+
+A Hash maps each of its unique keys to a specific value. 
+
+A Hash has certain similarities with array, but
+
+Array index is always an integer and Hash key can be (almost) any object.
+
+For Example :
+
+irb(main):026:0> a= {1=>2,'joy'=>15}
+
+irb(main):027:0> a[1]
+=> 2
+
+irb(main):028:0> a['joy']
+=> 15
+
+1. Methods For creating Hash
+
+[] - Returns a new Hash object populated with the given objects, if any.
+
+For Example :
+
+irb(main):037:0> a = {a:15,b:85,ram:85}
+irb(main):038:0> Hash[a]
+=> {:a=>15, :b=>85, :ram=>85}
+
+
+irb(main):037:0> a = {a:15,b:85,ram:85}
+irb(main):038:0> Hash[a]
+=> {:a=>15, :b=>85, :ram=>85}
+
+
+-> new
+
+Returns a new empty Hash object.
+
+h = new.Hash
+
+With default values :
+
+irb(main):074:0> h = Hash.new{[2,25,'joy',98]}
+irb(main):075:0> h
+=> {}
+irb(main):076:0> h[2]
+=> [2, 25, "joy", 98]
+irb(main):077:0> h[1]
+=> [2, 25, "joy", 98]
+
+
+----------------------------------------------------------------------------------------------------------------------------
+
+2. try_convert
+
+irb(main):092:0> a = [ [:abc,2],[:fds,8]]
+irb(main):093:0> a.class
+=> Array
+irb(main):095:0> Hash.try_convert(a)                   #Returns nil if obj does not respond to :to_hash
+=> nil
+
+
+irb(main):101:0> b={'abc'=>25,'cdf'=>258}
+irb(main):102:0> b.class
+=> Hash
+irb(main):104:0> Hash.try_convert(b)                   #If obj is a Hash object, returns obj.
+=> {"abc"=>25, "cdf"=>258}
+
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+irb(main):113:0> h1 = {25=>58, 26=>59, 27=>60}
+irb(main):114:0> h2 = {27=>60,25=>58}
+
+irb(main):115:0> h1 >= h2                         #Return True , if h2 is subset of h1
+=> true
+
+irb(main):116:0> h2 >= h1                         #Return False , because h1 is not subset of h1
+=> false
+
+irb(main):117:0> h2 >= h2                         #Return True , because h2 is subset for itself
+=> true
+
+------------------------------------------------------------------------------------------------------------------------------
+
+irb(main):118:0> h2 > h1                          #Return False because h1 is not proper subset of h2
+=> false
+
+irb(main):119:0> h1 > h2                          #Return True because h2 is proper subset of h1
+=> true
+
+irb(main):120:0> h2 > h2                          #Return False because h2 is not proper subset for itself
+=> false
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+irb(main):121:0> h1 = {25=>58, 26=>59, 27=>60}
+irb(main):122:0> h2 = {27=>60,25=>58,29=>59}
+irb(main):123:0> h1 == h2                              #Return false because , the key for 59 is differ in both
+=> false
+
+
+irb(main):124:0> h1 = {25=>58, 26=>59, 27=>60}         #Return True because , both are same. 
+irb(main):125:0> h2 = {27=>60,25=>58,26=>59}
+irb(main):126:0> h1 == h2
+=> true
+
+--------------------------------------------------------------------------------------------------------------------------------
