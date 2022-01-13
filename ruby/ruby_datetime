@@ -1,0 +1,164 @@
+METHODS FOR DATE AND TIME BY AJAY AGRAWAL AT BERYL SYSTEMS,
+
+It is subclass of Date that easily handles date, hour, minute, second, and offset.
+
+DateTime class is considered deprecated, use Time class.
+
+DateTime does not track any leap seconds, does not track any summer time rules.
+
+1. new([year=-4712[, month=1[, mday=1[, hour=0[, minute=0[, second=0[, offset=0[, start=Date::ITALY]]]]]]]]) 
+
+require 'date'                                                             #we must have required date class for use DateTime
+=> true
+irb(main):004:0> DateTime.new(2021,3,5)
+=> #<DateTime: 2021-03-05T00:00:00+00:00 ((2459279j,0s,0n),+0s,2299161j)>
+
+
+-------------------------------------------------------------------------
+
+DateTime.new(2021,3,5,5,6,8)                                               #we can create new object by new
+=> #<DateTime: 2021-03-05T05:06:08+00:00 ((2459279j,18368s,0n),+0s,2299161j)>
+
+
+-------------------------------------------------------------------------
+
+DateTime.new(2021,3,5,5,6,8,'+2') 
+=> #<DateTime: 2021-03-05T05:06:08+02:00 ((2459279j,11168s,0n),+7200s,2299161j)>
+
+-------------------------------------------------------------------------
+
+DateTime.new(2021,3,5.5)                                                    #it can take decimal value of day, treat as day and 12 hour
+=> #<DateTime: 2021-03-05T12:00:00+00:00 ((2459279j,43200s,0n),+0s,2299161j)>
+irb(main):013:0> DateTime.new(2021,3,5)
+=> #<DateTime: 2021-03-05T00:00:00+00:00 ((2459279j,0s,0n),+0s,2299161j)>
+
+
+--------------------------------------------------------------------------
+
+DateTime.new(2021,-3,-5)                                                    #it can also take negative values
+=> #<DateTime: 2021-10-27T00:00:00+00:00 ((2459515j,0s,0n),+0s,2299161j)>
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+
+2. now
+
+DateTime.now
+=> #<DateTime: 2022-01-13T11:16:15+05:30 ((2459593j,20775s,159320820n),+19800s,2299161j)>    #it retuns the current time.
+
+
+
+-----------------------------------------------------------------------------------------------------------------------
+
+3. strptime
+
+strptime() is a DateTime class method which parses the given representation of date and time with the given template.
+
+Example :
+
+date_a = DateTime.strptime('2015 25 12 05 02 45 +9','%Y %d %m %I %M %S %z')
+irb(main):007:0> date_b = DateTime.strptime('10-02-2016 05:05:12 PM','%d-%m-%Y %I:%M:%S %p')
+irb(main):008:0> puts date_a
+2015-12-25T05:02:45+09:00
+=> nil
+irb(main):009:0> puts date_b
+2016-02-10T17:05:12+00:00
+=> nil
+
+------------------------------------------------------------------------------------------------------------------------
+
+4. civil
+
+It is an alias of new . 
+
+Example :
+
+ DateTime.civil(2001,2,3) 
+=> #<DateTime: 2001-02-03T00:00:00+00:00 ((2451944j,0s,0n),+0s,2299161j)>
+
+
+-------------------------------------------------------------------------------------------------------------------------
+
+5. commercial (year,week no., day no.)
+
+It gives the day(day no.) of week(week no.) of year.
+
+DateTime.commercial(2021,5,1)                                 #1st day of 5th week of 2021
+irb(main):016:0> pp date_a
+#<DateTime: 2021-02-01T00:00:00+00:00 ((2459247j,0s,0n),+0s,2299161j)>
+=> #<DateTime: 2021-02-01T00:00:00+00:00 ((2459247j,0s,0n),+0s,2299161j)>
+
+
+irb(main):017:0> date_a = DateTime.commercial(2021,5,2)       #2nd day of 5th week of 2021
+irb(main):018:0> pp date_a
+#<DateTime: 2021-02-02T00:00:00+00:00 ((2459248j,0s,0n),+0s,2299161j)>
+=> #<DateTime: 2021-02-02T00:00:00+00:00 ((2459248j,0s,0n),+0s,2299161j)>
+ 
+date_a = DateTime.commercial(2002)
+irb(main):024:0> pp date_a
+#<DateTime: 2001-12-31T00:00:00+00:00 ((2452275j,0s,0n),+0s,2299161j)>
+=> #<DateTime: 2001-12-31T00:00:00+00:00 ((2452275j,0s,0n),+0s,2299161j)>
+
+
+-------------------------------------------------------------------------------------------------------------------------
+
+
+6. httpdate
+
+Creates a new DateTime object by parsing from a string according to some RFC 2616 format.
+
+Example :
+
+DateTime.httpdate('Sat, 03 Feb 2001 04:05:06 GMT')
+=> #<DateTime: 2001-02-03T04:05:06+00:00 ((2451944j,14706s,0n),+0s,2299161j)>
+irb(main):009:0> DateTime.httpdate('Thu, 13 Jan 2021 05:05:23 GMT')
+=> #<DateTime: 2021-01-13T05:05:23+00:00 ((2459228j,18323s,0n),+0s,2299161j)>
+
+
+-------------------------------------------------------------------------------------------------------------------------
+
+7. iso8601(string='-4712-01-01T00:00:00+00:00'[, start=Date::ITALY], limit: 128) → datetime
+
+Creates a new DateTime object by parsing from a string according to some typical ISO 8601 formats.
+
+Example :
+
+s = DateTime.iso8601('20251202T211558')
+irb(main):017:0> pp s
+#<DateTime: 2025-12-02T21:15:58+00:00 ((2461012j,76558s,0n),+0s,2299161j)>
+=> #<DateTime: 2025-12-02T21:15:58+00:00 ((2461012j,76558s,0n),+0s,2299161j)>
+
+
+irb(main):018:0> s = DateTime.iso8601('2025-12-02T21:15:58')
+irb(main):019:0> pp s
+#<DateTime: 2025-12-02T21:15:58+00:00 ((2461012j,76558s,0n),+0s,2299161j)>
+=> #<DateTime: 2025-12-02T21:15:58+00:00 ((2461012j,76558s,0n),+0s,2299161j)>
+
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+8. jd([jd=0[, hour=0[, minute=0[, second=0[, offset=0[, start=Date::ITALY]]]]]]) → datetime
+
+Creates a DateTime object denoting the given chronological Julian day number.
+
+Julian Day - Julian day is the contiguous form of day from starting of julian days.
+
+Examples :
+
+s = DateTime.jd(12)
+=> #<DateTime: -4712-01-13T00:00:00+00:00 ((12j,0s,0n),+0s,2299161j)>
+
+irb(main):022:0> s = DateTime.jd(18)
+=> #<DateTime: -4712-01-19T00:00:00+00:00 ((18j,0s,0n),+0s,2299161j)>
+
+irb(main):024:0> s = DateTime.jd(180052)
+=> #<DateTime: -4220-12-15T00:00:00+00:00 ((180052j,0s,0n),+0s,2299161j)>
+
+s = DateTime.jd(2411825)
+irb(main):047:0> pp s
+#<DateTime: 1891-04-02T00:00:00+00:00 ((2411825j,0s,0n),+0s,2299161j)>
+
+------------------------------------------------------------------------------------------------------------------------------
+
+9.
