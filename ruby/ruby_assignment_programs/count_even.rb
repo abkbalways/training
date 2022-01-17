@@ -8,19 +8,25 @@ digits.
 
 class Program 
   def count_even(arr)
-    sum = 0
+    count2 = 0
     for i in 0...arr.length
-      if arr[i] % 2 == 0
-      sum = sum + 1
+      num = arr[i]
+      count = 0
+      while (num>0)
+        num = num/10
+        count = count + 1
+      end
+      if count % 2 == 0
+        count2 = count2 + 1
       end
     end
-    return sum
+    return count2
   end
 end
 
 p = Program.new
-arr = [1, 5, 8, 9, 15, 6, 84, 56, 89, 8]
+arr = [1, 5, 8, 9, 15, 6, 84, 5126, 2022, 892, 8]
 puts p.count_even(arr)       
 
 
-# OUTPUT : 5
+# OUTPUT : 4
