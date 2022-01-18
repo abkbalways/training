@@ -11,9 +11,10 @@ class Program
     date1 = dt.to_s
     date2 = ''
     date1.tr!('/','')
-    for i in (date1.length-1).downto(0)
+    for i in 3.downto(0)
       date2 = date2<<date1[i]
     end
+      date2 = date2<<date1[4,8]
     if date1 == date2
       return true
     else
@@ -23,6 +24,6 @@ class Program
 end
 
 object = Program.new
-pp object.palindrom_date('12/02/2021')
+pp object.palindrom_date('30/03/2021')
 
 # OUTPUT : true 
