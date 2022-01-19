@@ -1,7 +1,13 @@
+=begin
+
+Q. Write a function to return reverse of a string using recursion.
+
+=end
+
 class Program
   def revers(str)
     len =str.length
-    if(len==0 || str=="")
+    if(str=="")
       return str
     end
     --len
@@ -12,3 +18,4 @@ end
 p=Program.new;
 puts p.revers('Rahul Dixit')
 
+# OUTPUT : tixiD luhaR
