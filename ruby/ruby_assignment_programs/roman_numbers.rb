@@ -16,14 +16,26 @@ Write a function which takes roman number and return integer corresponding to th
 =end
 
 class Program
-  def romans(roman_number)
-    roman = {I:1,V:5,X:10,L:50,C:100,D:500,M:1000}
-    return roman.values_at(roman_number.to_sym)
+  def romans(roman)
+    num = 0
+    romans = {I:1,V:5,X:10,L:50,C:100,D:500,M:1000}
+    for i in 0...roman.length
+      if roman[i+1] != nil && (romans.values_at(roman[i].to_sym).join.to_i)<(romans.values_at(roman[i+1].to_sym).join.to_i)
+        num = num - romans.values_at(roman[i].to_sym).join.to_i
+      else
+        num = num + (romans.values_at(roman[i].to_sym)).join.to_i
+      end
+    end
+    return num
   end
 end
 
-obj = Program.new
-puts obj.romans(:V)
+object = Program.new
+print object.romans(:MCMXCIV), ' '
+pp object.romans(:IV)
+
+# OUTPUT : 1994 4
+
 
 
 # OUTPUT : 5
