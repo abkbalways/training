@@ -59,7 +59,7 @@ It make a file in same folder with content "File Handling" and thats name is sam
 
 -------------------------------------------------------------------------------------------
 
-2. For 
+2. For Reading and Writing a File
 
 (i) sysread and syswrite methods
 
@@ -105,7 +105,7 @@ pointer shift to 24(14+11-1). 11 is the length of "Hello World".
 --------------------------------------------------------------------------------------------------------------------------
 
 
-Querying in File
+Important Methods in File
 
 
 1. absolute_path -
@@ -154,10 +154,80 @@ Returns all but the last component of the given file path.
 irb(main):015:0> File.dirname('/home/beryl/training/ruby/ruby_string.txt')
 => "/home/beryl/training/ruby"
 
-5. ::expand_path
+5. exist?(file_name)
 
-Returns the absolute file path for the given path, expanding ~ for a home directory.
+It returns true if file is exist on same folder or on given path.
+
+Ex - 
+
+pp File.exist?("sample2.txt")
+
+OUTPUT : 
+
+true 
+
+6. atime(file_name)
+
+It gives the last access time of given file.
+
+Ex - 
+
+pp File.atime("sample.txt")
+pp File.atime("sample.txt").year
+
+OUTPUT : 
+
+2022-01-19 14:51:57.561076929 +0530
+2022
 
 
+7. birth time 
 
-3. 
+It gives the creation time of file.
+
+Ex - 
+
+pp File.birthtime("sample.txt")
+
+OUTPUT :
+
+2022-01-19 14:51:52.581088297 +0530
+
+8. ctime 
+
+It gives the change time for file.
+
+Ex - 
+
+pp File.ctime("sample2.txt")
+
+OUTPUT :
+
+2022-01-19 17:57:22.07091761 +0530
+
+9. directory?
+
+Returns true if the named file is a directory, or a symlink that points at a directory, and false otherwise.
+
+Ex - irb(main):022:0> File.directory?('/home/beryl/training/ruby')
+=> true
+irb(main):023:0> File.directory?('/home/beryl/training/ruby/ruby_string.txt')
+=> false
+
+10. empty?
+
+It returns the true if given file is empty, otherwise false. if file not exist, it return false.
+
+Ex - 
+
+pp File.empty?("sample2.txt")
+pp File.empty?("sample.txt")
+
+OUTPUT : 
+
+false
+true
+
+11. file?
+
+It returns true if given path or named file is file , otherwise return false.
