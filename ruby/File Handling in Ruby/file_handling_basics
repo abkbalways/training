@@ -1,0 +1,163 @@
+File Handling in Ruby by Ajay Agrawal at Beryl Systems ,
+
+File Handling : 
+
+It is a way for processing a file such as create new file, reading content of a file, write in content of file, rename a file, appending
+content of a file and delete a file.
+
+
+Common Modes of File Handling :
+
+"r" - read-only mode for a file, if file not exist it gives error , it cannot overwrite a file .
+
+"r+" - read and write mode for a file, if file not exist it gives error, it cannot overwrite a file .
+
+"w" - write only mode for a file, if file not exist it create new file. if exist, overwrite that.
+
+"w+" - write and read mode for a file , if file not exist it create new file. if exist , overwrite that.
+
+"a" - write only mode for file, if file already exists it append the content of file, otherwise create new file. it cannot overwrite 
+the previous file.
+
+"a+" - read and write mode for file, if file already exists it append the content of file, otherwise create new file. it cannot overwrite 
+the previous file.
+
+1. Creating New File
+
+(i) File.new()
+
+We can use File.new() for reading, writing or both, accordingly to the mode string. we can use fileobject.close() method for close that file.
+
+It create a file in a folder in which we run the ruby file.
+
+Ex - 
+
+file_object = File.new("sample.txt","w+")
+file_object.syswrite("Hello World")
+file_object.close()
+
+
+OUTPUT : 
+
+It can make a file with name sample.txt and content "Hello World" in same folder.
+
+
+(ii) File.open
+
+We can use  File.open(file_name,mode) for create a file and assign file_object to that file. we can be associated that file with block.
+but through File.new() we can not.
+
+Ex -
+
+File.open("sample2.txt","w+") do |file_object|
+file_object.syswrite("File Handling")
+end
+
+OUTPUT :
+
+It make a file in same folder with content "File Handling" and thats name is sample2.txt. 
+
+-------------------------------------------------------------------------------------------
+
+2. For 
+
+(i) sysread and syswrite methods
+
+These are used for write and read from file.
+
+if we use sysread mode will be read or read and write.
+
+if we use syswrite mode will be write or read and write.
+
+Example :
+
+We have a file with name "sample2.txt" and content
+
+"My Name is Ajay Agrawal. I am now doing some programs in ruby." 
+
+Now, 
+
+file_object = File.open("sample2.txt","r+")
+    if file_object
+      content = file_object.sysread(5)
+      puts content
+      content = file_object.sysread(8)
+      puts content
+      file_object.syswrite("Hello World")
+    else
+      puts "Unable to Open"
+    end
+file_object.close()
+
+OUTPUT :
+
+My Na
+me is Aj
+
+and it change sample2.txt content to
+
+"My Name is AjHello World I am now doing some programs in ruby."
+
+Explanation : Firsty it read content of sample2.txt from character 1 to 1+5-1. then pointer shift to 6 , Secondly it read from character 6 to
+6+8-1. then pointer shift to 14 (6+8) , Thirdly it write "Hello World" from character 14. and overwrite content on that places. now 
+pointer shift to 24(14+11-1). 11 is the length of "Hello World". 
+
+--------------------------------------------------------------------------------------------------------------------------
+
+
+Querying in File
+
+
+1. absolute_path -
+
+It is used for take absolute path of file before creating.
+
+For Ex :
+
+irb(main):002:0> File.absolute_path('sample.txt')
+=> "/home/beryl/training/ruby/File Handling in Ruby/sample.txt"
+
+
+2. absolute_path?
+
+Returns true if file_name is an absolute path, and false otherwise.
+
+For Ex :
+
+irb(main):003:0> File.absolute_path?('sample.txt')
+=> false
+irb(main):004:0> File.absolute_path?('/home/beryl/training/ruby/File Handling in Ruby/sample.txt')
+=> true
+
+true, because sample.txt present at given path.
+
+3. ::basename
+
+Returns the last component of the given file path.
+
+irb(main):009:0> File.basename('/home/beryl/training/ruby/ruby_string.txt')
+=> "ruby_string.txt"
+
+irb(main):010:0> File.basename('/home/beryl/training/ruby')
+=> "ruby"
+
+irb(main):012:0> File.basename('/home/beryl/training/ruby/ruby_string.txt','.txt')
+=> "ruby_string"
+
+irb(main):013:0> File.basename('/home/beryl/training/ruby/ruby_string.txt','.*')
+=> "ruby_string"
+
+4. dirname
+
+Returns all but the last component of the given file path.
+
+irb(main):015:0> File.dirname('/home/beryl/training/ruby/ruby_string.txt')
+=> "/home/beryl/training/ruby"
+
+5. ::expand_path
+
+Returns the absolute file path for the given path, expanding ~ for a home directory.
+
+
+
+3. 
