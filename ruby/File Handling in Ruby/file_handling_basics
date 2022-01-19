@@ -230,4 +230,122 @@ true
 
 11. file?
 
-It returns true if given path or named file is file , otherwise return false.
+Returns true if the named file exists and is a regular file.
+
+Ex - 
+
+irb(main):027:0> File.file?('/home/beryl/training/ruby/File Handling in Ruby/sample.txt')
+=> true
+
+irb(main):028:0> File.file?('/home/beryl/training/ruby/File Handling in Ruby')
+=> false
+
+12. ftype
+
+Identifies the type of the named file; the return string is one of “file'', “directory'', “characterSpecial'', “blockSpecial'',
+“fifo'', “link'', “socket'', or “unknown''.
+
+Ex - 
+
+irb(main):033:0> File.ftype('/home/beryl/training/ruby/File Handling in Ruby/file_handling_basics')
+=> "file"
+
+
+13. identical?
+
+Returns true if the named files are identical.
+
+Ex -
+
+pp File.identical?("sample2.txt","sample.txt")
+
+OUTPUT : 
+
+false
+
+
+14. size or size?
+
+Returns the size of file_name.
+
+Ex -
+
+irb(main):036:0> File.size?('/home/beryl/training/ruby/File Handling in Ruby/sample2.txt')
+=> 63
+
+irb(main):038:0> File.size('/home/beryl/training/ruby/File Handling in Ruby/sample.txt')
+=> 63
+
+15. rename
+
+Renames the given file to the new name. Raises a SystemCallError if the file cannot be renamed.
+
+Ex -
+
+File.rename("sample3.txt","sample.txt")
+
+OUTPUT :
+
+It rename the file from sample3.txt to sample.txt
+
+16. stat
+
+Returns a File::Stat object for the named file (see File::Stat).
+
+Ex -
+
+irb(main):039:0> File.stat('/home/beryl/training/ruby/File Handling in Ruby/sample.txt')
+=> #<File::Stat dev=0x805, ino=7996486, mode=0100664, nlink=1, uid=1000, gid=1000, rdev=0x0, size=63, blksize=4096, blocks=8, atime=2022-01-19 18:15:32.674449253 +0530, mtime=2022-01-19 18:13:18.881442059 +0530, ctime=2022-01-19 18:23:23.706857925 +0530>
+
+17. mtime
+
+Returns the modification time for the named file as a Time object.
+
+Ex :
+
+irb(main):041:0> File.mtime('/home/beryl/training/ruby/File Handling in Ruby/sample.txt')
+=> 2022-01-19 18:13:18.881442059 +0530
+
+18. truncate
+
+Truncates the file file_name to be at most integer bytes long. Not available on all platforms.
+
+Ex :
+
+irb(main):042:0> File.size('/home/beryl/training/ruby/File Handling in Ruby/sample.txt')
+=> 63
+
+irb(main):043:0> File.truncate('/home/beryl/training/ruby/File Handling in Ruby/sample.txt',5)
+=> 0
+
+irb(main):044:0> File.size('/home/beryl/training/ruby/File Handling in Ruby/sample.txt')
+=> 5
+
+Explanation : 
+
+It remove all data except starting 5 characters.
+
+19. delete
+
+It is used for delete the file.
+
+Ex :
+
+irb(main):046:0> File.delete('/home/beryl/training/ruby/File Handling in Ruby/sample.txt')
+=> 1
+
+20. zero?
+
+Returns true if the named file exists and has a zero size.
+
+Example :
+
+irb(main):050:0> File.zero?('/home/beryl/training/ruby/File Handling in Ruby/sample2.txt')
+=> false
+
+irb(main):051:0> File.zero?('/home/beryl/training/ruby/File Handling in Ruby/sample.txt')
+=> true
+ 
+------------------------------------------------------------------------------------
+
+
