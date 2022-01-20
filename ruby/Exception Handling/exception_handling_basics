@@ -1,0 +1,164 @@
+Exception Handling in ruby by Ajay Agrawal at Beryl Systems
+
+-----------------------------------------------------------
+
+In Ruby, exception handling is a process which describes a way to handle the error raised in a program. Here, error means an unwanted 
+or unexpected event, which occurs during the execution of a program, i.e. at run time, that disrupts the normal flow of the program’s 
+instructions. So these types of errors were handled by the rescue block. Ruby also provides a separate class for an exception that 
+is known as an Exception class which contains different types of methods.
+
+The code in which an exception is raised, is enclosed between the begin/end block, so you can use a rescue clause to handle this type 
+of exception.
+
+Syntax :
+
+begin
+    raise
+      # block where exception raise
+
+    rescue
+      # block where exception rescue
+end
+
+Example : 
+
+a = [1, 2, 3]
+begin 
+  ind = 0
+raise if ind>2               # If We want to raise custom error by itself
+  num = a[ind]
+  puts "Answer is #{num}"
+rescue 
+  puts "index is greater than 1"
+end
+
+OUTPUT : 
+
+index is greater than 1
+
+----------------------------------------------------------------------------------------------------------------------
+
+Statements Use in Exceptions are :
+
+1. retry statement :
+
+This statement is used to execute the rescue block again from the beginning after capturing the exception.
+
+Example : 
+
+a = [1, 2, 3, 4, 6, 7, 8]
+num = 0
+begin 
+    raise if num<3             
+    puts a[num]
+    rescue 
+      puts "Add #{num} by 1"
+      num = num + 1
+    retry         # It retry till num is less than 3 
+end
+
+OUTPUT :
+
+Add 0 by 1
+Add 1 by 1
+Add 2 by 1
+4
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+2. raise statement
+
+This syntax is used to re-raise the current exception. It is generally used by the exception handler where an exception is interrupted 
+before passing it on.
+
+This syntax is used to create a RuntimeError exception and it raises up the call stack.
+
+Example : 
+
+a = [1, 2, 3]
+begin 
+  ind = 0
+raise if ind>1               # If We want to raise custom error by itself
+  num = a[ind]
+  puts "Answer is #{num}"
+rescue 
+  puts "index is greater than 1"
+end
+
+OUTPUT : 
+
+OUTPUT : 
+if ind = 0 or 1
+-> Answer is 1
+-> Answer is 2
+if ind > 1
+-> index is greater than 1
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+3. ensure statement
+
+This statement ensures that required instructions will execute at the end of the code, whether the exception raise or raised exception is 
+rescued, or the program terminates due to an uncaught exception. This block always gives output. This block is placed over the rescue block.
+
+Example :
+
+a = [1, 2, 3, 4, 6, 7, 8]
+begin 
+    puts "Enter Any Number greater than 2 :"
+    num = Integer(gets)
+    raise if num<3             
+    puts a[num]
+    rescue 
+      puts "num is less than 3"
+    ensure                          # This block always executed
+      puts "This Program completed"
+end
+
+OUTPUT :
+
+Enter Any Number greater than 2 :
+1
+num is less than 3
+This Program completed
+
+Enter Any Number greater than 2 :
+3
+4
+This Program completed
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+4. else statement
+
+This statement is present in between the rescue block and ensure block. This block only executes when no exception is raised.
+
+Example :
+
+begin 
+    puts "Enter Any Number :"
+    num = Integer(gets)
+    b = num + 1
+    rescue => e
+      puts e
+    else
+      puts b
+    ensure
+      puts "This Program completed"
+end
+
+
+OUTPUT :
+
+Enter Any Number :
+65
+66
+This Program completed
+
+Enter Any Number :
+s
+invalid value for Integer(): "s\n"
+This Program completed
+
+
+--------------------------------------------------------------------------------------------------------------------------------
