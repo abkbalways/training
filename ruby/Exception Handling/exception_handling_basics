@@ -162,3 +162,43 @@ This Program completed
 
 
 --------------------------------------------------------------------------------------------------------------------------------
+
+5. throw and catch
+
+In Ruby, catch and throw blocks are the lightweight mechanism for error handling and used to jump from the exception when there is no 
+additional work is available in the program.
+
+The catch block is used to jump out from the nested block and the block is labeled with a name. This block works normally until it 
+encounters with the throw block. catch and throw method will work faster than raise and rescue method. When the throw statement is 
+encountered, Ruby will check the call stack for the catch statement with the related symbol. The throw statement never executes and 
+always return nil.
+
+Syntax :
+
+throw :label_name
+    # this block will not be executed
+
+catch :label_name do
+    # matching catch will be executed when the throw block encounter
+end
+
+Example :
+
+catch :finish do
+  10.times do |x|
+    10.times do |y|
+      throw :finish if (x + y) == 2
+      puts x + y
+    end
+  end
+  puts "I am not printed"
+end
+
+OUTPUT :
+
+0
+1
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
