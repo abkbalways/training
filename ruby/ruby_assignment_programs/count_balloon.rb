@@ -11,32 +11,24 @@ You can create only 2 balloon from example text, so return 2
 
 class Program
   def count_balloon(str)
-    arr1 = ['b','a','l','l','o','o','n']
-    arr2 = []
-    bool = true
-    while (bool == true)
-      for i in 0...arr1.length
-        for j in 0...str.length
-          if arr1[i] == str[j]
-            arr2.push(str[j])
-            str.slice!(j)
-            bool = true
-            break
-          else
-            bool = false
-          end
-        end
-        if bool == false
-          break
-        end
+    balloon = ['b','a','l','o','n']
+    count_words = []
+    for i in 0...balloon.length
+      if balloon[i] == 'o' || balloon[i] == 'l'
+        count_words[i] = str.count(balloon[i]) / 2
+      else
+        count_words[i] = str.count(balloon[i])
       end
     end
-    len = arr1.length
-    return arr2.count(arr1[len-1])
+    if count_words.include?(0)
+      return 0
+    else
+      return count_words.min
+    end
   end
 end
 
 object = Program.new
-pp object.count_balloon("loonballxballpoon")
+pp object.count_balloon("balllllllllloooooooooon")
 
-# OUTPUT : 2
+# OUTPUT : 1
