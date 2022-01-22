@@ -189,3 +189,13 @@ then, migrate the change by
 rails db:migrate
 
 -------------------------------------------------------------
+
+4. For add Foreign key
+
+class AddforeignKeyToBorrow < ActiveRecord::Migration[7.0]
+  def change
+    add_foreign_key :borrows, :books, column: books_id, primary_key: :id  
+  end
+end
+
+--------------------------------------------------------------
