@@ -131,3 +131,61 @@ library_management_system=# select * from books;
 (0 rows)
 
 ----------------------------------------------------------------------------------------------------------------------------
+
+Migrations for Alter Table :
+
+1. First of all create migration,
+
+rails generate migration AddBookIdToBooks book_id:string
+
+// It will create add column migration.
+
+class AddBookIdToBooks < ActiveRecord::Migration[7.0]
+  def change
+    add_column :books, :book_id, :string
+  end
+end
+
+After that, run 
+
+rails db:migrate
+
+for confirm change in table.
+
+------------------------------------------------------------
+
+2. For delete the column 
+
+rails generate migration RemoveBookIdToBooks book_id:string
+
+After that, 
+
+class RemoveBookIdToBooks < ActiveRecord::Migration[7.0]
+  def change
+    add_column :books, :book_id, :string
+  end
+end
+
+then, migrate the change by
+
+rails db:migrate
+
+-------------------------------------------------------------
+
+3. For change the name of column
+
+rails generate migration ChangeIsbnToBooks 
+
+After that,
+
+class ChangeIsbnToBooks < ActiveRecord::Migration[7.0]
+  def change
+    rename_column :books, :isbn , :book_id_new
+  end
+end
+
+then, migrate the change by
+
+rails db:migrate
+
+-------------------------------------------------------------
