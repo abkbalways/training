@@ -77,4 +77,57 @@ rack db:create
 
 It creates database as name in database.yml of project to local machine.
 
+For drop or delete the database , 
+
+rack db:drop
+
 ------------------------------------------------------------------------------------------------------------------------
+
+for create a table model :
+
+rails generate model <name of model in singular form>
+
+Ex : rails generate model book
+
+It will create ,
+
+invoke  active_record
+      create    db/migrate/20220122063929_create_books.rb
+      create    app/models/book.rb
+      invoke    test_unit
+      create      test/models/book_test.rb
+      create      test/fixtures/books.yml
+
+-------------------------------------------------------------------------------------------------------------------------
+
+For add columns in models :
+
+in db/migrate/20220122063929_create_books.rb,
+
+      t.column :name, :string
+      t.column :isbn, :int
+      t.column :price, :float
+
+write the column names and properties as above.
+
+then run command rails db:migrate for migrate the table to local database.
+
+
+
+After db : migrate ,
+
+== 20220122063929 CreateBooks: migrating ======================================
+-- create_table(:books)
+   -> 0.2221s
+== 20220122063929 CreateBooks: migrated (0.2223s) =============================
+ 
+
+
+We can see out table in our database,
+
+library_management_system=# select * from books;
+ id | name | isbn | price | created_at | updated_at 
+----+------+------+-------+------------+------------
+(0 rows)
+
+----------------------------------------------------------------------------------------------------------------------------
