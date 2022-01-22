@@ -1,0 +1,48 @@
+Rails By Ajay Agrawal at Beryl Systems , 
+
+To develop a web application using Ruby on Rails Framework, you need to install the following software −
+
+    Ruby
+    The Rails Framework
+    A Web Server
+    A Database System
+
+We assume that you already have installed a Web Server and a Database System on your computer. You can use the WEBrick Web Server, 
+which comes with Ruby. Most websites however use Apache or lightTPD web servers in production.
+
+Rails works with many database systems, including MySQL, PostgreSQL, SQLite, Oracle, DB2 and SQL Server. Please refer to a corresponding 
+Database System Setup manual to set up your database.
+
+-----------------------------------------------------------------------------------------------------------------------
+
+Installation of rails on Linux :
+
+1. check rails version 
+
+rails -v
+
+if rails already installed , it gives the version of rails otherwise gives error "rails command not found". 
+
+2. Install rails
+
+If rails not find, install the rails by just run that command
+
+gem install rails   // For install new version
+
+gem install rails -v 5.0.0   // For install specified version
+
+Now rails is installed , check by just run command "rails -v"
+
+3. For install dependancies of pg (It is used for run various commands)
+
+sudo apt install libpq-dev
+
+4. For install pg
+
+gem install pg
+
+
+----------------------------------------------------------------------------------------------------------------------
+
+
+
