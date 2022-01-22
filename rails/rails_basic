@@ -41,8 +41,40 @@ sudo apt install libpq-dev
 
 gem install pg
 
-
 ----------------------------------------------------------------------------------------------------------------------
 
+For create new project of rails :
 
+rails new <name of the project>   // it takes sql database by default
 
+rails new <name of the project>  -d postgresql   // it takes user defined database
+
+It creates rails project on the location at which we run that command.
+
+---------------------------------------------------------------------------------------------------------------------- 
+
+Setup config for database.yml :
+
+in <project-name>/config/database.yml
+
+uncomment and edit the information ,
+
+database :
+
+username :
+
+password :
+
+host :
+
+port :
+
+------------------------------------------------------------------------------------------------------------------------
+
+For create database on local machine corresponding to project :
+
+rack db:create
+
+It creates database as name in database.yml of project to local machine.
+
+------------------------------------------------------------------------------------------------------------------------
