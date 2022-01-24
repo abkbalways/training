@@ -1,0 +1,139 @@
+Select methods from table in rails by Ajay Agrawal at Beryl Systems,
+
+1. for make array of all records of table
+
+ student = Student.all
+
+--------------------------------------------------------------------------------------
+
+2. Retrieve a object 
+
+student.find(5)    // Retrieve a object which id is 5
+
+student.find(5,10)   // Retrieve two objects with id 5 and 10
+
+student.order(:name).first   // Retrieve first object order by name
+
+Student.find_by(name:"ANAYA")   // retreive a object which has name "ANAYA"
+
+Student.find_by(name:"ANAYA")
+
+----------------------------------------------------------------------------------------
+
+3. Not Conditions
+
+It does not take the data which condition is not.
+
+3.0.1 :027 > Book.where.not(isbn: [1001,1002,1003,1005,1007,1006,1009,1010,1008]) 
+  Book Load (1.2ms)  SELECT "books".* FROM "books" WHERE "books"."isbn" NOT IN ($1, $2, $3, $4, $5, $6, $7, $8, $9)  [["isbn", 1001], ["isbn", 1002], ["isbn", 1003], ["isbn", 1005], ["isbn", 1007], ["isbn", 1006], ["isbn", 1009], ["isbn", 1010], ["isbn", 1008]]
+ =>                                                                              
+[#<Book:0x0000555dcb26eca0                                                       
+  id: 4,                                                                         
+  isbn: 1004,                                                                    
+  name: "HOW TO COOK ?",                                                         
+  author: "REEMA CHATURVEDI",                                                    
+  price: 580.0,                                                                  
+  book_range: 20,                                                                
+  fine_per_day: 10.0,                                                            
+  copies: 10>]               
+
+---------------------------------------------------------------------------------------- 
+
+4. or condition
+
+If any one condition is true, it retrieve the data.
+
+Example :
+
+3.0.1 :029 > Book.where(isbn:1002).or(Book.where(name:"TARKASH")) 
+  Book Load (0.4ms)  SELECT "books".* FROM "books" WHERE ("books"."isbn" = $1 OR "books"."name" = $2)  [["isbn", 1002], ["name", "TARKASH"]]
+ =>                                                                                         
+[#<Book:0x0000555dcafe7db0                                                                  
+  id: 2,                                                                                    
+  isbn: 1002,                                                                               
+  name: "STEP TOWARDS SUCCESS",                                                             
+  author: "DR. RAMANUJAN",                                                                  
+  price: 450.0,                                                                             
+  book_range: 20,                                                                           
+  fine_per_day: 15.0,                                                                       
+  copies: 10>,                                                                              
+ #<Book:0x0000555dcafe7ce8                                                                  
+  id: 1,                                                                                    
+  isbn: 1001,                                                                               
+  name: "TARKASH",                                                                          
+  author: "JAVED AKHTAR",
+  price: 250.0,
+  book_range: 15,
+  fine_per_day: 20.0,
+  copies: 15>] 
+
+---------------------------------------------------------------------
+
+5. and conditions
+
+Retrive the data , only if all conditions are true.
+
+Example :
+
+3.0.1 :030 > Book.where(isbn:1002).and(Book.where(name:"TARKASH")) 
+  Book Load (0.7ms)  SELECT "books".* FROM "books" WHERE "books"."isbn" = $1 AND "books"."name" = $2  [["isbn", 1002], ["name", "TARKASH"]]
+ => []                                                                                      
+3.0.1 :031 > Book.where(isbn:1001).and(Book.where(name:"TARKASH")) 
+  Book Load (1.1ms)  SELECT "books".* FROM "books" WHERE "books"."isbn" = $1 AND "books"."name" = $2  [["isbn", 1001], ["name", "TARKASH"]]
+ =>                                                                                         
+[#<Book:0x0000555dca57b2a0                                                                  
+  id: 1,                                                                                    
+  isbn: 1001,                                                                               
+  name: "TARKASH",                                                                          
+  author: "JAVED AKHTAR",                                                                   
+  price: 250.0,                                                                             
+  book_range: 15,                                                                           
+  fine_per_day: 20.0,                                                                       
+  copies: 15>]                  
+
+--------------------------------------------------------------------
+
+6. Retrive by orders
+
+Book.order("name DESC")
+
+Book.order(name: :desc)
+
+Book.order(name: :asc)
+
+Book.order("name ASC")
+
+---------------------------------------------------------------------
+
+7. For Select specific field
+
+It is used for retrieve specific column or field information.
+
+3.0.1 :038 > Book.select(:author,:id).distinct
+  Book Load (1.4ms)  SELECT DISTINCT "books"."author", "books"."id" FROM "books"
+ => 
+[#<Book:0x0000555dca8f91e8 id: 5, author: "NAGRAJ DESHMUKH">,
+ #<Book:0x0000555dca8f9120 id: 6, author: "SHAKEEL AZMI">,
+ #<Book:0x0000555dca8f9058 id: 4, author: "REEMA CHATURVEDI">,
+ #<Book:0x0000555dca8f8f90 id: 7, author: "HC VERMA">,
+ #<Book:0x0000555dca8f8ec8 id: 10, author: "HC VERMA">,
+ #<Book:0x0000555dca8f8e00 id: 2, author: "DR. RAMANUJAN">,
+ #<Book:0x0000555dca8f8d38 id: 8, author: "S. CHAND">,
+ #<Book:0x0000555dca8f8c70 id: 3, author: "DARSHAD SHARMA">,
+ #<Book:0x0000555dca8f8ba8 id: 9, author: "S. CHAND">,
+ #<Book:0x0000555dca8f8ae0 id: 1, author: "JAVED AKHTAR">] 
+
+
+3.0.1 :039 > Book.select(:author).distinct
+  Book Load (1.1ms)  SELECT DISTINCT "books"."author" FROM "books"
+ =>                                                  
+[#<Book:0x0000555dcafd7208 id: nil, author: "DARSHAD SHARMA">,
+ #<Book:0x0000555dcafd7118 id: nil, author: "DR. RAMANUJAN">,
+ #<Book:0x0000555dcafd7028 id: nil, author: "SHAKEEL AZMI">,
+ #<Book:0x0000555dcafd6f10 id: nil, author: "HC VERMA">,
+ #<Book:0x0000555dcafd6e20 id: nil, author: "NAGRAJ DESHMUKH">,
+ #<Book:0x0000555dcafd6d30 id: nil, author: "S. CHAND">,
+ #<Book:0x0000555dcafd6c40 id: nil, author: "JAVED AKHTAR">,
+ #<Book:0x0000555dcafd6b50 id: nil, author: "REEMA CHATURVEDI">] 
+
+------------------------------------------------------------------------------------
