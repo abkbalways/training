@@ -322,8 +322,29 @@ rails db:migrate
 
 ------------------------------------------------------------------------
 
-12.
+12. For Add column by up and down
 
+up and down method is not good for use in all cases. It was used for rollback of migrations previously. But now in updated versions of 
+rails, in most cases it will done by self.
+
+Use of up and down,
+
+ rails g migration ChangeBooks 
+
+class ChangeBooks < ActiveRecord::Migration[7.0]
+  def up
+    add_column :books, :fine, :integer
+  end
+  def down
+    remove_column :books, :fine
+  end
+end
+
+then, migrate the change by
+
+rails db:migrate
+
+Important : down must contain reversible of up.
 
 -----------------------------------------------------------------------------------------------------------------------------------
 
@@ -333,5 +354,97 @@ rails db:rollback
 
 It is used for change table to previous migration stage table. It is only one time reversible.
 
+-------------------------------------------------------------------------------------------------------------------------------------
 
-----------------------------------------------------------------------
+Queries For data in table :
+
+1. For Add data into table :
+
+book = Book.create(isbn:1010,name:"PHYSICS CLASS XI",author:"HC VERMA",price:680,book_range:10,fine_per_day:15,copies:20)
+
+or 
+
+book = Book.create
+book.isbn = 1010
+book.name = "PHYSICS CLASS XI"
+book.author = "HC VERMA"
+book.price = 680
+book.book_range = 10
+book.fine_per_day = 15
+book.copies = 20
+book.save              #for save this info to database , create automaticly save information and thats not use save.
+
+-------------------------------------------------
+
+2. For Read inserted data
+
+books = Book.all
+books
+
+It will add all data into books in form of array . now we can read data by books array.
+
+(a) For read data by index :
+
+3.0.1 :033 > books[0]
+ => 
+#<Book:0x00007fd95cc92010                            
+ id: 2,                                              
+ isbn: 1002,                                         
+ name: "STEP TOWARDS SUCCESS",                       
+ author: "DR. RAMANUJAN",                            
+ price: 450.0,                                       
+ book_range: 20,                                     
+ fine_per_day: 15.0,                                 
+ copies: 10>      
+
+(b) For read last inserted data :
+
+3.0.1 :034 > books.last
+ => 
+#<Book:0x00007fd95cc91908                            
+ id: 1,                                              
+ isbn: 1001,                                         
+ name: "TARASH",                                     
+ author: "JAVED AKHTAR JI",                          
+ price: 250.0,                                       
+ book_range: 15,                                     
+ fine_per_day: 20.0,                                 
+ copies: 15>            
+
+(c) For read data orderwise
+
+3.0.1 :037 > books.order(isbn: :desc)
+
+-------------------------------------------------------------------------------
+
+3. For Update the Data
+
+book = books.find_by(isbn:1001)          //Make a object of books where isbn = 1001
+book.name = "TARASH"                    //change name
+book.save                                //save that to database
+
+or
+
+book = books.find_by(isbn:1001)
+book.update(name:"TARKASH")
+
+---------------------------------------------------------------------------------
+
+4. For Delete the Data
+
+book = books.find_by(isbn:1011)
+book.destroy
+
+# For Destroy all
+
+Book.destroy_all
+
+#By one command delete one row
+
+Book.destroy_by(isbn:1011)
+
+-----------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
