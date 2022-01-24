@@ -162,7 +162,7 @@ After that,
 
 class RemoveBookIdToBooks < ActiveRecord::Migration[7.0]
   def change
-    add_column :books, :book_id, :string
+    remove_column :books, :book_id, :string
   end
 end
 
@@ -190,12 +190,148 @@ rails db:migrate
 
 -------------------------------------------------------------
 
-4. For add Foreign key
+4. For Add index in table
 
-class AddforeignKeyToBorrow < ActiveRecord::Migration[7.0]
+rails g migration AddIndexBooks 
+
+class AddIndexBooks < ActiveRecord::Migration[7.0]
   def change
-    add_foreign_key :borrows, :books, column: books_id, primary_key: :id  
+    add_index :books, :name
   end
 end
 
+then, migrate the change by
+
+rails db:migrate
+
+-------------------------------------------------------------
+
+5. For change datatype of column
+
+rails g migration ChangeColumnToBooks 
+
+class ChangeColumnToBooks < ActiveRecord::Migration[7.0]
+  def change
+    change_column :books, :name, :text
+  end
+end
+
+then, migrate the change by
+
+rails db:migrate
+
 --------------------------------------------------------------
+
+6. For Add Foreign Key
+
+rails g migration AddForeignKeyToBorrows 
+
+class AddForeignKeyToBorrows < ActiveRecord::Migration[7.0]
+  def change
+    add_foreign_key :borrows, :books, column: :book_id, column: :book_id
+  end
+end
+
+then, migrate the change by
+
+rails db:migrate
+
+----------------------------------------------------------------
+
+7. For Delete Foreign Key
+
+rails g migration RemoveForeignKeyToBorrows
+
+class RemoveForeignKeyToBorrows < ActiveRecord::Migration[7.0]
+  def change
+    remove_foreign_key :borrows,column: :book_id
+  end
+end
+
+then, migrate the change by
+
+rails db:migrate
+
+------------------------------------------------------------------
+
+8. For remove Timestamps From Table
+
+It will remove timestamps (created_at and updated_at) from table.
+
+rails g migration RemoveTimeStampsFromBooks 
+
+class RemoveTimeStampsFromBooks < ActiveRecord::Migration[7.0]
+  def change
+    remove_timestamps(:borrows)
+  end
+end
+
+then, migrate the change by
+
+rails db:migrate
+
+--------------------------------------------------------------------
+
+9. For Add Timestamps From Table
+
+It will add created_at and updated_at to table (if not found in table), otherwise gives error.
+
+rails g migration AddTimeStampsToBooks 
+
+class AddTimeStampsToBooks < ActiveRecord::Migration[7.0]
+  def change
+    add_timestamps(:borrows)
+  end
+end
+
+then, migrate the change by
+
+rails db:migrate
+
+----------------------------------------------------------------------
+
+10. For Rename index in Table
+
+rails g migration RenameIndexFromBooks 
+
+class RenameIndexFromBooks < ActiveRecord::Migration[7.0]
+  def change
+    rename_index :books, 'index_books_on_name', 'name_index'
+  end
+end
+
+then, migrate the change by
+
+rails db:migrate
+
+-----------------------------------------------------------------------
+
+11. For Remove index from Table
+
+rails g migration RemoveIndexFromBooks 
+
+class RemoveIndexFromBooks < ActiveRecord::Migration[7.0]
+  def change
+    remove_index :books, :name
+  end
+end
+
+then, migrate the change by
+
+rails db:migrate
+
+------------------------------------------------------------------------
+
+12.
+
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+For Change previous migration :
+
+rails db:rollback
+
+It is used for change table to previous migration stage table. It is only one time reversible.
+
+
+----------------------------------------------------------------------
