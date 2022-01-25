@@ -137,3 +137,214 @@ It is used for retrieve specific column or field information.
  #<Book:0x0000555dcafd6b50 id: nil, author: "REEMA CHATURVEDI">] 
 
 ------------------------------------------------------------------------------------
+
+8. Limit and Offset
+
+Book.limit(5)                           // It retrieve the objects from starting till 5th row.
+
+Book.limit(5).offset(5)                 // It retrieve the objects from 6th till 10th row .
+
+Book.order(:id).limit(5).offset(5)      // It retrieve the objects from 6th till 10th row but order by id.
+
+
+-------------------------------------------------------------------------------------
+
+9. Group by clause
+
+3.0.1 :016 > Student.select(:class_id).group(:class_id)
+  Student Load (0.9ms)  SELECT "students"."class_id" FROM "students" GROUP BY "students"."class_id"
+ =>                                                                                                      
+[#<Student:0x0000557bf6137dc0 id: nil, class_id: "C1">,                                                  
+ #<Student:0x0000557bf6137cd0 id: nil, class_id: "C2">,                                                  
+ #<Student:0x0000557bf6137be0 id: nil, class_id: "C3">,                                                  
+ #<Student:0x0000557bf6137a28 id: nil, class_id: "C4">,                                                  
+ #<Student:0x0000557bf6137938 id: nil, class_id: "C5">]         
+
+
+-> count on group by clause
+
+3.0.1 :018 > Student.group(:class_id).count
+  Student Count (1.1ms)  SELECT COUNT(*) AS "count_all", "students"."class_id" AS "students_class_id" FROM "students" GROUP BY "students"."class_id"                                                                   
+ => {"C1"=>3, "C2"=>2, "C3"=>2, "C4"=>1, "C5"=>2}   
+
+---------------------------------------------------------------------------------------
+
+10. Having Clause
+
+3.0.1 :024 > Student.select("class_id,sum(id)").group(:class_id).having("sum(student_id)>?",210)
+  Student Load (1.5ms)  SELECT class_id,sum(id) FROM "students" GROUP BY "students"."class_id" HAVING (sum(student_id)>210)
+ =>                                                                        
+[#<Student:0x0000557bf65411f0 id: nil, class_id: "C1">,                    
+ #<Student:0x0000557bf6541128 id: nil, class_id: "C3">,                  
+ #<Student:0x0000557bf6541060 id: nil, class_id: "C5">]                  
+
+---------------------------------------------------------------------------------------
+
+11. overriding conditions
+
+(a) unscope
+
+It is used for unscope the certain methods.
+
+3.0.1 :040 > Student.select(:id,:name).where('student_id>106').limit(2).order(:id).unscope(:order)
+  Student Load (1.1ms)  SELECT "students"."id", "students"."name" FROM "students" WHERE (student_id>106) LIMIT $1  [["LIMIT", 2]]
+ => [#<Student:0x0000557bf5ea5968 id: 7, name: "KOMAL">, #<Student:0x0000557bf5ea58a0 id: 8, name: "KALPIT">]
+
+                                 
+3.0.1 :041 > Student.select(:id,:name).where('student_id>106').limit(2).order(:id).unscope(:where)
+  Student Load (0.8ms)  SELECT "students"."id", "students"."name" FROM "students" ORDER BY "students"."id" ASC LIMIT $1  [["LIMIT", 2]]
+ => [#<Student:0x0000557bf42adf08 id: 1, name: "AKSHAY">, #<Student:0x0000557bf42addf0 id: 2, name: "ANAYA">]
+
+-----------------------------------------------
+
+(b) only
+
+It is used for run only some methods by select manually.
+
+3.0.1 :008 > Student.select(:name).where('student_id>105').order('id desc').limit(3).only(:select, :where, :order)
+  Student Load (1.2ms)  SELECT "students"."name" FROM "students" WHERE (student_id>105) ORDER BY id desc
+ => 
+[#<Student:0x000055723193c990 id: nil, name: "SHIV">,
+ #<Student:0x000055723193c878 id: nil, name: "DRISHYAM">,
+ #<Student:0x000055723193c760 id: nil, name: "KALPIT">,
+ #<Student:0x000055723193c670 id: nil, name: "KOMAL">,
+ #<Student:0x000055723193c558 id: nil, name: "AMAN">] 
+
+--------------------------------------------------
+
+(c) reselect
+
+It is used for override the select method.
+
+3.0.1 :011 > Student.select(:name).select(:id)
+  Student Load (0.7ms)  SELECT "students"."name", "students"."id" FROM "students"
+ =>                                                                                                 
+[#<Student:0x00005572318b7c18 id: 2, name: "ANAYA">,                                                
+ #<Student:0x00005572318b7b50 id: 3, name: "DEEPAK">,                                               
+ #<Student:0x00005572318b7a88 id: 4, name: "DANYA">,                                                
+ #<Student:0x00005572318b79c0 id: 5, name: "NANDINI">,                                              
+ #<Student:0x00005572318b78f8 id: 6, name: "AMAN">,                                                 
+ #<Student:0x00005572318b7830 id: 7, name: "KOMAL">,                                                
+ #<Student:0x00005572318b7768 id: 8, name: "KALPIT">,                                               
+ #<Student:0x00005572318b76a0 id: 9, name: "DRISHYAM">,                                             
+ #<Student:0x00005572318b75d8 id: 10, name: "SHIV">,                                                
+ #<Student:0x00005572318b7510 id: 1, name: "AKSHAY">]                                               
+
+3.0.1 :012 > Student.select(:name).reselect(:id)
+  Student Load (0.7ms)  SELECT "students"."id" FROM "students"
+ =>                                                                                                 
+[#<Student:0x00005572318a4230 id: 2>,                      
+ #<Student:0x00005572318a4168 id: 3>,
+ #<Student:0x00005572318a4078 id: 4>,
+ #<Student:0x000055723189ff28 id: 5>,
+ #<Student:0x000055723189fe38 id: 6>,
+ #<Student:0x000055723189fd70 id: 7>,
+ #<Student:0x000055723189fca8 id: 8>,
+ #<Student:0x000055723189fbe0 id: 9>,
+ #<Student:0x000055723189fb18 id: 10>,
+ #<Student:0x000055723189fa28 id: 1>] 
+
+---------------------------------------------------------------
+
+(d) reorder
+
+students = Student.all.order("id ASC")
+
+students[0]
+
+OUTPUT :
+ 
+ id: 1,                                                                                      
+ student_id: 101,                                                                            
+ name: "AKSHAY",                                                                             
+ city: "DELHI",                                                                              
+ mobile: "9897856892",                                                                       
+ class_id: "C1",                                                                             
+ dob: Wed, 25 Dec 2002,
+ created_at: Mon, 24 Jan 2022 11:50:53.616526000 UTC +00:00,
+ updated_at: Mon, 24 Jan 2022 11:58:50.015157000 UTC +00:00> 
+
+Now,
+
+students = students.reorder("id DESC")
+
+students[0]
+
+OUTPUT :
+
+id: 10,                                                           
+ student_id: 110,                                                  
+ name: "SHIV",                                                     
+ city: "FARIDABAD",                                                
+ mobile: "7889569823",                                             
+ class_id: "C5",                                                   
+ dob: Fri, 31 Dec 2004,                                            
+ created_at: Mon, 24 Jan 2022 11:57:16.383215000 UTC +00:00,       
+ updated_at: Mon, 24 Jan 2022 11:57:16.383215000 UTC +00:00> 
+
+---------------------------------------------------------------------
+
+(e) reverse_order
+
+students = students.order(id: :desc).reverse_order
+
+students[0]
+
+OUTPUT :
+
+id: 1,                                 
+ student_id: 101,                       
+ name: "AKSHAY",                        
+ city: "DELHI",                         
+ mobile: "9897856892",                  
+ class_id: "C1",                        
+ dob: Wed, 25 Dec 2002,                 
+ created_at: Mon, 24 Jan 2022 11:50:53.616526000 UTC +00:00,
+ updated_at: Mon, 24 Jan 2022 11:58:50.015157000 UTC +00:00> 
+
+----------------------------------------------------------------------
+
+(f) rewhere
+
+It overrides the where condition.
+
+3.0.1 :053 > Student.select(:name).where("id>5")
+  Student Load (1.0ms)  SELECT "students"."name" FROM "students" WHERE (id>5)
+ =>                                                                                                
+[#<Student:0x0000557230835368 id: nil, name: "AMAN">,                                              
+ #<Student:0x00005572308352a0 id: nil, name: "KOMAL">,                                             
+ #<Student:0x00005572308351d8 id: nil, name: "KALPIT">,                                            
+ #<Student:0x0000557230835110 id: nil, name: "DRISHYAM">,                                          
+ #<Student:0x0000557230835048 id: nil, name: "SHIV">]                                              
+
+
+3.0.1 :054 > Student.select(:name).where("id>5").rewhere("id>8")
+  Student Load (0.9ms)  SELECT "students"."name" FROM "students" WHERE (id>5) AND (id>8)
+ => [#<Student:0x00007f71e4084578 id: nil, name: "DRISHYAM">, #<Student:0x00007f71e40844b0 id: nil, name: "SHIV">] 
+
+------------------------------------------------------------------------------------------------------
+
+12. read only
+
+student = Student.readonly.first
+
+3.0.1 :060 > student.update(student_id:111)
+/usr/share/rvm/gems/ruby-3.0.1/gems/activerecord-7.0.1/lib/active_record/persistence.rb:1122:in `_raise_readonly_record_error': 
+Student is marked as readonly (ActiveRecord::ReadOnlyRecord).
+
+-------------------------------------------------------------------------------------------------------
+
+13. Joins
+
+3.0.1 :072 > Student.joins("INNER JOIN sections ON sections.class_id = students.class_id").select("sections.name").distinct
+
+ OUTPUT :  
+
+ Student Load (23.1ms)  SELECT DISTINCT "sections"."name" FROM "students" INNER JOIN sections ON sections.class_id = students.class_id 
+ #<Student:0x0000557231c0fa50 id: nil, name: "NINTH">,
+ #<Student:0x0000557231c0f960 id: nil, name: "TENTH">,
+ #<Student:0x0000557231c0f870 id: nil, name: "EIGHTH">,
+ #<Student:0x0000557231c0f780 id: nil, name: "ELEVENTH">,
+ #<Student:0x0000557231c0f668 id: nil, name: "TWELFTH">] 
+
+          
