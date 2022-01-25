@@ -1,0 +1,20 @@
+Rails validations by Ajay Agrawal at Beryl Systems,
+
+1. valid? and invalid?
+
+class Student < ApplicationRecord
+  validates :name, presence: true
+end
+
+
+student = Student.create
+student.valid?
+ => false             // It returns false because we don't give name , which is necessary.
+
+student.invalid?
+ => true              // It returns true because student object is invalid.
+
+
+---------------------------------------------------------------------------------
+
+
