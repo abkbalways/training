@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_25_074334) do
+ActiveRecord::Schema.define(version: 2022_01_26_062338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2022_01_25_074334) do
     t.integer "student_id"
     t.datetime "issue_date", precision: 6, null: false
     t.datetime "submission_date", precision: 6, null: false
+    t.boolean "accept"
   end
 
   create_table "sections", force: :cascade do |t|
