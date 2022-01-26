@@ -156,3 +156,159 @@ student.errors.objects.last.full_message
  => "City 10 characters is maximum allowed"
 
 ------------------------------------------------------------------------------------
+
+8. numericality
+
+class Student < ApplicationRecord
+  validates :student_id, numericality: true
+end
+
+student = Student.create(student_id:"AD",name:'RAHUL',city:'DELHI',mobile:'9586593256',section_id:'C5',dob:'2005-02-02')
+
+student.valid?
+ => false 
+
+student.errors.objects.each{|error| puts error.full_message}
+Student is not a number     
+
+For set integer,
+
+ validates :student_id, numericality: { only_integer: true }
+
+--------------------------------------------------------------------------------------
+
+9. presence
+
+It is used for validate the presence of data for specific column.
+
+class Student < ApplicationRecord
+  validates :name, presence: true
+end
+
+
+student = Student.create
+student.valid?
+ => false             // It returns false because we don't give name , which is necessary.
+
+student.invalid?
+ => true              // It returns true because student object is invalid.
+
+-----------------------------------------------------------------------------------------
+
+10. absence
+
+It is used for set some field as blank.
+
+class Student < ApplicationRecord
+  validates :mobile, absence: true
+end
+
+
+student = Student.create(student_id:111,name:'RAHUL',city:'DELHI',mobile:'9586593256',section_id:'C5',dob:'2005-02-02')
+ => 
+#<Student:0x00007f68709b7668        
+
+student.errors.objects.first.full_message
+ => "Mobile must be blank" 
+
+-------------------------------------------------------------------------------------------
+
+11. uniqueness
+
+It is used for set some field as unique.
+
+class Student < ApplicationRecord
+  validates :name, uniqueness: true
+end
+
+student = Student.create(student_id:111,name:'DEEPAK',city:'DELHI',mobile:'9586593256',section_id:'C5',dob:'2005-02-02')
+  TRANSACTION (0.5ms)  BEGIN
+  Student Exists? (1.0ms)  SELECT 1 AS one FROM "students" WHERE "students"."name" = $1 LIMIT $2  [["name", "DEEPAK"], ["LIMIT", 1]]
+  TRANSACTION (0.4ms)  ROLLBACK                                                                    
+ =>                                                                                                
+#<Student:0x000056386994a0f0             
+
+student.errors.objects.first.full_message
+ => "Name has already been taken" 
+
+-----------------------------------------------------------------------------------------------
+
+12. validates_each
+
+
+
+-----------------------------------------------------------------------------------------------
+
+13. validates_with
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+COMMON VALIDATION OPTIONS : - 
+
+1. :allow_nil or :allow_blank
+
+It is the validation which allow nil or empty string.
+
+class Student < ApplicationRecord
+  validates :name, uniqueness: true, allow_nil: true
+end
+
+student = Student.create(student_id:111,name:'',city:'DELHI',mobile:'9586593256',section_id:'C5',dob:'2005-02-02')
+  TRANSACTION (0.4ms)  BEGIN
+  Student Exists? (0.7ms)  SELECT 1 AS one FROM "students" WHERE "students"."name" = $1 LIMIT $2  [["name", ""], ["LIMIT", 1]]
+  Student Create (1.2ms)  INSERT INTO "students" ("student_id", "name", "city", "mobile", "section_id", "dob", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["student_id", 111], ["name", ""], ["city", "DELHI"], ["mobile", "9586593256"], ["section_id", "C5"], ["dob", "2005-02-02"], ["created_at", "2022-01-25 11:02:20.887193"], ["updated_at", "2022-01-25 11:02:20.887193"]]
+  TRANSACTION (28.8ms)  COMMIT                                                                     
+ =>                                                                                                
+#<Student:0x00007f32089f3cb0                                           
+
+student.valid?
+  Student Exists? (1.1ms)  SELECT 1 AS one FROM "students" WHERE "students"."name" = $1 AND "students"."id" != $2 LIMIT $3  [["name", ""], ["id", 18], ["LIMIT", 1]]                                                                             
+ => true                     
+
+---------------------------------------------------------------
+
+2. message
+
+It is used for write the message, which is shown when specific validation failed.
+
+validates :name, presence: { message: "must be given please" }
+
+validates :age, numericality: { message: "%{value} seems wrong" }
+
+ validates :username,
+    uniqueness:{ message: ->(object, data) do
+        "Hey #{object.name}, #{data[:value]} is already taken."
+      end
+                 }
+
+----------------------------------------------------------------
+
+3. :on
+
+The :on option lets you specify when the validation should happen. The default behavior for all the built-in validation helpers is 
+to be run on save (both when you're creating a new record and when you're updating it). If you want to change it, you can use on: :create 
+to run the validation only when a new record is created or on: :update to run the validation only when a record is updated.
+
+Example :
+
+person = Person.new(age: 'thirty-three')
+person.valid?
+person.valid?(:account_setup)
+person.errors.messages
+
+---------------------------------------------------------------------------------------------------------------------------
+
+STRICT VALIDATIONS :-
+
+class Student < ApplicationRecord
+  validates :name, presence: true, uniqueness: true, strict: NameGenerationException
+end
+
+student = Student.create(student_id:111,name:'',city:'DELHI',mobile:'9586593256',section_id:'C5',dob:'2005-02-02')
+
+/home/beryl/training/rails/projects/library_management_system/app/models/student.rb:11:
+in `<class:Student>': uninitialized constant Student::NameGenerationException (NameError)       
+
+
+----------------------------------------------------------------------------------------------------------------------------
+
