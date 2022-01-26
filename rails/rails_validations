@@ -17,4 +17,142 @@ student.invalid?
 
 ---------------------------------------------------------------------------------
 
+2. errors[]
 
+By the help of errors method , we can see the errors for invalid object
+
+For Example :
+
+student.errors
+=> #<ActiveModel::Errors [#<ActiveModel::Error attribute=name, type=blank, options={}>]> // It returns the all errors 
+
+student.errors.size                                                                      // It returns the size of errors
+=> 1 
+
+student.errors.objects.first.full_message                                                // It returns the message of first error.
+=> "Name can't be blank" 
+
+-----------------------------------------------------------------------------------
+
+3. comparison
+
+It is used for compare the value of attribute with given value.
+
+class Student < ApplicationRecord
+  validates :student_id, comparison: {greater_than: 100}
+end
+
+student = Student.create(student_id:97,name:'RAHUL',city:'DELHI',mobile:'9865983256',section_id:'C1',dob:'2005-02-02')
+
+student.valid?
+ => false 
+
+student.errors
+ => #<ActiveModel::Errors [#<ActiveModel::Error attribute=student_id, type=greater_than, options={:count=>100, :value=>97}>]> 
+
+student.errors.objects.first.full_message
+=> "Student must be greater than 100" 
+
+--------------------------------------------------------------------------------------
+
+4. exclusion
+
+It is used for exclude some specific words from inserting into attribute.
+
+class Student < ApplicationRecord
+  validates :city, exclusion: {in: %w(palwal hodal), message: "%{value} is not allowed."}
+end
+
+student = Student.create(student_id:111,name:'RAHUL',city:'palwal',mobile:'9865983256',section_id:'C1',dob:'2005-02-02')
+ => #<Student:0x00007f33745e1ee8 
+
+student.valid?
+ => false 
+
+student.errors.objects.first.full_message
+ => "City palwal is not allowed." 
+
+----------------------------------------------------------------------------------------
+
+5. format
+
+It allows insert data in attribute only when they formatted as defined.
+
+class Student < ApplicationRecord
+  validates :name, format: {with: /\A[A-Za-z]+\z/ , message: "only letters allowed"}
+end
+
+student = Student.create(student_id:111,name:'RAHUL34',city:'DELHI',mobile:'9865983256',section_id:'C1',dob:'2005-02-02')
+ => 
+#<Student:0x00007faacc2bb258      
+
+student.valid?
+ => false 
+
+student.errors.objects.last.full_message
+ => "Name only letters allowed" 
+
+student.errors.objects.last.message
+ => "only letters allowed" 
+
+--------------------------------------------------------------------------------------------
+
+6. inclusion
+
+It doesn't allow data if it is not in inclusion block for specific attribute.
+
+class Student < ApplicationRecord
+  validates :section_id, inclusion: {in: %w("C1" "C2" "C3" "C4" "C5"), message: "%{value} is not valid section id"}
+end
+
+student = Student.create(student_id:111,name:'RAHUL',city:'DELHI',mobile:'9865983256',section_id:'C6',dob:'2005-02-02')
+ => 
+#<Student:0x00007fa4741d8920   
+
+student.valid?
+ => false 
+
+student.errors.objects.last.message
+ => "C6 is not valid section id" 
+
+student.errors.objects.last.full_message
+ => "Section C6 is not valid section id" 
+
+-----------------------------------------------------------------------------------------------
+
+7. length
+
+It is used for set maximum, minimum and equals length of character for column.
+
+class Student < ApplicationRecord
+  validates :name, length: {minimum:3, too_short: "%{count} characters minimum allowed"}
+  validates :mobile, length: {is:10, message: "%{count} numbers is required"}
+  validates :city, length: {maximum:10, too_long: "%{count} characters is maximum allowed"}
+end
+
+student = Student.create(student_id:111,name:'RA',city:'BHUVNESHWAR',mobile:'95865983256',section_id:'C5',dob:'2005-02-02')
+ => 
+#<Student:0x000055d7abcdff90  
+
+student.valid?
+ => false 
+
+student.errors
+ => #<ActiveModel::Errors [
+#<ActiveModel::Error attribute=name, type=too_short, options={:count=>3, :message=>"%{count} characters minimum allowed"}>, 
+#<ActiveModel::Error attribute=mobile, type=wrong_length, options={:message=>"%{count} numbers is required", :count=>10}>, 
+#<ActiveModel::Error attribute=city, type=too_long, options={:count=>10, :message=>"%{count} characters is maximum allowed"}>]> 
+
+student.errors.objects.first.message
+ => "3 characters minimum allowed" 
+
+student.errors.objects.first.full_message
+ => "Name 3 characters minimum allowed" 
+
+student.errors.objects.second.full_message
+ => "Mobile 10 numbers is required" 
+
+student.errors.objects.last.full_message
+ => "City 10 characters is maximum allowed"
+
+------------------------------------------------------------------------------------
