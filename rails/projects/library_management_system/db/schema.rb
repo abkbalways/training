@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_27_063545) do
+ActiveRecord::Schema.define(version: 2022_01_27_071343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "books", force: :cascade do |t|
-    t.integer "isbn"
+  create_table "books", primary_key: "isbn", id: :integer, default: nil, force: :cascade do |t|
+    t.bigserial "id", null: false
     t.string "name"
     t.string "author"
     t.float "price"
@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(version: 2022_01_27_063545) do
     t.index ["section_id"], name: "sections_section_id_key", unique: true
   end
 
-  create_table "students", force: :cascade do |t|
-    t.integer "student_id"
+  create_table "students", primary_key: "student_id", id: :integer, default: nil, force: :cascade do |t|
+    t.bigserial "id", null: false
     t.string "name"
     t.string "city"
     t.string "mobile"
@@ -53,5 +53,7 @@ ActiveRecord::Schema.define(version: 2022_01_27_063545) do
     t.index ["sections_id"], name: "index_students_on_sections_id"
   end
 
+  add_foreign_key "borrows", "books", column: "isbn", primary_key: "isbn", name: "fk_borrows_books"
+  add_foreign_key "borrows", "students", primary_key: "student_id"
   add_foreign_key "students", "sections", primary_key: "section_id"
 end
