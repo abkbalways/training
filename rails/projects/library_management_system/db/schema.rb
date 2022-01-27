@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_26_062338) do
+ActiveRecord::Schema.define(version: 2022_01_27_063545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,9 +34,10 @@ ActiveRecord::Schema.define(version: 2022_01_26_062338) do
     t.boolean "accept"
   end
 
-  create_table "sections", force: :cascade do |t|
+  create_table "sections", primary_key: "section_id", id: :string, force: :cascade do |t|
+    t.bigserial "id", null: false
     t.string "name"
-    t.string "section_id", null: false
+    t.index ["section_id"], name: "sections_section_id_key", unique: true
   end
 
   create_table "students", force: :cascade do |t|
@@ -48,6 +49,9 @@ ActiveRecord::Schema.define(version: 2022_01_26_062338) do
     t.date "dob"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "sections_id"
+    t.index ["sections_id"], name: "index_students_on_sections_id"
   end
 
+  add_foreign_key "students", "sections", primary_key: "section_id"
 end
