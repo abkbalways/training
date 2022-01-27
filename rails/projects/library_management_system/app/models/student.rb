@@ -16,4 +16,5 @@ class Student < ApplicationRecord
   #include ActiveModel::Validations
   #validates_with MyValidator
   belongs_to :section
+  has_many :borrows
 end
