@@ -1,3 +1,5 @@
 class Section < ApplicationRecord
-  belongs_to :head_of_section
+  validates :name, presence: true
+  validates :head_of_section_id, presence: true
+  
 end
