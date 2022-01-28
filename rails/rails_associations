@@ -240,3 +240,37 @@ INSERT INTO "comments" ("title", "commentable_id", "commentable_type") VALUES ($
 [["title", "Pratibha-2022"], ["commentable_id", 1], ["commentable_type", "Event"]]  
 
 --------------------------------------------------------------------------------------------------
+
+8. self join
+
+In designing a data model, you will sometimes find a model that should have a relation to itself. For example, you may want to store all 
+employees in a single database model, but be able to trace relationships such as between manager and subordinates. This situation can be 
+modeled with self-joining associations:
+
+Example :
+
+class CreateEmployees < ActiveRecord::Migration[7.0]
+  def change
+    create_table :employees do |t|
+      t.string :name
+      t.references :manager, foreign_key: { to_table: :employees }
+    end
+  end
+end
+
+
+class Employee < ApplicationRecord
+  has_many :subordinates, class_name: "Employee",
+                          foreign_key: "manager_id"
+
+  belongs_to :manager, class_name: "Employee", optional: true
+end
+
+Queries :
+
+employee = Employee.first
+
+employee.manager.name
+=> "Prakash"
+
+----------------------------------------------------------------------------------------------------------------
