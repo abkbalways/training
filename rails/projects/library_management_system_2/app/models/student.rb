@@ -9,7 +9,8 @@ class Student < ApplicationRecord
   end
   validates :dob, presence: true
   belongs_to :section
-  has_many :issues
-  has_many :books, through: :issues
+  #has_many :issues
+  #has_many :books, through: :issues
+  has_and_belongs_to_many :books
 
 end
