@@ -173,9 +173,42 @@ department.manager_detail.salary
 
 6. has_and_belongs_to_many
 
+A has_and_belongs_to_many association creates a direct many-to-many connection with another model, with no intervening model. This 
+association indicates that each instance of the declaring model refers to zero or more instances of another model.
+
+Steps :
+
+1. Define has_and_belongs_to_many in both modles
+
+class Student < ApplicationRecord
+  has_and_belongs_to_many :books
+end
+
+class Book < ApplicationRecord
+  has_and_belongs_to_many :students
+end
+
+2. Create a migration for joint table (alphabetically table name)
+
+rails g migration create_books_students_join_table
+
+class CreateBooksStudentsJoinTable < ActiveRecord::Migration[7.0]
+  def change
+    create_join_table :books, :students
+  end
+end
+
+rails db:migrate
 
 
+Queries:
 
+Enter data in join table,
+
+student = Student.first
+
+student.books << books.where(id:1001)
+ 
 ----------------------------------------------------------------------------------------------
 
 7. polymorphic association
