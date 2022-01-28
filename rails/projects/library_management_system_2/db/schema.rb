@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_28_074513) do
+ActiveRecord::Schema.define(version: 2022_01_28_091802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,11 @@ ActiveRecord::Schema.define(version: 2022_01_28_074513) do
     t.integer "price"
     t.integer "copies"
     t.index ["author_id"], name: "index_books_on_author_id"
+  end
+
+  create_table "books_students", id: false, force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.bigint "student_id", null: false
   end
 
   create_table "head_of_sections", force: :cascade do |t|
