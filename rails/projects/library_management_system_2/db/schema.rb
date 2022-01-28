@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_28_091802) do
+ActiveRecord::Schema.define(version: 2022_01_28_102112) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,16 @@ ActiveRecord::Schema.define(version: 2022_01_28_091802) do
   create_table "books_students", id: false, force: :cascade do |t|
     t.bigint "book_id", null: false
     t.bigint "student_id", null: false
+  end
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.string "feedbackable_type"
+    t.integer "stars"
+    t.string "feedbackable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "student_id"
+    t.index ["student_id"], name: "index_feedbacks_on_student_id"
   end
 
   create_table "head_of_sections", force: :cascade do |t|
