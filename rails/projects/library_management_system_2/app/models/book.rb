@@ -6,6 +6,6 @@ class Book < ApplicationRecord
   validates :price, presence: true, numericality: true
   validates :copies, presence: true, numericality: {only_integer: true}
   belongs_to :author
-  #has_many :issues
-  #has_many :students, through: :issues
+  has_many :issues
+  has_many :students, through: :issues
 end
