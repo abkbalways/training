@@ -3,4 +3,5 @@ class Author < ApplicationRecord
   validates :name, length: {maximum: 25}
   validates :no_of_published_books, comparison: {less_than: 1000}, allow_nil: true
   has_many :books
+  has_many :feedbacks, as: :feedbackable
 end

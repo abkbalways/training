@@ -9,4 +9,5 @@ class Book < ApplicationRecord
   #has_many :issues
   #has_many :students, through: :issues
   has_and_belongs_to_many :students
+  has_many :feedbacks, as: :feedbackable
 end
