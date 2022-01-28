@@ -1,4 +1,4 @@
 class Issue < ApplicationRecord
-  belongs_to :book
-  belongs_to :student
+  validates :book_id, presence: true
+  validates :student_id, presence: true
 end
