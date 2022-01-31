@@ -12,5 +12,25 @@ class Student < ApplicationRecord
   #has_many :issues
   #has_many :books, through: :issues
   has_and_belongs_to_many :books
+  after_validation :successfully_validation
+  before_validation :remove_whitespaces
+  after_create :display_student_age
+  
+  def successfully_validation
+    puts "You are validated successfully"
+  end
+
+  def remove_whitespaces
+    name.strip!
+  end
+  
+  def display_student_age
+    if self.dob.present?
+      age = Date.today.year - dob.year
+      puts "======Age of Student is #{age} ======="
+    else
+      puts "Age can not be calculated without date of birth"
+    end
+  end
 
 end
