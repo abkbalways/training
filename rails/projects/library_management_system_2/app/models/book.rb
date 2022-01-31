@@ -8,6 +8,20 @@ class Book < ApplicationRecord
   belongs_to :author
   #has_many :issues
   #has_many :students, through: :issues
-  has_and_belongs_to_many :students
+  has_and_belongs_to_many :students, -> {where isbn:105698}
   has_many :feedbacks, as: :feedbackable
+
+  before_save :before_save_message
+  after_save :after_save_message
+
+  def before_save_message
+    if self.author.present?
+      puts "copies = #{copies}"
+    else
+      puts "Please Enter copies"
+    end
+  end
+  def after_save_message
+    puts "author = #{Book.last.author.name}"
+  end
 end
