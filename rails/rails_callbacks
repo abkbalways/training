@@ -1,0 +1,111 @@
+Callbacks in rails by Ajay Agrawal at Beryl Systems,
+
+Callbacks :
+
+callbacks hook into the life cycle of Active Record objects, allowing you to work with those objects at various points. For example, we 
+can use a :before_save callback to cause something to happen just before an object is saved.
+
+1. after_create
+
+class Student < ApplicationRecord
+  def display_student_age
+    if self.dob.present?
+      age = Date.today.year - dob.year
+      puts "======Age of Student is #{age} ======="
+    else
+      puts "Age can not be calculated without date of birth"
+    end
+  end 
+end
+
+Example :
+
+3.0.1 :003 > Student.create(id:Student.last.id+1, name: "Tanisha Garg", city: "Gurugram",mobile:9865985698, section_id:5, dob:'2005-05-26')
+  Student Load (1.2ms)  SELECT "students".* FROM "students" ORDER BY "students"."id" DESC LIMIT $1  [["LIMIT", 1]]
+  TRANSACTION (0.4ms)  BEGIN                                                                                                   
+  Section Load (0.9ms)  SELECT "sections".* FROM "sections" WHERE "sections"."id" = $1 LIMIT $2  [["id", 5], ["LIMIT", 1]]     
+  Student Create (21.4ms)  INSERT INTO "students" ("id", "name", "city", "mobile", "section_id", "dob", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"  [["id", 107], ["name", "Tanisha Garg"], ["city", "Gurugram"], ["mobile", 9865985698], ["section_id", 5], ["dob", "2005-05-26 00:00:00"], ["created_at", "2022-01-31 06:26:34.378776"], ["updated_at", "2022-01-31 06:26:34.378776"]]
+======Age of Student is 17 =======                                                                                             
+  TRANSACTION (35.1ms)  COMMIT                                                                                                 
+ =>                                                                                                                            
+#<Student:0x000055626dcbdc78                                                                                                   
+ id: 107,                                                                                                            
+ name: "Tanisha Garg",                                                                                               
+ city: "Gurugram",                                                                                                   
+ mobile: 9865985698,                                                                                                 
+ section_id: 5,                                                                                                      
+ dob: Thu, 26 May 2005 00:00:00.000000000 UTC +00:00,
+ created_at: Mon, 31 Jan 2022 06:26:34.378776000 UTC +00:00,
+ updated_at: Mon, 31 Jan 2022 06:26:34.378776000 UTC +00:00> 
+
+2. after_commit
+
+It will work for every commit like after every create, update or delete.
+
+class Author < ApplicationRecord
+  after_commit  :after_make
+  def after_make
+    puts "Hey It will added"
+  end
+end
+
+Example : 
+
+3.0.1 :006 > Author.new
+ => #<Author:0x0000556270c93240 id: nil, name: nil, no_of_published_books: nil> 
+3.0.1 :007 > Author.create(name:"Subhash Pandit", no_of_published_books:04)
+  TRANSACTION (0.6ms)  BEGIN
+  Author Create (1.4ms)  INSERT INTO "authors" ("name", "no_of_published_books") VALUES ($1, $2) RETURNING "id"  [["name", "Subhash Pandit"], ["no_of_published_books", 4]]                                                      
+  TRANSACTION (30.2ms)  COMMIT                                                     
+Hey It will added                                                                  
+ => #<Author:0x0000556270b8a9e8 id: 6, name: "Subhash Pandit", no_of_published_books: 4> 
+
+
+3. before_validation
+
+Defines a callback that will get called right before validation.
+
+It validated because it removes whitespaces before validating.
+
+Example :
+
+class Student < ApplicationRecord
+  validates :name, presence: true, length: {maximum: 25}
+  before_validation :remove_whitespaces
+  def remove_whitespaces
+    name.strip!
+  end
+end
+
+Student.create(id:110,name:"    Rahul Das                                     ",city:"Gurugram", mobile:8965325698, section_id:2,
+ dob:'2002-05-06')
+
+#<Student:0x00005569e73ee1e8                            
+ id: 110,
+ name: "Rahul Das",
+ city: "Gurugram",
+ mobile: 8965325698,
+ section_id: 2,
+ dob: Mon, 06 May 2002 00:00:00.000000000 UTC +00:00,
+ created_at: Mon, 31 Jan 2022 11:31:01.777916000 UTC +00:00,
+ updated_at: Mon, 31 Jan 2022 11:31:01.777916000 UTC +00:00> 
+
+4. after_validation
+
+Defines a callback that will get called right after validation.
+
+class Student < ApplicationRecord
+  validates :name, presence: true, length: {maximum: 25}
+  after_validation :successfully_validation
+  def successfully_validation
+    puts "You are validated successfully"
+  end
+end
+
+s = Student.create(id:110,name:"Rahul Das",city:"Gurugram", mobile:8965325698, section_id:2, dob:'2002-05-06')
+
+You are validated successfully  
+#<Student:0x000055f6488b1f98                            
+... 
+
+5. 
