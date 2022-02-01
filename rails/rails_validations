@@ -233,13 +233,30 @@ student.errors.objects.first.full_message
 
 -----------------------------------------------------------------------------------------------
 
-12. validates_each
+12. acceptance
+
+If it is true , then it accepts values only when value for that column is true or 1.
+
+class Borrow < ApplicationRecord
+  validates :accept, acceptance: true
+end
+
+
+3.0.1 :002 > borrow = Borrow.create(isbn:1005,student_id:105,accept:false)
+ => #<Borrow:0x00007fa898a7b348 id: nil, isbn: 1005, student_id: 105, issue_date: nil, submission_date: nil, accept: false> 
+
+3.0.1 :007 > borrow.errors.objects.first.message
+ => "must be accepted" 
+
+-----------------------------------------------------------------------------------------------
+
+13. validates_each
 
 
 
 -----------------------------------------------------------------------------------------------
 
-13. validates_with
+14. validates_with
 
 -------------------------------------------------------------------------------------------------------------------------------
 
@@ -312,3 +329,32 @@ in `<class:Student>': uninitialized constant Student::NameGenerationException (N
 
 ----------------------------------------------------------------------------------------------------------------------------
 
+CUSTOM VALIDATIONS :-
+
+We can also create methods that verify the state of your models and add errors to the errors collection when they are invalid. You must 
+then register these methods by using the validate class method, passing in the symbols for the validation methods' names.
+
+Example :
+
+class Issue < ApplicationRecord
+  def issue_book
+    if Student.find(student_id).books.ids.include?(book_id)
+      errors.add(:book_id, 'Student has that book !')
+    end
+  end
+end
+
+Queries :
+
+b = book.issues.create(student_id:101)
+  TRANSACTION (0.6ms)  BEGIN
+  Student Load (0.7ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 101], ["LIMIT", 1]]
+  Student Load (0.6ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 101], ["LIMIT", 1]]
+  Book Pluck (0.9ms)  SELECT "books"."id" FROM "books" INNER JOIN "issues" ON "books"."id" = "issues"."book_id" WHERE "issues"."student_id" = $1  [["student_id", 101]]                                                                    
+  TRANSACTION (0.4ms)  ROLLBACK                                                              
+ => #<Issue:0x00007fb92870ae48 id: nil, book_id: 1001, student_id: 101, issue_date: nil, return_date: nil> 
+
+b.errors.objects.first.message
+ => "Student has that book !" 
+
+-------------------------------------------------------------------------------------------------------------------------------
