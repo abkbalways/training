@@ -38,6 +38,8 @@ Example :
  created_at: Mon, 31 Jan 2022 06:26:34.378776000 UTC +00:00,
  updated_at: Mon, 31 Jan 2022 06:26:34.378776000 UTC +00:00> 
 
+-------------------------------------------------------------------------------------------------
+
 2. after_commit
 
 It will work for every commit like after every create, update or delete.
@@ -60,6 +62,7 @@ Example :
 Hey It will added                                                                  
  => #<Author:0x0000556270b8a9e8 id: 6, name: "Subhash Pandit", no_of_published_books: 4> 
 
+-----------------------------------------------------------------------------------------------
 
 3. before_validation
 
@@ -90,6 +93,8 @@ Student.create(id:110,name:"    Rahul Das                                     ",
  created_at: Mon, 31 Jan 2022 11:31:01.777916000 UTC +00:00,
  updated_at: Mon, 31 Jan 2022 11:31:01.777916000 UTC +00:00> 
 
+-----------------------------------------------------------------------------------------------
+
 4. after_validation
 
 Defines a callback that will get called right after validation.
@@ -108,4 +113,152 @@ You are validated successfully
 #<Student:0x000055f6488b1f98                            
 ... 
 
-5. 
+------------------------------------------------------------------------------------------------
+
+5. before_save and after_save
+
+Registers a callback to be called before a record is saved.
+
+Registers a callback to be called after a record is saved.
+
+Example :
+
+class Book < ApplicationRecord
+  before_save :before_save_message
+  after_save :after_save_message
+
+  def before_save_message
+    if self.author.present?
+      puts "copies = #{copies}"
+    else
+      puts "Please Enter copies"
+    end
+  end
+
+  def after_save_message
+    puts "author = #{Book.last.author.name}"
+  end
+end
+
+Query :
+
+ book = Book.create(id:1003,isbn:104569,name:"Chemistry class XII",author_id:2,price:780,copies:15)
+  TRANSACTION (0.7ms)  BEGIN
+  Book Exists? (1.2ms)  SELECT 1 AS one FROM "books" WHERE "books"."id" = $1 LIMIT $2  [["id", 1003], ["LIMIT", 1]]
+  Book Exists? (1.0ms)  SELECT 1 AS one FROM "books" WHERE "books"."isbn" = $1 LIMIT $2  [["isbn", 104569], ["LIMIT", 1]]
+  Author Load (0.6ms)  SELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2  [["id", 2], ["LIMIT", 1]]
+copies = 15                                                        
+  Book Create (0.9ms)  INSERT INTO "books" ("id", "isbn", "name", "author_id", "price", "copies") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["id", 1003], ["isbn", 104569], ["name", "Chemistry class XII"], ["author_id", 2], ["price", 780], ["copies", 15]]
+  Book Load (0.6ms)  SELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1  [["LIMIT", 1]]
+  Author Load (0.6ms)  SELECT "authors".* FROM "authors" WHERE "authors"."id" = $1 LIMIT $2  [["id", 2], ["LIMIT", 1]]
+author = S Chand                                                   
+  TRANSACTION (24.7ms)  COMMIT                                     
+ => #<Book:0x00007f023cae91c0 id: 1003, isbn: 104569, name: "Chemistry class XII", author_id: 2, price: 780, copies: 15> 
+
+-------------------------------------------------------------------------------------------
+
+6. before_update and after_update
+
+
+
+
+--------------------------------------------------------------------------------------------
+
+7. after_initialize
+
+The after_initialize callback will be called whenever an Active Record object is instantiated, either by directly using new or when a 
+record is loaded from the database. It can be useful to avoid the need to directly override your Active Record initialize method.
+
+Example :
+
+class Book < ApplicationRecord
+  after_initialize :default_values
+
+  private
+    def default_values
+      self.id ||= Book.last.id + 1
+    end
+end
+
+Query :
+
+author = Author.find(6)
+
+author.books.new.id
+  Book Load (1.0ms)  SELECT "books".* FROM "books" ORDER BY "books"."id" DESC LIMIT $1  [["LIMIT", 1]]
+ => 1006                       
+
+-------------------------------------------------------------------------------------------------
+
+8. before_destroy
+
+Registers a callback to be called before a record is destroyed. 
+
+Example :
+
+class Student < ApplicationRecord
+  before_destroy :fine_calculated
+  def fine_calculated
+      fine = 0
+      self.issues.each{|issue| if issue.return_date!=nil
+      fine = fine + ((issue.return_date - issue.issue_date)/(60*60*24)-15) * 10 else fine += issue.book.price end }
+      puts "Your Fine till now is Rs.#{fine.floor}"
+  end
+end
+
+Query :
+
+student = Student.third
+
+student.destroy
+
+TRANSACTION (0.6ms)  BEGIN
+  Issue Load (0.8ms)  SELECT "issues".* FROM "issues" WHERE "issues"."student_id" = $1  [["student_id", 103]]
+  Book Load (0.8ms)  SELECT "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2  [["id", 1005], ["LIMIT", 1]]
+Your Fine till now is Rs.1321                                  
+  Student Destroy (2.0ms)  DELETE FROM "students" WHERE "students"."id" = $1  [["id", 103]]
+  TRANSACTION (0.5ms)  ROLLBACK                                
+/usr/share/rvm/gems/ruby-3.0.1/gems/activerecord-7.0.1/lib/active_record/connection_adapters/postgresql_adapter.rb:768:in `exec_params': PG::ForeignKeyViolation: ERROR:  update or delete on table "students" violates foreign key constraint "fk_rails_ea791380de" on table "issues" (ActiveRecord::InvalidForeignKey)                                   
+DETAIL:  Key (id)=(103) is still referenced from table "issues".
+/usr/share/rvm/gems/ruby-3.0.1/gems/activerecord-7.0.1/lib/active_record/connection_adapters/postgresql_adapter.rb:768:in `exec_params': ERROR:  update or delete on table "students" violates foreign key constraint "fk_rails_ea791380de" on table "issues" (PG::ForeignKeyViolation)
+DETAIL:  Key (id)=(103) is still referenced from table "issues".
+
+--------------------------------------------------------------------------------------------------------
+
+9. before_create
+
+class Student < ApplicationRecord
+  before_create :otp_generator
+  private
+    def otp_generator
+      otp = (('0'..'9').to_a + ('a'..'z').to_a + ('A'..'Z').to_a).shuffle.first(4).join
+      puts "Your OTP is #{otp}"
+    end
+end
+
+Query : 
+
+section = Section.third
+
+section.students.create(name:"Deepak Sharma", city: "Delhi", mobile: 7856235895, dob: '2003-12-19',email:"deepak_sharma@gmail.com
+")
+
+Student Load (1.0ms)  SELECT "students".* FROM "students" ORDER BY "students"."id" DESC LIMIT $1  [["LIMIT", 1]]
+Your OTP is 7vLI                                                            
+  TRANSACTION (0.5ms)  BEGIN                                                
+  Student Create (1.5ms)  INSERT INTO "students" ("id", "name", "city", "mobile", "section_id", "dob", "created_at", "updated_at", "email") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["id", 112], ["name", "Deepak Sharma"], ["city", "Delhi"], ["mobile", 7856235895], ["section_id", 3], ["dob", "2003-12-19 00:00:00"], ["created_at", "2022-02-01 12:43:59.263352"], ["updated_at", "2022-02-01 12:43:59.263352"], ["email", "deepak_sharma@gmail.com"]]                                      
+======Age of Student is 19 =======                                          
+  TRANSACTION (25.4ms)  COMMIT                                              
+ =>                                                                         
+#<Student:0x000055c0ae4c3190                                        
+ id: 112,                                                           
+ name: "Deepak Sharma",                                             
+ city: "Delhi",
+ mobile: 7856235895,
+ section_id: 3,
+ dob: Fri, 19 Dec 2003 00:00:00.000000000 UTC +00:00,
+ created_at: Tue, 01 Feb 2022 12:43:59.263352000 UTC +00:00,
+ updated_at: Tue, 01 Feb 2022 12:43:59.263352000 UTC +00:00,
+ email: "deepak_sharma@gmail.com"> 
+
+-------------------------------------------------------------------------------------------------------------
