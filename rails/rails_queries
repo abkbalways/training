@@ -1,0 +1,42 @@
+Queries in rails,
+
+1. For Find the fine of books,
+
+fine = 0
+
+student.issues.each{|issue| if issue.return_date!=nil
+3.0.1 :234 > fine = fine + ((issue.return_date - issue.issue_date)/(60*60*24)-15) * 10 else fine += issue.book.price end }
+
+fine.floor
+ => 1321 
+
+---------------------------------------------------------------------------------------------------------------
+
+2. For Check the student return book or cross day limit during delete the issue entry
+
+class Issue < ApplicationRecord
+  before_destroy :validating_return
+  def validating_return
+    if self.return_date == nil || ((self.return_date - self.issue_date)/(60*60*24)).floor > 15
+      errors.add(:base, "Can't be destroy")
+      puts "#{self.student.name} don't return book #{self.book.name } till now or #{self.student.name} has some fine !"
+      throw :abort
+    end
+  end
+end
+
+Query : 
+
+issue = Issue.last
+
+issue.destroy
+  TRANSACTION (0.4ms)  BEGIN
+  Student Load (1.4ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 103], ["LIMIT", 1]]
+  Book Load (0.8ms)  SELECT "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2  [["id", 1005], ["LIMIT", 1]]
+Rajni Saraswat don't return book Mathematics class XII till now or Rajni Saraswat has some fine !
+  TRANSACTION (0.8ms)  ROLLBACK                 
+ => false                                  
+
+-------------------------------------------------------------------------------------------------------------------
+
+3. 
