@@ -262,3 +262,67 @@ Your OTP is 7vLI
  email: "deepak_sharma@gmail.com"> 
 
 -------------------------------------------------------------------------------------------------------------
+
+10. after_destroy
+
+Registers a callback to be called after a record is destroyed.
+
+Example :
+
+class Issue < ApplicationRecord
+  after_destroy :thanks_you_message
+  def thanks_you_message
+    puts "Thanks You #{self.student.name} for return book #{self.book.name} at before or on time !"
+  end
+end
+
+Query :
+
+issue = Issue.last
+
+issue.destroy
+  TRANSACTION (0.6ms)  BEGIN
+  Issue Destroy (1.1ms)  DELETE FROM "issues" WHERE "issues"."id" = $1  [["id", 36]]
+  Student Load (0.7ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 107], ["LIMIT", 1]]
+  Book Load (1.0ms)  SELECT "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2  [["id", 1005], ["LIMIT", 1]]
+Thanks You Tanisha Garg for return book Mathematics class XII at before or on time !
+  TRANSACTION (33.5ms)  COMMIT                               
+ =>                                                          
+#<Issue:0x000055c1acb04848                                   
+ id: 36,                                                     
+ book_id: 1005,                                              
+ student_id: 107,                                            
+ issue_date: Wed, 02 Feb 2022 06:39:51.138700000 UTC +00:00, 
+ return_date: Sun, 13 Feb 2022 00:00:00.000000000 UTC +00:00> 
+
+-------------------------------------------------------------------------------------------------------------
+
+11. after_update
+
+Registers a callback to be called after a record is updated.
+
+Example :
+
+class Issue < ApplicationRecord
+  after_update :count_book
+  def count_book
+    puts "Now Remaining Books on you : #{self.student.books.count}"
+  end
+end
+
+Query :
+
+issue = Issue.find(38)
+
+issue.update(return_date:'2022-02-12')
+  TRANSACTION (0.3ms)  BEGIN
+  Book Load (0.9ms)  SELECT "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2  [["id", 1001], ["LIMIT", 1]]
+  Student Load (0.7ms)  SELECT "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2  [["id", 108], ["LIMIT", 1]]
+  Book Count (1.0ms)  SELECT COUNT(*) FROM "books" INNER JOIN "issues" ON "books"."id" = "issues"."book_id" WHERE "issues"."student_id" = $1  [["student_id", 108]]
+Now Remaining Books on you : 3
+  TRANSACTION (0.4ms)  COMMIT
+ => true 
+
+--------------------------------------------------------------------------------------------------------------
+
+12. 
