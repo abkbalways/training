@@ -1,0 +1,13 @@
+<h2 style = "text-align:center;"><%= @info.name %></h2><br><hr><br>
+<h3 style = "text-align:center;color:red;">City : <%= @info.city %></h3>
+<h3 style = "text-align:center;color:red;">Section : <%= @info.section.name %></h3>
+<h3 style = "text-align:center;color:red;">HOD : <%= @info.section.head_of_section.name %></h3>
+<h3 style = "text-align:center;color:red;">Mobile : <%= @info.mobile %></h3>
+<h3 style = "text-align:center;color:red;">Age : <%= @age %></h3>
+<h3 style = "text-align:center;color:red;">Email : <%= @info.email %></h3>
+<h4 style = "text-align: center;">Issued Books</h4>
+<h5 style = "text-align: center;color:blue;">
+<% @books.each do |book| %>
+<%= link_to book.name, "/books/#{book.id}" %><br><br>
+<% end %>
+</h5>
