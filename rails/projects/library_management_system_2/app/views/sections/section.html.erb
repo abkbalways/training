@@ -1,0 +1,7 @@
+<h1 style = "text-align : center;">Sections</h1>
+<ul>
+
+<% @sections.each do |section| %>
+  <li style = "padding : 5px; color : blue; "><%= link_to section.name,"/sections/#{section.id}" %></li><br>
+<% end%>
+</ul>
