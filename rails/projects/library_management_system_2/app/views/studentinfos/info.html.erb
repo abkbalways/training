@@ -1,13 +1,34 @@
 <h2 style = "text-align:center;"><%= @info.name %></h2><br><hr><br>
-<h3 style = "text-align:center;color:red;">City : <%= @info.city %></h3>
-<h3 style = "text-align:center;color:red;">Section : <%= @info.section.name %></h3>
-<h3 style = "text-align:center;color:red;">HOD : <%= @info.section.head_of_section.name %></h3>
-<h3 style = "text-align:center;color:red;">Mobile : <%= @info.mobile %></h3>
-<h3 style = "text-align:center;color:red;">Age : <%= @age %></h3>
-<h3 style = "text-align:center;color:red;">Email : <%= @info.email %></h3>
+<h3 style = "text-align:center;color:green;">City : <%= @info.city %></h3>
+<h3 style = "text-align:center;color:green;">Section : <%= @info.section.name %></h3>
+<h3 style = "text-align:center;color:green;">HOD : <%= @info.section.head_of_section.name %></h3>
+<h3 style = "text-align:center;color:green;">Mobile : <%= @info.mobile %></h3>
+<h3 style = "text-align:center;color:green;">Age : <%= @age %></h3>
+<h3 style = "text-align:center;color:green;">Email : <%= @info.email %></h3>
+<%fine = 0%>
+
+
 <h4 style = "text-align: center;">Issued Books</h4>
 <h5 style = "text-align: center;color:blue;">
 <% @books.each do |book| %>
-<%= link_to book.name, "/books/#{book.id}" %><br><br>
+<% if Issue.find_by(student_id:@info.id,book_id:book.id).return_date == nil%>
+<%= link_to book.name, "/books/#{book.id}" %>
+<%= link_to "return_book", "#{@info.id}/books/#{book.id}/return" %>
+<br>
+<% else %>
+<%= link_to book.name, "/books/#{book.id}" %><br>
+<%end %>
+
+
+<% if Issue.find_by(student_id:@info.id,book_id:book.id).return_date? %>
+<% days = ((Issue.find_by(student_id:@info.id,book_id:book.id).return_date - Issue.find_by(student_id:@info.id,book_id:book.id).issue_date)/(60*60*24)).floor %><br>
+<% else %>
+<% days = (-(Issue.find_by(student_id:@info.id,book_id:book.id).issue_date - DateTime.current)/(60*60*24)).floor %><br>
 <% end %>
+<% if days>15 %>
+<%fine += (days-15)*10 %>
+<% end %>
+<% end %>
+<h3 style = "text-align:center;color:red;">Fine : <%= fine %></h3>
 </h5>
+<%= link_to "Issue New Book", "/students/#{@info.id}/books"%>
