@@ -1,0 +1,24 @@
+<style>
+#a1{
+  border: 2px solid black;
+  padding: 10px; 
+  color: white;
+  background-color:black;
+  text-decoration:none;
+}
+#a1:hover{
+  color:black;
+  background-color:white;
+}
+
+</style>
+
+<h2 style = "text-align:center;color:maroon;  "><%= @student.name.upcase %></h2> 
+<h3 style = "text-align:center;color:black ;">City : <%= @student.city %></h3>
+<h3 style = "text-align:center;color:black;">Section : <%= @student.section.name %></h3>
+<h3 style = "text-align:center;color:black;">HOD : <%= @student.section.head_of_section.name %></h3>
+<h3 style = "text-align:center;color:black;">Mobile : <%= @student.mobile %></h3>
+<h3 style = "text-align:center;color:black;">Age : <%= @age %></h3>
+<h3 style = "text-align:center;color:black;">Email : <%= @student.email %></h3>
+<br><br>
+<center><a href="/" id="a1" ><b>Go To Back</b></a></center>
