@@ -11,16 +11,16 @@ class Student < ApplicationRecord
   end
   validates :dob, presence: true
   belongs_to :section
-  has_many :issues
+  has_many :issues, dependent: :destroy
   has_many :books, through: :issues
-  #has_and_belongs_to_many :books
+  has_and_belongs_to_many :books
 
   after_validation :successfully_validation
   before_validation :remove_whitespaces
   after_create :display_student_age
   after_initialize :default_values
   before_destroy :fine_calculated
-  before_create :otp_generator
+  # before_create :otp_generator
 
   private
     def fine_calculated
