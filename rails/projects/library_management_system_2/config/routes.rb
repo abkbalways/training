@@ -2,14 +2,18 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-   root "front#index"
+   root "students#index"
+ 
+   get "/students/new" => "students#new"
+   get "/students/:id" => "students#show"
+   post "/students/create"
   #  get "authors/:id" => "authors#author"
    get "/authors" => "authors#author"
    get "/sections" => "sections#section"
    get "/authors/:aid" => "books#book"
    get "/sections/:id" => "students#student"
    get "/books/:id" => "booksinfos#info"
-   get "/students/:id" => "studentinfos#info"
+  #  get "/students/:id" => "studentinfos#info"
    get "/students/:id/authors" =>"authors#author"
    get "/students/:id/authors/:aid" => "books#book"
   #  get "/students/:id/books/:bid" => "Issues#issue"
