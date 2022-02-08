@@ -3,7 +3,7 @@
 <h1> <center>All Students </center></h1>
 
 <% @students.each do |student|%>
-  <%= student.name %> <%=link_to "show","/students/#{student.id}" %><br><br><br>
+  <%= student.name %> <%=link_to "show","/students/#{student.id}" %> <%= button_to "Delete","/students/#{student.id}",:method => :delete %><%=link_to "Update","/students/edit/#{student.id}" %><br><br><br>
 <% end %>
 <br><br>
 <a href = "students/new">Create New Student</a>
