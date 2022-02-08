@@ -1,143 +1,26 @@
+<% if @student.errors.any? %>
+<h2 style ="color:red; text-align:center;"><%= pluralize(@student.errors.count, "error") %> prohibited this doctor from being saved:</h2>
+<ul>
+        <% @student.errors.each do |error| %>
+          <li style="font-family:Ubuntu;text-align:center;"><%= error.full_message %></li>
+        <% end %>
+</ul>
+<% end %>
 
-    <style>
-      body{
-        /* border: 2px solid black; */
-        height:auto;
-      }
-      #form-area{
-        width:50%;
-        margin-left: auto;
-        margin-right: auto;
-        border: 2px solid black;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        /* height:570px; */
-        }
-      h1{
-        text-align: center;
-        margin-top: 0px;;
-        font-family: Ubuntu;
-        background-color: black;
-        color: white;
-        padding: 5px;
-        line-height:50px ;
-      }
-      
-      #name,#city,#mobile,#dob,#email,#section_id{
-        color:grey  ;
-        float: right;
-        margin-right: 70px;
-        border: 2px solid black;
-        height: 30px;
-        width: 200px;
-      }
-      #sex{
-        color:black;
-        float:right;
-        margin-right: 140px;
-        line-height:20px ;
-        margin-top: 10px;
-        font-family:Lato Medium ;
-        
-
-      }
-      #city,#section_id{
-        width: 206px;
-      }
-      #heading{
-        color:black;
-        float: left;
-        margin-left: 70px;
-        line-height: 35px;
-        font-family:Lato Medium ;
-      }
-      .check{
-        margin-left: 30%; 
-        
-      }
-      .check2{
-        margin-left: 35%;
-      }
-      #text{
-        font-family: Lato Medium;
-        color:maroon;
-      }
-      #submit{
-        background-color: black;
-        color:white;
-        width:50%;
-        line-height: 50px;
-        border:1px solid white;
-        font-size: 20px; 
-      }
-      #submit:hover{
-        background-color: white;
-        color:black;
-        border:1px solid black;
-      }
-    </style>
+<div id="box">
+<h1>ADD NEW STUDENT</h1>
+<%= form_for @student do |form| %>
+  <label for = "name" id = "heading">Enter Your Name : </label><%= form.text_field "name" %><br><br><br clear = "all">
+  <label for = "mobile" id = "heading">Enter Yout Mobile No. : </label><%= form.phone_field "mobile"%><br><br><br clear = "all">
+  <label for = "city" id = "heading">Select Your City : </label><%= form.select "city" ,[['Gurugram','Gurugram'],['Delhi','Delhi'],['Faridabad','Faridabad'],['Noida','Noida'],['Ghaziabad','Ghaziabad']]%><br><br><br clear = "all">
+  <label for = "section" id = "heading">Select Your Section : </label><%= form.select "section_id",[['Eighth','5'],['Ninth','5'],['Tenth','2'],['Eleventh','3'],['Twelfth','4']]%><br><br><br clear = "all">
+  <label for = "dob" id = "heading">Select Your Date of Birth : </label><%= form.date_field("dob") %><br><br><br clear = "all">
+  <label for = "email" id = "heading">Enter Your Email : </label><%= form.email_field "email" %><br><br><br><br clear = "all">
+  <center><label for = "accept" id = "check"><%= check_box("accept",{checked: true}) %> I have accepted all terms and conditions</center></label><br>
+  <center><label for = "confirm" id = "check"><%= check_box("Confirm",{checked: true}) %> I confirm all Information is true</center></label><br>
   
-
-    <div id="form-area">
-      <h1>ADD NEW STUDENT</h1>
-      <form action = "/students/create" method = "post"  id="student">
-        <label for="name" id = "heading"><b>Enter Your Name</b></label>
-        <input type="text" placeholder="Enter Your Name" name="name" id="name" required/><br><br>
-        <br clear="all">
-
-        <label for="city" id = "heading"><b>Select Your Current City</b></label>
-        <select name="city" id="city" required>
-          <option value="Gurugram">Gurugram</option>
-          <option value="Faridabad">Faridabad</option>
-          <option value="Delhi">Delhi</option>
-          <option value="Noida">Noida</option>
-          <option value="Ghaziabad">Ghaziabad</option>
-        </select>
-        <br><br><br clear="all">
-
-        <label for="mobile" id = "heading"><b>Enter Your Moblie No.</b></label>
-        <input type="tel" placeholder="Enter Your Mobile No." name="mobile" id="mobile" required/><br><br>
-        <br clear="all">
-
-        <label for="section_id" id="heading"><b>Select Your Section</b></label>
-        <select name="section_id" id="section_id" required>
-          <option value=5>Eighth</option>
-          <option value=1>Ninth</option>
-          <option value=2>Tenth</option>
-          <option value=3>Eleventh</option>
-          <option value=4>Twelfth</option>
-        </select>
-        <br><br><br clear="all">
-
-        <label for="sex" id="heading"><b>Select Your Sex</b></label>
-        <div id="sex">
-          <input type="radio" id="male" name="sex" value="male">
-          <label for="male">Male</label>
-          <input type="radio" id="female" name="sex" value="female">
-          <label for="female">Female</label>
-          <br><br>
-        </div><br clear="all">
-
-        <label for="dob" id="heading"><b>Select Your Date of Birth</b></label>
-        <input type="date" id="dob" name="dob" value="dob" required/><br><br>
-        <br clear="all">
-
-        <label for="email" id="heading"><b>Enter Your Email</b></label>
-        <input type="email" id="email" name="email" placeholder="email" required/><br><br>
-        <br clear="all">
-
-        <input type="checkbox" id="terms" name="terms" class="check" required>
-        <label for="terms" id="text">I have accepted all terms and conditions</label>
-        <br><br clear="all">
-
-        <input type="checkbox" id="info" name="info" class="check2" required>
-        <label for="info" id="text">I cofirm all Information is true.</label>
-        <br><br clear="all">
-
-        <button type="submit" style="float:left;" value="Submit" id="submit">Submit</button>
-        <input type="reset" style="float:right;"value="Clear Information" id="submit">
-        <br clear="all">
-      </form>
-    </div>
-  </body>
-</html>
+  <br>
+  <%= form.submit style:"width:100%;background-color:black;color:white;line-height:50px;padding:5px;font-size:30px;"%><br>
+ 
+<% end %>
+</div>
