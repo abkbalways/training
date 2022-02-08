@@ -13,3 +13,44 @@
  *= require_tree .
  *= require_self
  */
+#heading{
+  color:black;
+  float: left;
+  margin-left: 30px;
+  padding : 10px;
+  font-family:Lato Medium ;
+  line-height: 30px;
+}
+#student_name,#student_city,#student_mobile,#student_email,#student_section_id,#student_dob{
+  float:right;
+  margin-right: 30px;
+  padding: 10px;
+  margin-top: 5px;
+  width: 200px;
+  border: 2px solid black;
+}
+#student_city,#student_section_id{
+  width: 220px;
+}
+#box{
+  width: 50%;
+  margin-right: auto;
+  margin-left: auto;
+  border : 2px solid black;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+h1{
+  text-align: center;
+  background-color: black;
+  color: white;
+  margin-top: 0px;
+  padding: 5px;
+  font-family: Ubuntu;
+  line-height: 50px;
+}
+#check{
+  color:maroon;
+  font-family: Lato Medium;
+}
+
