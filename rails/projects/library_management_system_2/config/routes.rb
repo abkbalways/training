@@ -3,14 +3,20 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
    root "front#index"
+
+   get "/students/search" => "students#search"
+   get "/look" => "students#index"
    get "/students" => "students#index"
    get "/students/new" => "students#new"
    get "/students/:id" => "students#show"
    post "/students" => "students#create"
-   patch "students/:id" => "students#update"
+  #  patch "students/:id" => "students#update"
    get "/students/edit/:id" => "students#edit"
    delete "/students/:id" => "students#delete"
    resources :students
+   
+
+    
   #  delete "/students/:id" => 
   #  get "authors/:id" => "authors#author"
    get "/authors" => "authors#author"
