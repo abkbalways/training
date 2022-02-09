@@ -32,6 +32,13 @@
 #student_city,#student_section_id{
   width: 220px;
 }
+.gender{
+  float:right;
+  margin-right: 110px;
+  margin-top: 5px;
+  padding: 10px;
+  font-family:Lato Medium ;
+}
 #box{
   width: 50%;
   margin-right: auto;
