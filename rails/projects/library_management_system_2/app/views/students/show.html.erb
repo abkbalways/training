@@ -19,6 +19,8 @@
 <h3 style = "text-align:center;color:black;">HOD : <%= @student.section.head_of_section.name %></h3>
 <h3 style = "text-align:center;color:black;">Mobile : <%= @student.mobile %></h3>
 <h3 style = "text-align:center;color:black;">Age : <%= @age %></h3>
+<h3 style = "text-align:center;color:black;">Gender : <%= @student.gender %></h3>
 <h3 style = "text-align:center;color:black;">Email : <%= @student.email %></h3>
+<center><%=link_to "Update","/students/edit/#{@student.id}" %></center>
 <br><br>
 <center><a href="/students" id="a1" ><b>Go To Back</b></a></center>
