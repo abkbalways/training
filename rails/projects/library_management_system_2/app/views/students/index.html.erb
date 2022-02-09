@@ -1,9 +1,61 @@
 
 
+
+
+<%= form_with url: "/look", method: :get do |form| %>
+  <%= form.label :query1, "Search For First Letter :" %>
+  <%= form.text_field :query1 %><br><br>
+  <%= form.label :query2, "Search For DOB Less Than :" %>
+  <%= form.date_field :query2 %><br><br>
+  <%= form.label :query3, "Search For Age Greater Than :" %>
+  <%= form.text_field :query3 %><br><br>
+  <%= form.submit "Search" %>
+<% end %>
+<br>
+
+<% if @age!=nil and @age!= "" %>
+<h1>Students With Age Greater than  <%= @age.to_i %></h1><br>
+  <% @studentsbyage.each do |student|%>
+    <%= student.name %> <%=link_to "show","/students/#{student.id}" %> <%=  button_to "Delete","/students/#{student.id}",:method => :delete %><%=link_to "Update","/students/edit/#{student.id}" %><br><br><br>
+  <% end %>
+<% end %>
+
+<% if @text!="" && @text!=nil && !defined?(@studentsbyboth)%>
+<h1>Students With Starting of Name <%= @text.capitalize %></h1><br>
+  <% @studentsbyname.each do |student|%>
+    <%= student.name %> <%=link_to "show","/students/#{student.id}" %> <%=  button_to "Delete","/students/#{student.id}",:method => :delete %><%=link_to "Update","/students/edit/#{student.id}" %><br><br><br>
+  <% end %>
+<% end %>
+<br>
+
+<% if @dob!="" && @dob!=nil  && !defined?(@studentsbyboth) %>
+<h1>Students With DOB less than  <%= DateTime.parse(@dob).strftime("%d %b %Y") %></h1><br>
+  <% @studentsbydob.each do |student|%>
+    <%= student.name %> <%=link_to "show","/students/#{student.id}" %> <%=  button_to "Delete","/students/#{student.id}",:method => :delete %><%=link_to "Update","/students/edit/#{student.id}" %><br><br><br>
+  <% end %>
+  <br>
+<% end %>
+
+<% if defined?(@studentsbyboth) and @studentsbyboth.count != 0 %>
+<h1>Students With Both </h1><br>
+  <% @studentsbyboth.each do |student|%>
+    <%= student.name %> <%=link_to "show","/students/#{student.id}" %> <%=  button_to "Delete","/students/#{student.id}",:method => :delete %><%=link_to "Update","/students/edit/#{student.id}" %><br><br><br>
+  <% end %>
+<% end %>
+<br>
+
+
+
+
 <h1> <center>All Students </center></h1>
 
 <% @students.each do |student|%>
-  <%= student.name %> <%=link_to "show","/students/#{student.id}" %> <%= button_to "Delete","/students/#{student.id}",:method => :delete %><%=link_to "Update","/students/edit/#{student.id}" %><br><br><br>
+  <%= student.name %> <%=link_to "show","/students/#{student.id}" %> <%=  button_to "Delete","/students/#{student.id}",:method => :delete %><%=link_to "Update","/students/edit/#{student.id}" %><br><br><br>
 <% end %>
 <br><br>
 <a href = "students/new">Create New Student</a>
+<br>
+
+
+
+
