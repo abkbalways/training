@@ -1,5 +1,5 @@
 <div id="box">
-<h1>UPDATE STUDENT</h1>
+<h1>UPDATE <%= @student.name.upcase %></h1>
 <%= form_for @student do |form| %>
   <label for = "name" id = "heading">Enter Your Name : </label><%= form.text_field "name" %><br><br><br clear = "all">
   <label for = "mobile" id = "heading">Enter Yout Mobile No. : </label><%= form.phone_field "mobile"%><br><br><br clear = "all">
@@ -7,11 +7,15 @@
   <label for = "section" id = "heading">Select Your Section : </label><%= form.select "section_id",[['Eighth','5'],['Ninth','5'],['Tenth','2'],['Eleventh','3'],['Twelfth','4']]%><br><br><br clear = "all">
   <label for = "dob" id = "heading">Select Your Date of Birth : </label><%= form.date_field("dob") %><br><br><br clear = "all">
   <label for = "email" id = "heading">Enter Your Email : </label><%= form.email_field "email" %><br><br><br><br clear = "all">
-  <center><label for = "accept" id = "check"><%= check_box("accept",{checked: true}) %> I have accepted all terms and conditions</center></label><br>
-  <center><label for = "confirm" id = "check"><%= check_box("Confirm",{checked: true}) %> I confirm all Information is true</center></label><br>
+  <label for = "gender" id = "heading">Select Your Gender: </label>
+  <div class = "gender">
+  <%= form.radio_button "gender","male" %>Male
+  <%= form.radio_button "gender","female" %>Female
+  </div>
+  <br>
   
   <br>
-  <%= form.submit %><br>
+  <%= form.submit style:"width:100%;background-color:black;color:white;line-height:50px;padding:5px;font-size:30px;"%><br>
  
 <% end %>
 </div>
