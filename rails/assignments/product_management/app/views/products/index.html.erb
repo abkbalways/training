@@ -1,0 +1,29 @@
+
+<p class = "upper_right_links" ><%= link_to "Create Product", "/products/new" %> | <%= link_to "Logout", "/users/logout" %></p>
+<br clear= "all"><br clear="all">
+<%= flash[:message] %>
+<% if @products.count == 0 %>
+<br><br>
+  <center><h3>You Dont have any Product, Please click for create Products <%= link_to "Create Product", "/products/new" %></center>
+
+<% else %>
+<center><h2>All Products</h2></center><clear ="all"><br>
+<table id= "products_table">
+<tr>
+<th>Name</th>
+<th>Price</th>
+<th>Actions</th>
+<tr>
+<% @products.each do |product| %>
+  <tr>
+  <td><%= product.name %></td>
+  <td><%= product.price %></td>
+  <td><%= link_to "Edit", "products/#{product.id}/edit", :class =>"edit_link" %>
+  <%= button_to "Delete", "/products/#{product.id}", :method => :delete, :class =>"delete_button" %>
+  </td>
+  
+  </tr>
+
+<% end %>
+</table>
+<% end %>

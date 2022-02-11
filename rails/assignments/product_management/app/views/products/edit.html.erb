@@ -1,0 +1,21 @@
+<p class = "upper_right_links" ><%= link_to "List Products", "/products" %> | <%= link_to "Logout", "/users/logout" %></p>
+<br clear= "all"><br clear="all">
+<% if @product.errors.any? %>
+
+<% @product.errors.each do |error| %>
+<p class= "errors"><%= error.full_message %></p>
+<% end %><br>
+
+<% end %>
+<br><br>
+<div id = "box">
+<h1> UPDATE  &nbsp; <%= @product.name.upcase %></h1>
+<%= form_for @product do |form| %>
+  <%= form.label :name, "Enter Product Name: ",class:"heading" %>
+  <%= form.text_field :name %><br><br>
+  <%= form.label :price, "Enter Product Price: ",class:"heading" %>
+  <%= form.text_field :price %><br><br><br>
+  <center><%= form.submit "Update Product", :class=>"update_product_button" %></center>
+  <br clear="all">
+<% end %> 
+</div>
