@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   root "users#login"
   get "/index" => "users#login"
   get "/users/new" => "users#new"
-  resources :users
+  get "/users/logout" => "users#logout"
+  delete "/products/:id" => "products#destroy"
+  resources :users 
   resources :products
 end
