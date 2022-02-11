@@ -3,4 +3,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  root "users#login"
+  get "/index" => "users#login"
+  get "/users/new" => "users#new"
+  resources :users
+  resources :products
 end
