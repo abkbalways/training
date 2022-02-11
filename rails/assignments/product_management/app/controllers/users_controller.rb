@@ -4,14 +4,11 @@ class UsersController < ApplicationController
     @username = params[:username]
     @password = params[:password]
     user = User.find_by(username:params[:username])
-    @id = 0
     if @username!="" and @username!=nil 
       if  user!=nil and user.username == @username and user.password == @password
         session[:user_id] = user.id
-        redirect_to "/users/new"
-        @id = 0
+        redirect_to "/products"
       else
-        @id = 1
         render "login"
       end
     end
@@ -29,6 +26,11 @@ class UsersController < ApplicationController
     else 
       render "new" , status: :unprocessable_entity
     end
+  end
+
+  def logout 
+    session[:user_id] = nil
+    redirect_to "/"
   end
 
   private 
