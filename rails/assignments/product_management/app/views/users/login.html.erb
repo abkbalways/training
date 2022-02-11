@@ -1,3 +1,4 @@
+<%= flash[:message] %>
 <p class = "upper_right_links" ><%= link_to "Register", "/users/new" %> | <%= link_to "Login", "/" %></p>
 <br clear= "all"><br clear="all">
 
@@ -5,7 +6,7 @@
 <p class ="errors">Your UserName or password is incorrect</p>
 <% end %>
 <br><br>
-<div id = "login"> 
+<div id = "box"> 
 <h1>LOGIN</h1>
 <%= form_with url: "/index", method: :get do |form| %>
   <%= form.label :username, "Enter Your Username :" , class:"heading" %>
