@@ -13,3 +13,90 @@
  *= require_tree .
  *= require_self
  */
+#footer{
+  color:white;
+  background-color: black;
+  padding: 5px;
+  text-align: center;
+  margin-top: 90px;
+  width: 98%;
+  font-family: Ubuntu;
+  font-size: 17px;
+  margin-left: 0px;
+}
+#login{
+  border: 2px solid black;
+  width:50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+#username,#password{
+  float: right;
+  margin-right: 70px;
+}
+.heading{
+  float: left;
+  margin-left: 70px;
+  font-family:  Ubuntu;
+}
+
+h1{
+  background-color: black;
+  color:white;
+  margin-top: 0px;
+  margin-bottom: 30px;
+  padding: 20px;
+  text-align: center;
+  font-family: Ubuntu;
+}
+.login_button{
+  width:20%;
+  color:white;
+  background-color:black;
+  padding:10px;
+  font-size:16px;
+}
+.login_button:hover{
+  color:black;
+  background-color: white;
+}
+.errors{
+  margin-left: 500px;
+  margin-right: auto;
+  color:red;
+  font-family: Ubuntu;
+}
+.upper_right_links{
+float:right;
+margin-right:50px;
+
+}
+.upper_right_links a{
+
+}
+.signup_heading{
+  float: left;
+  margin-left: 70px;
+  font-family:  Ubuntu;
+}
+.signup_button{
+  width:20%;
+  color:white;
+  background-color:black;
+  padding:10px;
+  font-size:16px;
+}
+#user_username,#user_password,#user_password_confirmation,#user_dob,#user_address{
+  float: right;
+  margin-right: 70px;
+}
+.terms{
+ float: right;
+ margin-right: 140px;
+ margin-top: 0px;
+ font-family: Ubuntu;
+}
+#user_terms{
+  margin-left: 180px;
+  float: left;
+}
