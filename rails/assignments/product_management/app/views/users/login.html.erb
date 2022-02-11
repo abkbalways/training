@@ -1,0 +1,18 @@
+<p class = "upper_right_links" ><%= link_to "Register", "/users/new" %> | <%= link_to "Login", "/" %></p>
+<br clear= "all"><br clear="all">
+
+<% if @id == 1 %>
+<p class ="errors">Your UserName or password is incorrect</p>
+<% end %>
+<br><br>
+<div id = "login"> 
+<h1>LOGIN</h1>
+<%= form_with url: "/index", method: :get do |form| %>
+  <%= form.label :username, "Enter Your Username :" , class:"heading" %>
+  <%= form.text_field :username %><br><br>
+  <%= form.label :password, "Enter Your Password :" , class:"heading"  %>
+  <%= form.password_field :password %><br><br><br>
+  <center><%= form.submit "Login" , :class => "login_button"%></center>
+  <br>
+<% end %>
+</div>

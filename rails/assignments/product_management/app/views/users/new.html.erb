@@ -1,0 +1,29 @@
+<p class = "upper_right_links" ><%= link_to "Register", "/users/new" %> | <%= link_to "Login", "/" %></p>
+<br clear= "all"><br clear="all">
+
+
+<% if @user.errors.any? %>
+
+<% @user.errors.each do |error| %>
+<p class="errors"><%= error.full_message  %></p>
+<% end %><br>
+
+<% end %>
+<div id = "login">
+<h1>REGISTER</h1>
+<%= form_for @user do |form| %>
+  <%= form.label :username, "Enter Your Username: ",class:"signup_heading" %>
+  <%= form.text_field :username %><br><br>
+  <%= form.label :password, "Enter Your Password: ",class:"signup_heading" %>
+  <%= form.password_field :password %><br><br>
+  <%= form.label :password_confirmation, "Confirm Your Password: ",class:"signup_heading" %>
+  <%= form.password_field :password_confirmation %><br><br>
+  <%= form.label :dob, "Enter Your DOB: ",class:"signup_heading" %>
+  <%= form.date_field :dob %><br><br>
+  <%= form.label :address, "Enter Your Address: ",class:"signup_heading" %>
+  <%= form.text_field :address %><br><br><br>
+
+ <%= form.check_box :terms %> <p class = "terms">I agree to the All Terms and conditions.</p><br><br clear="all">
+  <center><%= form.submit "Create",:class => "signup_button" %></center><br>
+<% end %>
+</div> 
