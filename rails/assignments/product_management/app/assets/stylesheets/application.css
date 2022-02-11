@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
 #footer{
   color:white;
   background-color: black;
@@ -22,9 +23,9 @@
   width: 98%;
   font-family: Ubuntu;
   font-size: 17px;
-  margin-left: 0px;
+  margin-left: 3px;
 }
-#login{
+#box{
   border: 2px solid black;
   width:50%;
   margin-left: auto;
@@ -39,7 +40,6 @@
   margin-left: 70px;
   font-family:  Ubuntu;
 }
-
 h1{
   background-color: black;
   color:white;
@@ -48,17 +48,6 @@ h1{
   padding: 20px;
   text-align: center;
   font-family: Ubuntu;
-}
-.login_button{
-  width:20%;
-  color:white;
-  background-color:black;
-  padding:10px;
-  font-size:16px;
-}
-.login_button:hover{
-  color:black;
-  background-color: white;
 }
 .errors{
   margin-left: 500px;
@@ -69,22 +58,27 @@ h1{
 .upper_right_links{
 float:right;
 margin-right:50px;
+font-size: 20px;
+font-family: Ubuntu;
+text-decoration: none;
 
 }
 .upper_right_links a{
-
+  text-decoration: none;
 }
 .signup_heading{
   float: left;
   margin-left: 70px;
   font-family:  Ubuntu;
 }
-.signup_button{
-  width:20%;
+.signup_button,.create_product_button,.update_product_button, .login_button{
+  width:25%;
   color:white;
   background-color:black;
   padding:10px;
   font-size:16px;
+  font-weight:bold;
+  border: 2px solid white;
 }
 #user_username,#user_password,#user_password_confirmation,#user_dob,#user_address{
   float: right;
@@ -100,3 +94,43 @@ margin-right:50px;
   margin-left: 180px;
   float: left;
 }
+table,th,td{
+  border: 2px solid black;
+  border-collapse: collapse;
+  padding : 10px;
+  font-family: Ubuntu;
+}
+  th{
+    width:120px;
+}
+  td,th{
+    line-height: 15px;
+
+}
+  table{
+    margin-left:auto;
+    margin-right:auto;
+}
+  .delete_button,.edit_link{
+    margin-top: 5px;
+    margin-left: 10px;
+    text-decoration: none;
+}
+  #product_name,#product_price{
+    float: right;
+    margin-right: 70px;
+}
+    .delete_button{
+      float: right;
+      margin-top: -20px;
+}
+    
+    .create_product_button:hover ,.signup_button:hover ,.login_button:hover, .update_product_button:hover{
+      color:black;
+      background-color: white;
+      border: 2px solid black;
+}
+    h2{
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+  
