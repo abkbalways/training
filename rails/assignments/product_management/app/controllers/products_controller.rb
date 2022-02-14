@@ -2,7 +2,14 @@ class ProductsController < ApplicationController
   before_action :user_login
 
   def index
-    @products = Product.where(user_id:session[:user_id])
+    if params[:name] != nil
+      flash[:alert] = "No Products Found with that name"
+      @name = params[:name]
+      @products = Product.where(user_id:session[:user_id],name:params[:name].strip.capitalize)
+    else
+      
+      @products = Product.where(user_id:session[:user_id])
+    end
   end
   
   def new
