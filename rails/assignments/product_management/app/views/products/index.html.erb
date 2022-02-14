@@ -1,10 +1,17 @@
 
+<p class = "search">
+<%= form_with url: "/products/index", method: :get do |search| %>
+  <%= search.text_field :name %>
+  <%= search.submit "Search" , :class => "button"%>
+<% end %>
+
+
 <p class = "upper_right_links" ><%= link_to "Create Product", "/products/new" %> | <%= link_to "Logout", "/users/logout" %></p>
 <br clear= "all"><br clear="all">
 <%= flash[:message] %>
+
 <% if @products.count == 0 %>
-<br><br>
-  <center><h3>You Dont have any Product, Please click for create Products <%= link_to "Create Product", "/products/new" %></center>
+<%= flash[:alert] %>
 
 <% else %>
 <center><h2>All Products</h2></center><clear ="all"><br>
@@ -26,4 +33,10 @@
 
 <% end %>
 </table>
+ 
+<% end %>
+
+<% if @name != nil %>
+  <br><br>
+  <center><%= button_to "All Products", "/products",:method=>:get, :class=>"all_products_button" %></center>
 <% end %>
