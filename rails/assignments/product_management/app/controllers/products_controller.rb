@@ -5,10 +5,10 @@ class ProductsController < ApplicationController
     if params[:name] != nil
       flash[:alert] = "No Products Found with that name"
       @name = params[:name]
-      @products = Product.where(user_id:session[:user_id],name:params[:name].strip.capitalize)
+      @products = Product.where(user_id:session[:user_id],name:params[:name].strip.capitalize).paginate(page: params[:page])
     else
       
-      @products = Product.where(user_id:session[:user_id])
+      @products = Product.where(user_id:session[:user_id]).paginate(page: params[:page])
     end
   end
   
