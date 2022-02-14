@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get "/users/new" => "users#new"
   get "/users/logout" => "users#logout"
   delete "/products/:id" => "products#destroy"
+  get "/products/index" => "products#index"
   resources :users 
   resources :products
 end
