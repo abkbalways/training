@@ -71,7 +71,7 @@ text-decoration: none;
   margin-left: 70px;
   font-family:  Ubuntu;
 }
-.signup_button,.create_product_button,.update_product_button, .login_button{
+.signup_button,.create_product_button,.update_product_button, .login_button, .all_products_button{
   width:25%;
   color:white;
   background-color:black;
@@ -125,7 +125,7 @@ table,th,td{
       margin-top: -20px;
 }
     
-    .create_product_button:hover ,.signup_button:hover ,.login_button:hover, .update_product_button:hover{
+    .all_products_button:hover,.create_product_button:hover ,.signup_button:hover ,.login_button:hover, .update_product_button:hover{
       color:black;
       background-color: white;
       border: 2px solid black;
@@ -138,4 +138,7 @@ table,th,td{
       margin-top: -20px;
       
 }
-  
+    .all_products_button{
+      width:13%;
+    }
+    
