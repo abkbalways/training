@@ -1,13 +1,6 @@
 class ProductsController < ApplicationController
   before_action :user_login
 
-  def user_login
-    if session[:user_id] == nil
-      flash[:message]= "You Must be Login :)"
-      redirect_to "/"
-    end
-  end
-
   def index
     @products = Product.where(user_id:session[:user_id])
   end
@@ -44,12 +37,22 @@ class ProductsController < ApplicationController
   def destroy
     @product = Product.find_by(id:params[:id])
     @product.destroy
+    flash[:message]= "Product Deleted Successfully !"
     redirect_to "/products"
   end
 
 
   private 
+  
   def product_params
     params.require(:product).permit(:name, :price)
   end
+  
+  def user_login
+    if session[:user_id] == nil
+      flash[:message]= "You Must be Login :)"
+      redirect_to "/"
+    end
+  end
+
 end
