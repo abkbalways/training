@@ -2,13 +2,19 @@ class ProductsController < ApplicationController
   before_action :user_login
 
   def index
-    if params[:name] != nil
-      flash[:alert] = "No Products Found with that name"
-      @name = params[:name]
-      @products = Product.where(user_id:session[:user_id],name:params[:name].strip.capitalize).paginate(page: params[:page])
-    else
-      
+    @name = params[:name]
+    @price = params[:price]
+    if @price == nil && @name == nil || @name == "" && @price == "0"
       @products = Product.where(user_id:session[:user_id]).paginate(page: params[:page])
+      elsif  @name !="" && @price == "0"
+        @products = Product.where(user_id:session[:user_id],name:params[:name].strip.capitalize).paginate(page: params[:page])
+        flash[:alert] = "No Products Found with that name."
+      elsif  @price != 0 && @name ==""
+        @products = Product.where(user_id:session[:user_id]).where("price < ?","#{@price}").paginate(page: params[:page])
+        flash[:alert] = "No Products Found with less than that price."
+    else
+      @products = Product.where(user_id:session[:user_id]).where(name:params[:name].strip.capitalize).where("price < ?","#{@price}").paginate(page: params[:page])
+      flash[:alert] = "No Products Found with that name and less than that price."      
     end
   end
   
