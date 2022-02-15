@@ -141,4 +141,15 @@ table,th,td{
     .all_products_button{
       width:13%;
     }
+    #search{
+      width:50%;
+      margin-left: 25% ;
+    }
+    #price,#name{
+      margin-left: 20px;
+    }
+    .search_button{
+      margin-left: 270px;
+      margin-right: auto;
+    }
     
