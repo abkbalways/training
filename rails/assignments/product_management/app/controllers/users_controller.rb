@@ -24,6 +24,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     # debugger
     if @user.save 
+      UserMailer.welcome_email(@user).deliver_now
       flash[:message] = "Register Successfully !"
       redirect_to "/"
     else 
