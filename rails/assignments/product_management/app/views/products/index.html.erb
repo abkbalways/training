@@ -1,17 +1,22 @@
-
-<p class = "search">
-<%= form_with url: "/products/index", method: :get do |search| %>
-  <%= search.text_field :name %>
-  <%= search.submit "Search" , :class => "button"%>
-<% end %>
-
-
 <p class = "upper_right_links" ><%= link_to "Create Product", "/products/new" %> | <%= link_to "Logout", "/users/logout" %></p>
 <br clear= "all"><br clear="all">
 <%= flash[:message] %>
 
-<% if @products.count == 0 %>
-<%= flash[:alert] %>
+<div id = "search">
+<p class = "search">
+<%= form_with url: "/products/index", method: :get do |search| %>
+  <%= search.label :name, "Search By Name", class:"heading" %>
+  <%= search.text_field :name %><br><br clear = "all">
+  <%= search.label :price, "Search By Price ", class:"heading"  %>
+  <%= search.range_field :price,value: 0, :min => 0, :max => 1000, :class => "form-range" %><br><br clear = "all">
+  <%= search.submit "Search" , :class => "search_button"%>
+<% end %>
+</div>
+
+<% if @products.count == 0 and @name != nil and @price != nil%>
+  <%= flash[:alert] %>
+<% elsif @products.count == 0 %>
+  <center><strong>No Products , Please Create New Product <%= link_to "Create Product", "/products/new" %></strong></center>
 
 <% else %>
 <center><h2>All Products</h2></center><clear ="all"><br>
@@ -23,14 +28,12 @@
 <tr>
 <% @products.each do |product| %>
   <tr>
-  <td><%= product.name %></td>
-  <td><%= product.price %></td>
-  <td><%= link_to "Edit", "products/#{product.id}/edit", :class =>"edit_link" %>
-  <%= button_to "Delete", "/products/#{product.id}", :method => :delete, :class =>"delete_button" %>
-  </td>
-  
+    <td><%= product.name %></td>
+    <td><%= product.price %></td>
+    <td><%= link_to "Edit", "products/#{product.id}/edit", :class =>"edit_link" %>
+      <%= button_to "Delete", "/products/#{product.id}", :method => :delete, :class =>"delete_button" %>
+    </td>
   </tr>
-
 <% end %>
 </table>
  
