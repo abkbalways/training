@@ -1,11 +1,11 @@
-<div class = "col-lg-6 mx-lg-auto">
+<div class = "col-lg-5 mx-lg-auto">
   <div class = "card shadow">
     <div class = "card-header">
       <h2 class = "card-title text-center">Forgot Your Password</h2>
     </div>
     <div class = "card-body">
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, data: {turbo: :false} }) do |f| %>
   <%= render "users/shared/error_messages", resource: resource %>
 
   <div class="form-group">
