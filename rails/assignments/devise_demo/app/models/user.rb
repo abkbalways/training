@@ -7,5 +7,12 @@ class User < ApplicationRecord
          :rememberable, 
          :validatable,
          :confirmable,
-         :trackable
+         :trackable,
+         :timeoutable,
+         :lockable
+  private
+
+  def after_confirmation
+    WelcomeMailer.send_greetings_notification(self).deliver_now
+  end
 end
