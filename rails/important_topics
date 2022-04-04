@@ -251,3 +251,53 @@ PART 2 (Integrating bootstrap method 2)
   def after_confirmation
     WelcomeMailer.send_greetings_notification(self).deliver_now
   end
+  
+*** For send confirmation, reset_password, etc. link by mail just add (in config/environments/development.erb)
+
+config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_options = { from: "abkb2023@gmail.com" }
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: "google.com",
+    user_name: "abkb2023@gmail.com",
+    password: "9997817202",
+    authentication: "plain",
+    enable_starttls_auto: true,
+  }
+  
+  ---------------------------------------------------------------------------------------------
+  
+  (e) Upload image in rails application (by carrierwave)
+  
+  1. gem 'carrierwave' (Add in Gemfile)
+  
+  2. rails generate uploader ProductImage (run in console)
+  
+  3. class ProductImageUploader < CarrierWave::Uploader::Base
+       storage :file
+     end
+     
+  4. rails g migration add_product_image_to_products product_image:string (run in console, if column for image is not present)
+     rails db:migrate
+  
+  5. class Product < ApplicationRecord
+       mount_uploader :product_image, ProductImageUploader
+     end
+     
+     (in product model)
+     
+  6. product = Product.new
+     product.product_image = params[:product_image]
+     
+     (in product controller)
+     
+  7. We can find all uploaded images in (public folder)
+  
+  8. For find image url , (product.product_image.url)
+  
+  -------------------------------------------------------------------------------------------------- 
